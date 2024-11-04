@@ -1,0 +1,546 @@
+<%- contentFor('HeaderCss') %>
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+
+        <div class="row">
+            <div class="col-12">
+                <div
+                    class="page-title-box justify-content-between d-flex align-items-md-center flex-md-row flex-column">
+                    <h4 class="page-title">Vehicles</h4>
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Vehicle</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript: void(0);">Vehicle List</a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="header-title"></h4>
+
+                        <button class="btn btn-primary  mb-3" disabled onclick="generate()"
+                            id="generate">Generate</button>
+
+
+                        <table id="vehicletbl1" class="table  dt-responsive wrap w-100">
+                            <thead>
+                                <tr>
+                                    <th>SNO</th>
+                                    <th>Vehicle name</th>
+                                    <th>Tracktor Code</th>
+                                    <th>Tracktor Reg</th>
+                                    <th>Trailer Code</th>
+                                    <th>Trailer Reg</th>
+                                    <th>Trailer Size</th>
+                                    <th>GSAP Haulier</th>
+                                    <th>Group Code</th>
+                                    <th>Tracktor Regid</th>
+
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+                            </tbody>
+                        </table>
+
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
+        </div> <!-- end row-->
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+
+            <script>
+                var tdata;
+                let selectedNames = [];
+
+
+                $(document).ready(() => {
+
+                    select_topbar("topbar_scope")
+                    select_haulier('gsap_haulier');
+                    topbar = $('#topbar_scope');
+                    scope = localStorage.getItem("scope")
+                    if (scope != "") {
+                        topbar.val(scope).trigger('change');
+                    }
+
+                    $('#topbar_scope').change(() => {
+                        localStorage.setItem("scope", topbar.val());
+
+                        gettpp(topbar.val());
+                        vehicle($('#topbar_scope').val());
+                    })
+                    var currentUrl = window.location.href;
+                    if (currentUrl.includes('vehicle_induced')) {
+                        $('#topbar_scopedetails_div').css('display', 'block');
+                    }
+                    else {
+                        $('#topbar_scopedetails_div').css('display', 'none');
+
+                    }
+                    if (currentUrl.includes('vehicles') || currentUrl.includes('customers') || currentUrl.includes('depot') || currentUrl.includes('parkingloc_list') || currentUrl.includes('vehicle_induced')) {
+                        $('#topbar_scope_div').css('display', 'block');
+
+
+                        // Perform actions if URL contains "vehicle"
+                    } else {
+                        $('#topbar_scope_div').css('display', 'none');
+
+
+
+                        // Perform actions if URL does not contain "vehicle"
+                    }
+
+                    vehicletbl = $('#vehicletbl1').DataTable({
+                  
+                        keys: !0,
+                        scrollX: true,
+                        scrollCollapse: true,
+                        scrollY: '50vh',
+                        select: {
+                            style: 'multi',
+                        },
+                        language: {
+                            paginate: { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback: function () {
+                            $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+                        },
+                        order: [[0, 'asc']],
+                        createdRow: function (row, data, dataIndex) {
+                            // Set the ID attribute of the row
+                            $(row).attr('id', 'row-' + data[0]); // Assuming data[0] is the orderId
+                        }
+                    });
+
+
+                    // Add event listener for row selection
+                    $('#vehicletbl1').on('select.dt', function (e, dt, type, indexes) {
+                        if (type === 'row') {
+                            // Get the selected row
+                            var row = vehicletbl.row(indexes).data();
+                            // Add the name to the selectedNames array if not already present
+                            if (!selectedNames.includes(row[1])) { // Assuming name is at index 1
+                                selectedNames.push(row[1]);
+                            }
+                            $('#generate').removeAttr('disabled');
+                            // Change the font color to white for the selected row
+                            var selectedRow = vehicletbl.row(indexes).node();
+                            $(selectedRow).find('td').css('color', 'white');
+                        }
+                    });
+
+                    // Add event listener for row deselection
+                    $('#vehicletbl1').on('deselect.dt', function (e, dt, type, indexes) {
+                        if (type === 'row') {
+                            // Get the deselected row
+                            var row = vehicletbl.row(indexes).data();
+                            // Remove the name from the selectedNames array
+                            selectedNames = selectedNames.filter(name => name !== row[1]);
+                            console.log(selectedNames)
+                            if (selectedNames.length === 0) {
+                                $('#generate').attr('disabled', 'disabled')
+
+                            }
+                            // Reset the font color for the deselected row
+
+                            var deselectedRow = vehicletbl.row(indexes).node();
+                            $(deselectedRow).find('td').css('color', ''); // Reset to default
+                        }
+                    });
+
+                    // Function to display selected names on button click
+
+                    // Adding column search functionality
+                    vehicletbl.columns().every(function () {
+                        let column = this;
+                        let title = $(column.footer()).text();
+
+                        // Create input element
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        input.className = 'form-control';
+                        $(column.footer()).empty().append(input);
+
+                        // Event listener for user input
+                        $(input).on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                    });
+
+
+                    // Example button to display selected names
+
+                    // Function to display selected names on button click
+
+                    // Adding column search functionality
+                    vehicletbl.columns().every(function () {
+                        let column = this;
+                        let title = $(column.footer()).text();
+
+                        // Create input element
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        input.className = 'form-control';
+                        $(column.footer()).empty().append(input);
+
+                        // Event listener for user input
+                        $(input).on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                    });
+
+
+                    select_field('trailer_scope')
+                    $('#tracktor_check').change(function () {
+                        if ($(this).is(':checked')) {
+
+                            $('#tracktor_div').hide();
+                            $('#tracktor_inp2').show();
+                            $('#tracktor_inp').show();
+
+                        } else {
+                            $('#tracktor_div').show();
+                            $('#tracktor_inp2').hide();
+                            $('#tracktor_inp').hide();
+                        }
+                    });
+
+                    $('#trailer_check').click(function () {
+                        if ($(this).is(':checked')) {
+                            $('#trailer_div').css('display', 'none');
+                            $('#trailer_inp').css('display', 'block');
+                            $('#trailer_inp2').css('display', 'block');
+                        } else {
+                            $('#trailer_div').css('display', 'block');
+                            $('#trailer_inp').css('display', 'none');
+                            $('#trailer_inp2').css('display', 'none');
+                        }
+                    });
+
+
+                })
+
+
+
+
+                function select_topbar(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        // $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                        scope_id = localStorage.getItem("scope");
+                        $('#topbar_scope').val(scope_id).trigger('change')
+                    })
+                }
+
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+
+
+
+                function vehicle(id) {
+                    if (id == "ALL") {
+                        var settings = {
+                            url: "allvehicle_bycompartment",
+                            method: "GET",
+                            timeout: 0
+                        };
+                    }
+                    else {
+                        scope = localStorage.getItem('scope')
+                        var settings = {
+                            url: "vehicle_bycompartment?id=" + scope,
+                            method: "GET",
+                            timeout: 0
+                        };
+                    }
+
+                    $.ajax(settings).done(function (response) {
+
+                        tdata = response;
+                        vehicletbl.clear().draw();
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check_' + data.id + '" ' + (data.active == "1" ? "checked" : "") + '>' +
+                                '</div>';
+
+                            const vehicle_row = vehicletbl.row.add([
+                                index + 1,
+                                data.name,
+                                data.tractor_code,
+                                data.tractor_reg,
+                                data.trailer_code == null ? "-" : data.trailer_code,
+                                data.trailer_reg2,
+                                data.trailer_size,
+                                data.haulier_name,
+                                data.group_code,
+                                data.rigid == "1" ? "Yes" : "No"
+
+                            ]).draw(false).node();
+
+                            // Add double-click event to the row
+                            $(vehicle_row).dblclick(function () {
+                                redirect(`vehicle_properties?id=${data.id}`); // Redirect to customer_address with id as query parameter
+                            });
+                        });
+                    });
+                }
+
+
+
+                vehicletbl = $('#vehicletbl').DataTable({
+
+                    keys: !0,
+
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+
+                function select_field(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                    })
+                }
+
+                function select_haulier(id) {
+                    var settings = {
+                        "url": "haulier",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['haulier_name']
+                            }));
+                        }
+                    })
+                }
+
+                function generateRandomFourDigitString() {
+                    const randomNum = Math.floor(Math.random() * 10000); // Generate a random number between 0 and 9999
+                    return String(randomNum).padStart(4, '0'); // Pad with leading zeros to ensure it's 4 digits
+                }
+
+
+                function generate() {
+
+                    const filterNames = selectedNames;
+
+                    // Use the JavaScript `filter()` method to filter the array
+                    const filteredData = tdata.filter(vehicle => filterNames.includes(vehicle.name.trim()));
+
+                    var currentdate = new Date();
+                    var tpp = $('#topbar_scopedetailes').val() == "select" ? "" : $('#topbar_scopedetailes').val();
+                    // var currentdate2 = new Date(date);
+                    var datetime = ('0' + currentdate.getDate()).slice(-2) + "-" +
+                        ('0' + (currentdate.getMonth() + 1)).slice(-2) + "-" +
+                        currentdate.getFullYear().toString().substr(-2) +
+                        "" +
+                        ('0' + currentdate.getHours()).slice(-2) + ":" +
+                        ('0' + currentdate.getMinutes()).slice(-2);
+                    // console.log(datetime);
+                    // var sdate = ('0' + currentdate2.getDate()).slice(-2) + "" + ('0' + (currentdate2.getMonth() + 1)).slice(-2) + "" + currentdate2.getFullYear().toString().substr(-2);
+                    // create_shipment();
+                    let runno = generateRandomFourDigitString();
+                    let batchno = generateRandomFourDigitString();
+
+                    var line1 = "#TCH" + tpp.padStart(4, "0") + "GSAP" + runno + "" + datetime.padEnd(13," ");
+                    var line2 = "#BCH" + tpp.padStart(4, "0") + "GSAPBV1" + batchno + "" + datetime.padEnd(13," ");
+                    var line3 = "B0LTRKGS";
+                    var line4 = ""
+                    var line5 = ""
+                    line1 = line1.padEnd(80, " ")
+                    line2 = line2.padEnd(80, " ");
+                    line3 = line3.padEnd(80, " ");
+                    line4 = line4.padEnd(80, " ")
+
+                    var ftext = line1 + "\n" + line2 + "\n" + line3 + "\n";
+
+                    filteredData.forEach(item => {
+                        if (item.rigid != "1") {
+                            vehline = ""
+                            vehline1 = ""
+                            vehline1 = "H1" + item.name.padEnd(12, " ") + item.tractor_code.padEnd(12, " ") + "T" + item.tractor_reg.padEnd(12, " ") + "".padStart(24, "0");
+                            vehline1 = vehline1.padEnd(80, " ")
+                            vehline += "H1" + item.name.padEnd(12, " ") + item.trailer_reg2.padEnd(12, " ") + "L" + item.tractor_reg.padEnd(12, " ") + item.cvweight.padStart(24, "0");
+                            vehline = vehline.padEnd(80, " ");
+                            ftext += vehline1 + "\n" + vehline + "\n"
+                        } else {
+                            vehline = ""
+                            vehline = "H1" + item.name.padEnd(12, " ") + item.tractor_code.padEnd(12, " ") + "C" + item.tractor_reg.padEnd(12, " ") + item.cvweight.padStart(24, "0");
+                            vehline = vehline.padEnd(80, " ");
+                            ftext += vehline + "\n"
+                        }
+
+
+                        console.log("vehicle", item.name);
+                        item.compartments.forEach(comp => {
+                            compline = ""
+                            compline = "H2" + item.name.padEnd(12, " ") + (item.rigid == "1" ? item.tractor_code : item.trailer_reg2).padEnd(12, " ") + String(comp.compartment_no).padStart(12, "0") + String(comp.size).padStart(12, "0");
+                            compline = compline.padEnd(80, " ");
+                            ftext += compline + "\n"
+                            console.log("vehicle Compartment", comp)
+                        })
+                        h3line = "";
+                        let formattedhaulier = item.haulier_name.length > 20
+                            ? item.haulier_name.substring(0, 20) // Trim if the text is longer than 20 characters
+                            : item.haulier_name.padEnd(20, " "); // Pad with spaces if it's shorter
+
+
+                        var group = "GROUP0"
+                        h3line = "H3" + item.name.padEnd(12, " ") + "N" + String(item.group_code).padEnd(10, " ") + formattedhaulier + item.vehicle_group.padEnd(10, " ") + item.vehicle_group.padEnd(20, " ");
+                        h3line = h3line.padEnd(80, " ");
+                        ftext += h3line + "\n";
+                    })
+                    lines = ftext.split('\n');
+                    var line7 = "#BCT" + tpp.padStart(4, "0") + "GSAPBV1" + batchno + "" + String(lines.length - 1).padStart(6, "0");
+                    var line6 = "#TCT" + tpp.padStart(4, "0") + "GSAP" + runno + String(lines.length +1).padStart(6, "0") + "1".padStart(3, "0");
+                    line6 = line6.padEnd(80, " ")
+                    line7 = line7.padEnd(80, " ")
+                    ftext += line7 + '\n' + line6;
+                    const file = new Blob([ftext], { type: 'text/plain' });
+                    const link = document.createElement("a");
+
+                    link.href = URL.createObjectURL(file);
+
+                    link.download = "flow_flat_file_" + datetime + ".txt";
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                }
+
+
+
+                function gettpp(id) {
+                    var settings = {
+                        "url": "scope_details/" + id,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#topbar_scopedetailes').empty()
+                        $('#topbar_scopedetailes').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#topbar_scopedetailes').append($('<option>', {
+                                value: response[i]['tpp'],
+                                text: response[i]['tpp']
+                            }));
+                        }
+                    })
+
+                }
+
+            </script>

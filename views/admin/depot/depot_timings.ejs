@@ -1,0 +1,1080 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <div class="card mt-3">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+                    <div class="col-auto"><a href="depot_address?id=<%- id %>" class="btn btn-soft-primary ">Address</a>
+                    </div>
+                    <div class="col-auto"><a href="depot_tanks?id=<%- id %>" class="btn btn-soft-primary">Tanks</a>
+                    </div>
+                    <!-- <div class="col-auto"><a href="depot_group?id=<%- id %>" class="btn btn-soft-primary">Groups</a>
+                    </div> -->
+                    <div class="col-auto"><a href="depot_timing?id=<%- id %>"
+                            class="btn btn-soft-primary active">Timmings</a></div>
+                    <div class="col-auto"><a href="depot_routes?id=<%- id %>" class="btn btn-soft-primary">Routes</a>
+                    </div>
+                    <div class="col-auto"><a href="depot_status?id=<%- id %>" class="btn btn-soft-primary">Status</a>
+                    </div>
+                    <div class="col-auto"><a href="depot_event?id=<%- id %>" class="btn btn-soft-primary">Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                            <li class="nav-item" id="address_p">
+                                <a href="#delopn" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-start rounded-0 active">
+                                    Delivery Opening
+                                </a>
+                            </li>
+                            <li class="nav-item" id="tanks_p">
+                                <a href="#selopn" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                    Sales Opening
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#contacttime" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-end rounded-0">
+                                    Contact Time
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane show active" id="delopn">
+
+                                <div class="container">
+                                    <div class="card-container">
+                                        <button class="btn btn-soft-primary mb-3" data-bs-toggle="modal"
+                                            data-bs-target="#delmodal">Add
+                                            Timming</button>
+
+
+                                        <table id="deltbl" class="table table-striped dt-responsive wrap w-100 ">
+                                            <thead>
+                                                <tr>
+                                                    <th>SNO</th>
+                                                    <th>Start Day</th>
+                                                    <th>Start Time</th>
+                                                    <th>End Day</th>
+                                                    <th>End Time</th>
+                                                    <th>Edit</th>
+                                                    <!-- <th>Delete</th> -->
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="tab-pane " id="selopn">
+
+                                <div class="container">
+                                    <div class="card-container">
+                                        <button class="btn btn-soft-primary mb-3" data-bs-toggle="modal"
+                                            data-bs-target="#salmodal">Add
+                                            Sales</button>
+
+
+                                        <table id="seltbl" class="table table-striped dt-responsive wrap w-100 ">
+                                            <thead>
+                                                <tr>
+                                                    <th>SNO</th>
+                                                    <th>Start Day</th>
+                                                    <th>Start Time</th>
+                                                    <th>End Day</th>
+                                                    <th>End Time</th>
+                                                    <th>Edit</th>
+                                                    <!-- <th>Delete</th> -->
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+                            </div><!-- end tab-pane -->
+                            <!-- end about me section content -->
+
+                            <div class="tab-pane" id="contacttime">
+                                <button class="btn btn-soft-primary mb-3" data-bs-toggle="modal"
+                                    data-bs-target="#conttime_modal">Add Contact time</button>
+
+
+                                <table id="conttime_tbl" class="table table-striped dt-responsive wrap w-100 ">
+                                    <thead>
+                                        <tr>
+                                            <th>SNO</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Contact Time</th>
+                                            <th>Edit</th>
+                                            <!-- <th>Delete</th> -->
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div> <!-- end card body -->
+                </div> <!-- end card -->
+            </div>
+
+            <!-- end col -->
+        </div>
+
+        <div id="delmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Timming</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="del_row">
+                                <div class="mb-3">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label class="form-label">Start Day </label>
+                                    <select class="form-control select2" id="delstrday" data-toggle="select2">
+                                        <option disabled selected hidden >Select</option>
+                                        <option>Monday</option>
+                                        <option>Tuesday</option>
+                                        <option>Wednesday</option>
+                                        <option>Thursday</option>
+                                        <option>Friday</option>
+                                        <option>Saturday</option>
+                                        <option>Sunday</option>
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Start Time</label>
+                                    <div class="input-group">
+                                        <input type="text" class="basic-timepicker form-control"
+                                             id="delstrtime">
+                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">End Day </label>
+                                    <select class="form-control select2" id="delendday" data-toggle="select2">
+                                        <option disabled selected hidden>Select</option>
+                                        <option>Monday</option>
+                                        <option>Tuesday</option>
+                                        <option>Wednesday</option>
+                                        <option>Thursday</option>
+                                        <option>Friday</option>
+                                        <option>Saturday</option>
+                                        <option>Sunday</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">End Time</label>
+                                    <div class="input-group">
+                                        <input type="text" id="delendtime" class=" basic-timepicker form-control"
+                                            >
+                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="delsave">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <div id="salmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Sale</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="sal_row">
+                                <div class="mb-3">
+                                    <label class="form-label">Start Day </label>
+                                    <input type="hidden" name="" id="sal_updateID">
+                                    <select class="form-control select2" id="salopnstrday" data-toggle="select2">
+                                        <option disabled selected hidden>Select</option>
+                                        <option>Monday</option>
+                                        <option>Tuesday</option>
+                                        <option>Wednesday</option>
+                                        <option>Thursday</option>
+                                        <option>Friday</option>
+                                        <option>Saturday</option>
+                                        <option>Sunday</option>
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Start Time</label>
+                                    <div class="input-group">
+                                        <input type="text" id="salopnstrtime" class=" basic-timepicker form-control"
+                                            >
+                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">End Day </label>
+                                    <select class="form-control select2" id="salopnendday" data-toggle="select2">
+                                        <option disabled selected hidden>Select</option>
+                                        <option>Monday</option>
+                                        <option>Tuesday</option>
+                                        <option>Wednesday</option>
+                                        <option>Thursday</option>
+                                        <option>Friday</option>
+                                        <option>Saturday</option>
+                                        <option>Sunday</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">End Time</label>
+                                    <div class="input-group">
+                                        <input type="text" class="basic-timepicker form-control"
+                                             id="salopendtime">
+                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="salsave">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <div id="conttime_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Contact Time</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="cont_row">
+
+                                <div class="mb-3">
+                                    <input type="hidden" name="" id="cont_updateId">
+                                    <label class="form-label">Start Time</label>
+
+                                    <div class="input-group">
+                                        <input type="text" class="basic-timepicker form-control"
+                                             id="cont_time_str_time">
+                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">End Time</label>
+                                    <div class="input-group">
+                                        <input type="text" class="basic-timepicker form-control"
+                                             id="cont_time_end_time">
+                                        <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Contact Time (mins)</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="cont_time">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="cont_time_save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <!-- Input Mask Plugin js -->
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Touchspin Plugin js -->
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+            <!-- Bootstrap Maxlength Plugin js -->
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+            <!-- Typehead Plugin js -->
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+            <!-- Flatpickr Timepicker Plugin js -->
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+            <!-- Typehead Demo js -->
+
+            <!-- Timepicker Demo js -->
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+            <!-- Datatable Demo Aapp js -->
+
+            <script>
+
+                $(document).ready(() => {
+                    delopening()
+                    salopening()
+                    contact_time()
+
+                })
+
+                $('#delsave').click(() => {
+
+                    try {
+                        var strday = $('#delstrday').val();
+                        var str_time = $('#delstrtime').val();
+                        var end_day = $('#delendday').val();
+                        var end_time = $('#delendtime').val();
+
+
+                        // Check if any required field is empty
+                        if (!strday || !str_time || !end_day || !end_time) {
+                            throw new Error('All fields must be filled');
+                        }
+                        id = $('#update_id').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("start_day", strday);
+                            form.append("start_time", str_time);
+                            form.append("end_day", end_day);
+                            form.append("end_time", end_time);
+
+                            var settings = {
+                                "url": "customer_timings",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    delopening()
+
+                                    clear_fields('del_row');
+                                    $('#delmodal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Delivery Opening Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("start_day", strday);
+                            form.append("start_time", str_time);
+                            form.append("end_day", end_day);
+                            form.append("end_time", end_time);
+
+                            var settings = {
+                                "url": "customer_timings/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    delopening()
+                                    clear_fields('del_row');
+                                    $('#delmodal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Delivery Opening Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+                $('#salsave').click(() => {
+
+                    try {
+                        var strday = $('#salopnstrday').val();
+                        var str_time = $('#salopnstrtime').val();
+                        var end_day = $('#salopnendday').val();
+                        var end_time = $('#salopendtime').val();
+
+
+                        // Check if any required field is empty
+                        if (!strday || !str_time || !end_day || !end_time) {
+                            throw new Error('All fields must be filled');
+                        }
+                        id = $('#sal_updateID').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("start_day", strday);
+                            form.append("start_time", str_time);
+                            form.append("end_day", end_day);
+                            form.append("end_time", end_time);
+
+                            var settings = {
+                                "url": "customer_salopen",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    salopening()
+
+                                    clear_fields('sal_row');
+                                    $('#salmodal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Sales Opening Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("start_day", strday);
+                            form.append("start_time", str_time);
+                            form.append("end_day", end_day);
+                            form.append("end_time", end_time);
+
+                            var settings = {
+                                "url": "customer_salopen/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    salopening()
+                                    clear_fields('sal_row');
+                                    $('#salmodal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Sales Opening Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+
+                $('#cont_time_save').click(() => {
+
+                    try {
+                        var strtime = $('#cont_time_str_time').val();
+                        var end_time = $('#cont_time_end_time').val();
+                        var cont_time = $('#cont_time').val();
+
+
+
+                        // Check if any required field is empty
+                        if (!strtime || !end_time || !cont_time) {
+                            throw new Error('All fields must be filled');
+                        }
+                        id = $('#cont_updateId').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("start_time", strtime);
+                            form.append("end_time", end_time);
+                            form.append("contact_time", cont_time);
+
+
+                            var settings = {
+                                "url": "customer_conttime",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    contact_time()
+
+                                    clear_fields('cont_row');
+                                    $('#conttime_modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Contact Time Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("start_time", strtime);
+                            form.append("end_time", end_time);
+                            form.append("contact_time", cont_time);
+
+
+                            var settings = {
+                                "url": "customer_conttime/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    contact_time()
+                                    clear_fields('cont_row');
+                                    $('#conttime_modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Contact Time Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function check_redirection(t_id) {
+                    if (window.location.pathname !== '/customer') {
+                        window.location.href = '/customer_details';
+                        $('.nav-link.active').removeClass('active');
+                        $(t_id).find('a.nav-link').addClass('active');
+
+                        $('.tab-pane.show.active').removeClass('show active');
+                        var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                        $(targetTabPane).addClass('show active');
+                    }
+                    $('.nav-link.active').removeClass('active');
+                    $(t_id).find('a.nav-link').addClass('active');
+
+                    $('.tab-pane.show.active').removeClass('show active');
+                    var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                    $(targetTabPane).addClass('show active');
+                }
+                function edit(id) {
+
+                    $.ajax({
+                        url: "customer_timings/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $('#update_id').val(response['id']);
+                            $('#delstrday').val(response['start_day']).trigger('change');
+                            $('#delstrtime').val(response['start_time']);
+                            $('#delendday').val(response['end_day']).trigger('change');
+                            $('#delendtime').val(response['end_time']);
+
+                        }
+                    });
+                }
+                function saledit(id) {
+
+                    $.ajax({
+                        url: "customer_salopen/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $('#sal_updateID').val(response['id']);
+                            $('#salopnstrday').val(response['start_day']).trigger('change');
+                            $('#salopnstrtime').val(response['start_time']);
+                            $('#salopnendday').val(response['end_day']).trigger('change');
+                            $('#salopendtime').val(response['end_time']);
+
+                        }
+                    });
+                }
+                function contedit(id) {
+                    alert(id)
+
+                    $.ajax({
+                        url: "customer_conttime/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $('#cont_updateId').val(response['id']);
+                            $('#cont_time_str_time').val(response['start_time']);
+                            $('#cont_time_end_time').val(response['end_time']);
+                            $('#cont_time').val(response['contact_time']);
+
+                        }
+                    });
+                }
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id, api, func) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "" + api + "/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    if (typeof func === 'function') {
+                                        func();
+                                    }
+
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+                function delopening() {
+                    var settings = {
+                        "url": "depot_delopn/<%- id %>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        delopn_tbl.clear().draw();
+
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check-' + data.id + '" ' + (data.active == "active" ? "checked" : "") + '>' +
+                                '</div>';
+                            delopn_tbl.row.add([
+                                index + 1,
+                                data.start_day,
+                                data.start_time,
+                                data.end_day,
+                                data.end_time,
+                                '<td>' +
+                                '<button class="btn btn-soft-warning" onclick="edit(\'' + data.id + '\')" data-bs-toggle="modal" data-bs-target="#delmodal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</td>',
+                                // '<td>' +
+                                // '<button class="btn btn-soft-danger" onclick="delete_rec(' + data.id + ', \'customer_timings\',delopening)">' +
+                                // '<i class="ri-delete-bin-6-fill"></i>' +
+                                // '</button>' +
+                                // '</td>'
+                            ]).draw(false).node();
+                        });
+                    });
+                }
+                function salopening() {
+                    var settings = {
+                        "url": "customer_salopen_byId/<%- id%>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        selopn_tbl.clear().draw();
+
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check-' + data.id + '" ' + (data.active == "active" ? "checked" : "") + '>' +
+                                '</div>';
+                            selopn_tbl.row.add([
+                                index + 1,
+                                data.start_day,
+                                data.start_time,
+                                data.end_day,
+                                data.end_time,
+                                '<th>' +
+                                '<button class="btn btn-soft-warning" onclick="saledit(\'' + data.id + '\')" data-bs-toggle="modal" data-bs-target="#salmodal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</th>',
+                                // '<th>' +
+                                // '<button class="btn btn-soft-danger" onclick="delete_rec(' + data.id + ', \'customer_salopen\',salopening)">' +
+                                // '<i class="ri-delete-bin-6-fill"></i>' +
+                                // '</button>' +
+                                // '</th>'
+                            ]).draw(false).node();
+
+
+                        });
+                    });
+                }
+                function contact_time() {
+                    var settings = {
+                        "url": "customer_conttime_byId/<%- id%>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        conttime_tbl.clear().draw();
+
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.contId + ')"  id="check-' + data.contId + '" ' + (data.active == "active" ? "checked" : "") + '>' +
+                                '</div>';
+                            conttime_tbl.row.add([
+                                index + 1,
+                                data.start_time,
+                                data.end_time,
+                                data.contact_time,
+                                '<th>' +
+                                '<button class="btn btn-soft-warning" onclick="contedit(\'' + data.contId + '\')" data-bs-toggle="modal" data-bs-target="#conttime_modal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</th>',
+                                // '<th>' +
+                                // '<button class="btn btn-soft-danger" onclick="delete_rec(' + data.id + ', \'customer_conttime\',contact_time)">' +
+                                // '<i class="ri-delete-bin-6-fill"></i>' +
+                                // '</button>' +
+                                // '</th>'
+                            ]).draw(false).node();
+
+
+                        });
+                    });
+                }
+
+
+
+
+                delopn_tbl = $('#deltbl').DataTable({
+
+                    keys: !0,
+                    
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+                conttime_tbl = $('#conttime_tbl').DataTable({
+
+                    keys: !0,
+
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+                selopn_tbl = $('#seltbl').DataTable({
+
+                    keys: !0,
+
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+
+                // function update_status(id) {
+                //     status = $('#check-' + id + '').is(':checked') ? "active" : "inactive"
+                //     var form = new FormData();
+                //     form.append("active", status);
+
+
+                //     // Your code to submit the form or any other processing
+
+                //     var settings = {
+                //         "url": "customer_contact_status/" + id,
+                //         "method": "PUT",
+                //         "timeout": 0,
+                //         "headers": {
+                //             "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                //         },
+                //         "processData": false,
+                //         "mimeType": "multipart/form-data",
+                //         "contentType": false,
+                //         "data": form
+                //     };
+
+                //     $.ajax({
+                //         ...settings,
+                //         statusCode: {
+                //             200: function (response) {
+                //                 console.log(response);
+                //             },
+
+                //         },
+                //         success: function (data) {
+
+                //         },
+                //         error: function (xhr, textStatus, errorThrown) {
+                //             console.log(xhr)
+                //             console.log(textStatus)
+                //             console.log(errorThrown)
+
+                //             console.log(errorThrown);
+
+
+                //             // console.log("Request failed with status code: " + xhr.status);
+                //         }
+                //     });
+
+                // }
+
+            </script>

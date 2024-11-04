@@ -1,0 +1,749 @@
+<%- contentFor('HeaderCss') %>
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+
+        <div class="row">
+            <div class="col-12">
+                <div
+                    class="page-title-box justify-content-between d-flex align-items-md-center flex-md-row flex-column">
+                    <h4 class="page-title">Vehicles</h4>
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Vehicle</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript: void(0);">Vehicle List</a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="header-title"></h4>
+                        <button class="btn btn-soft-primary  mb-3" data-bs-toggle="modal" data-bs-target="#modal"> Add
+                            Vehicle</button>
+
+
+                            <table id="vehicletbl1" class="table table-striped dt-responsive wrap w-100">
+                                <thead>
+                                    <tr>
+                                        <th>SNO</th>
+                                        <th>Vehicle name</th>
+                                        <th>Tracker Code</th>
+                                        <th>Tracker Reg</th>
+                                        <th>Tracker Regid</th>
+                                        <th>Trailer Code</th>
+                                        <th>Trailer Reg</th>
+                                        <th>Scope</th>
+                                        <th>GSAP Haulier</th>
+                                        <th>User Field 1</th>
+                                        <th>MS/ALU</th>
+                                        <th>Active</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
+        </div> <!-- end row-->
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Configured Vehicle</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label for="simpleinput" class="form-label">Tracktor Code</label>
+                                    <input type="text" id="name" class="form-control">
+                                </div>
+                                <div class="mb-3  col-lg-6">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label for="simpleinput" class="form-label">CV</label>
+                                    <input type="text" id="tracktor_cv" class="form-control">
+                                </div>
+
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label class="form-label" for="customCheck1">Tracktor</label>
+                                    <input type="text" class="form-control" name="" id="tracktor_inp">
+                                </div>
+
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label class="form-label">Trailer</label>
+                                    <input type="text" class="form-control" name="" id="trailer_inp">
+                                </div>
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Scope</label>
+                                    <select class="form-control select2" id="trailer_scope" data-toggle="select2">
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label"> Trailer Payload</label>
+                                    <input type="text" id="trailer_payload" class="form-control">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Gsap Haulier</label>
+
+                                    <select class="form-control select2" id="gsap_haulier" style="display: block;"
+                                        data-toggle="select2">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">User Field</label>
+                                    <input type="text" id="user_field" class="form-control">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label"> Trailer Size</label>
+                                    <div id="trailer_div">
+                                        <select class="form-control select2" id="trailer_size" style="display: block;"
+                                            data-toggle="select2">
+                                            <option>Select</option>
+                                            <option value="8KL">8KL</option>
+                                            <option value="10KL">10KL</option>
+                                            <option value="12KL">12KL</option>
+                                            <option value="14KL">14KL</option>
+                                            <option value="16KL">16KL</option>
+                                            <option value="18KL">18KL</option>
+                                            <option value="20KL">20KL</option>
+                                            <option value="21KL">21KL</option>
+                                            <option value="22KL">22KL</option>
+                                            <option value="24KL">24KL</option>
+                                            <option value="26KL">26KL</option>
+                                            <option value="28KL">28KL</option>
+                                            <option value="30KL">30KL</option>
+                                            <option value="32KL">32KL</option>
+                                            <option value="34KL">34KL</option>
+                                            <option value="36KL">36KL</option>
+                                            <option value="38KL">38KL</option>
+                                            <option value="40KL">40KL</option>
+                                            <option value="42KL">42KL</option>
+                                            <option value="44KL">44KL</option>
+                                            <option value="46KL">46KL</option>
+                                            <option value="45KL">45KL</option>
+                                            <option value="48KL">48KL</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Vehicle Group</label>
+                                    <div>
+                                        <select class="form-control select2" id="veh_group" style="display: block;"
+                                            data-toggle="select2">
+                                            <option>Select</option>
+                                            <option value="GROUP0">GROUP0</option>
+                                            <option value="GROUP1">GROUP1</option>
+                                            <option value="GROUP2">GROUP2</option>
+                                            <option value="GROUP3">GROUP3</option>
+                                            <option value="GROUP4">GROUP4</option>
+                                            <option value="GROUP5">GROUP5</option>
+                                            <option value="GROUP6">GROUP6</option>
+                                            <option value="GROUP7">GROUP7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">MS/ALU</label>
+                                    <div>
+                                        <select class="form-control select2" id="ms_alu" style="display: block;"
+                                            data-toggle="select2">
+                                            <option>Select</option>
+                                            <option value="MS">MS</option>
+                                            <option value="ALU">ALU</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-check col-6" style="padding-top: 2rem; padding-left: 2em;">
+                                    <input type="checkbox" class="form-check-input" id="rigid">
+                                    <label class="form-check-label">Is Rigid</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+
+            <script>
+
+
+
+                $(document).ready(() => {
+                    vehicletbl = $('#vehicletbl1').DataTable({
+                        scrollY:'60vh'
+                    }
+
+                    );
+                    select_topbar("topbar_scope")
+                    select_haulier('gsap_haulier');
+                    topbar = $('#topbar_scope');
+                    scope = localStorage.getItem("scope")
+                    if (scope != "") {
+                        topbar.val(scope).trigger('change');
+                    }
+
+                    $('#topbar_scope').change(() => {
+                        localStorage.setItem("scope", topbar.val());
+                        vehicle($('#topbar_scope').val());
+                    })
+                    var currentUrl = window.location.href;
+                    if (currentUrl.includes('vehicles') || currentUrl.includes('customers') || currentUrl.includes('depot') || currentUrl.includes('parkingloc_list')) {
+                        $('#topbar_scope_div').css('display', 'block');
+
+                        // Perform actions if URL contains "vehicle"
+                    } else {
+                        $('#topbar_scope_div').css('display', 'none');
+
+
+                        // Perform actions if URL does not contain "vehicle"
+                    }
+
+                });
+
+                select_field('trailer_scope')
+
+                $('#save').click(() => {
+
+                    try {
+                        var name = $('#name').val();
+                        var tracktor_sel = $('#tracktor_select').val();
+                        var tracktor_inp = $('#tracktor_inp').val();
+
+                        var trailer_inp = $('#trailer_inp').val();
+                        var rigid = $('#rigid').val();
+                        var gsap_haulier = $('#gsap_haulier').val();
+                        var user_field = $('#user_field').val();
+                        var trailer_scope = $('#trailer_scope').val();
+                        var trailer_payload = $('#trailer_payload').val();
+                        var trailer_size = $('#trailer_size').val();
+                        trailer_size = trailer_size.replace(/KL$/, '000');
+                        // Check if any required field is empty
+                        // if ( !name || !trailer_scope || !trailer_payload || !trailer_size) {
+                        //     throw new Error('All fields must be filled');
+                        // }
+                        id = $('#update_id').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("name", $('#tracktor_cv').val());
+                            form.append("tractor_code", name);
+                            form.append("tracktor_cv", $('#tracktor_cv').val());
+                            form.append("tractor_reg", tracktor_inp);
+                            form.append("tracktor_reg2", tracktor_inp);
+                            form.append("trailer_code", trailer_inp);
+                            form.append("trailer_reg2", trailer_inp);
+                            form.append("trailer_reg", trailer_inp);
+                            form.append("rigid", $('#rigid').is(":checked") ? "1" : "0");
+                            form.append("gsap_haulier", gsap_haulier);
+                            form.append("user_field", user_field);
+                            form.append("scope", trailer_scope);
+                            form.append("trailer_payload", trailer_payload);
+                            form.append("trailer_size", trailer_size);
+                            form.append("vehicle_group", $('#veh_group').val());
+                            form.append("ms_alu", $('#ms_alu').val());
+
+                            form.append("active", "active");
+
+
+                            var settings = {
+                                "url": "vehicle",
+                                "method": "POST",
+                                "timeout": 0,
+                                "headers": {
+                                    "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                                },
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    vehicle($('#topbar_scope').val());
+
+                                    clear_fields('modal_row');
+                                    $('#modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Vehicle Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("name", $('#tracktor_cv').val());
+                            form.append("tractor_code", name);
+                            form.append("tracktor_cv", $('#tracktor_cv').val());
+                            form.append("tractor_reg", tracktor_inp);
+                            form.append("tracktor_reg2", tracktor_inp);
+                            form.append("trailer_code", trailer_inp);
+                            form.append("trailer_reg2", trailer_inp);
+                            form.append("trailer_reg", trailer_inp);
+                            form.append("rigid", $('#rigid').is(":checked") ? "1" : "0");
+                            form.append("gsap_haulier", gsap_haulier);
+                            form.append("user_field", user_field);
+                            form.append("scope", trailer_scope);
+                            form.append("trailer_payload", trailer_payload);
+                            form.append("trailer_size", trailer_size);
+                            form.append("vehicle_group", $('#veh_group').val());
+                            form.append("ms_alu", $('#ms_alu').val());
+                            form.append("active", "active");
+
+                            // Your code to submit the form or any other processing
+
+                            var settings = {
+                                "url": "vehicle/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+                                "headers": {
+                                    "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                                },
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+
+                                    vehicle($('#topbar_scope').val());
+                                    clear_fields('modal_row');
+                                    $('#modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Vehicle Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                            console.log("else")
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+                function select_topbar(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        // $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                        scope_id = localStorage.getItem("scope");
+                        $('#topbar_scope').val(scope_id).trigger('change')
+                    })
+                }
+
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function check_redirection(t_id) {
+                    if (window.location.pathname !== '/customer') {
+                        window.location.href = '/customer_details';
+                        $('.nav-link.active').removeClass('active');
+                        $(t_id).find('a.nav-link').addClass('active');
+
+                        $('.tab-pane.show.active').removeClass('show active');
+                        var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                        $(targetTabPane).addClass('show active');
+                    }
+                    $('.nav-link.active').removeClass('active');
+                    $(t_id).find('a.nav-link').addClass('active');
+
+                    $('.tab-pane.show.active').removeClass('show active');
+                    var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                    $(targetTabPane).addClass('show active');
+                }
+
+
+                function formatTrailerSize(trailerSize) {
+                    // Divide by 1000 to remove the last three zeros and add 'KL'
+                    return (trailerSize / 1000) + 'KL';
+                }
+                function edit(id) {
+                    $.ajax({
+                        url: "vehicle_byId/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $('#update_id').val(response[0]['id']);
+                            $('#name').val(response[0]['tractor_code']);
+                            $('#tracktor_cv').val(response[0]['name']);
+                            $('#tracktor_inp').val(response[0]['tractor_reg']).trigger('change');
+                            $('#trailer_inp').val(response[0]['trailer_reg']).trigger('change');
+                            $('#veh_group').val(response[0]['vehicle_group']).trigger('change');
+
+                            // if (response[0]['tractor_reg']) {
+                            //     $('#tracktor_check').prop("checked", true)
+                            //     $('#tracktor_inp').val(response[0]['tractor_reg']);
+                            //     $('#tracktor_inp2').val(response[0]['tracktor_reg2']);
+
+                            //     $('#tracktor_div').hide();
+                            //     $('#tracktor_inp2').show();
+                            //     $('#tracktor_inp').show();
+
+                            // }
+                            // else {
+                            //     $('#tracktor_div').show();
+                            //     $('#tracktor_inp2').hide();
+                            //     $('#tracktor_inp').hide();
+                            // }
+                            // $('#trailer_sel').val(response[0]['trailer_code']).trigger('change');
+                            // if (response[0]['trailer_reg']) {
+                            //     $('#trailer_check').prop("checked", true)
+
+                            //     $('#trailer_inp').val(response[0]['trailer_reg']);
+                            //     $('#trailer_inp2').val(response[0]['trailer_reg2'])
+                            //     $('#trailer_div').css('display', 'none');
+                            //     $('#trailer_inp').css('display', 'block');
+                            //     $('#trailer_inp2').css('display', 'block');
+
+                            // }
+                            // else {
+                            //     $('#trailer_div').css('display', 'block');
+                            //     $('#trailer_inp').css('display', 'none');
+                            //     $('#trailer_inp2').css('display', 'none');
+                            // }
+                            $('#rigid').prop("checked", response[0]['rigid'] == "1");
+                            $('#gsap_haulier').val(response[0]['gsap_haulier']).trigger('change');
+                            $('#user_field').val(response[0]['user_field']);
+                            $('#trailer_scope').val(response[0]['scope']).trigger('change');
+                            $('#ms_alu').val(response[0]['ms_alu']).trigger('change');
+                            $('#trailer_payload').val(response[0]['trailer_payload']);
+                            $('#trailer_size').val(formatTrailerSize(response[0]['trailer_size'])).trigger('change');
+
+                        }
+                    });
+                }
+
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "vehicle/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    vehicle($('#topbar_scope').val());
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+                function update_status(id) {
+                    status = $('#check_' + id + '').is(':checked') ? "active" : "inactive"
+                
+                    var form = new FormData();
+                    form.append("status", status);
+
+                    // Your code to submit the form or any other processing
+
+                    var settings = {
+                        "url": "vehicle_status/" + id,
+                        "method": "PUT",
+                        "timeout": 0,
+
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax({
+                        ...settings,
+                        statusCode: {
+                            200: function (response) {
+                                console.log(response);
+                            },
+
+                        },
+                        success: function (data) {
+
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(xhr)
+                            console.log(textStatus)
+                            console.log(errorThrown)
+
+                            console.log(errorThrown);
+
+
+                            // console.log("Request failed with status code: " + xhr.status);
+                        }
+                    });
+
+                }
+
+                function vehicle(id) {
+                    if (id == "ALL") {
+                        var settings = {
+                            url: "all_vehicle",
+                            method: "GET",
+                            timeout: 0
+                        };
+                    }
+                    else {
+                        var settings = {
+                            url: "vehicle/" + id,
+                            method: "GET",
+                            timeout: 0
+                        };
+                    }
+
+                    $.ajax(settings).done(function (response) {
+                        vehicletbl.clear().draw();
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check_' + data.id + '" ' + (data.active == "active" ? "checked" : "") + '>' +
+                                '</div>';
+
+                            const vehicle_row = vehicletbl.row.add([
+                                index + 1,
+                                data.name,
+                                data.tractor_code,
+                                data.tractor_reg,
+                                data.rigid== "1" ? "Yes" : "No",
+                                data.trailer_code,
+                                data.tractor_reg,
+                                data.scopename,
+                                data.h_name,
+                                data.user_field,
+                                data.ms_alu,
+                                checkbox,
+                                `<td>
+                    <button class="btn btn-soft-warning" onclick="edit('${data.id}')" data-bs-toggle="modal" data-bs-target="#modal">
+                        <i class="ri-pencil-fill"></i>
+                    </button>
+                </td>`,
+                                `<td>
+                    <button class="btn btn-soft-danger" onclick="delete_rec('${data.id}')">
+                        <i class="ri-delete-bin-6-fill"></i>
+                    </button>
+                </td>`
+                            ]).draw(false).node();
+
+                            // Add double-click event to the row
+                            $(vehicle_row).dblclick(function () {
+                                redirect(`vehicle_properties?id=${data.id}`); // Redirect to customer_address with id as query parameter
+                            });
+                        });
+                    });
+                }
+
+
+
+                // vehicletbl = $('#vehicletbl').DataTable({
+
+                //     keys: !0,
+
+                //     searchBox: false,
+                //     language: {
+                //         paginate:
+                //             { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                //     },
+                //     drawCallback:
+                //         function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                // });
+
+                function select_field(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                    })
+                }
+
+                function select_haulier(id) {
+                    var settings = {
+                        "url": "haulier",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['haulier_name']
+                            }));
+                        }
+                    })
+                }
+
+            </script>

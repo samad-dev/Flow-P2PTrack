@@ -1,0 +1,741 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/fullcalendar/main.min.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        label {
+            font-size: 0.8rem;
+        }
+    </style>
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <!-- <div class="card mt-3">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+                    <div class="col-auto"><a href="customer_address" class="btn btn-soft-primary">Address</a></div>
+                    <div class="col-auto"><a href="customer_tanks" class="btn btn-soft-primary active">Tanks</a></div>
+                    <div class="col-auto"><a href="customer_group" class="btn btn-soft-primary">Groups</a></div>
+                    <div class="col-auto"><a href="customer_timing" class="btn btn-soft-primary">Timmings</a></div>
+                    <div class="col-auto"><a href="customer_routes" class="btn btn-soft-primary">Routes</a></div>
+                    <div class="col-auto"><a href="customer_status" class="btn btn-soft-primary">Status</a></div>
+                    <div class="col-auto"><a href="customer_event" class="btn btn-soft-primary">Events</a></div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="mt-4 mt-lg-0">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                            <li class="nav-item" id="address_p">
+                                <a href="#task" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-start rounded-0 active">
+                                    Task
+                                </a>
+                            </li>
+                            <li class="nav-item" id="tanks_p">
+                                <a href="#loading" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                                    Loading
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#manage" data-bs-toggle="tab" aria-expanded="false"
+                                    class="nav-link rounded-end rounded-0">
+                                    Manage
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane show active" id="task">
+                                <div class="row mb-3">
+                                    <div class="col-1" style="padding-left: 1rem;">
+                                        <h5>CV</h5>
+                                        <input type="text" readonly class="form-control" value="82998CV">
+                                    </div>
+                                    <div class="col-1" style="padding-left: 2rem;">
+                                        <h5>Trip</h5>
+                                        <input type="text" readonly class="form-control" value="1">
+                                    </div>
+                                    <div class="col-2" style="padding-left: 2rem;">
+                                        <h5>Status</h5>
+                                        <input type="text" readonly class="form-control" value="Free">
+                                    </div>
+                                    <div class="col-2" style="padding-left: 2rem;">
+                                        <h5>Shipment</h5>
+                                        <input type="text" readonly class="form-control" value="019923889">
+                                    </div>
+                                    <div class="col-2" style="padding-left: 2rem;">
+                                        <h5>Driver</h5>
+                                        <input type="text" readonly class="form-control" value="CKL DRV">
+                                    </div>
+                                    <div class="col-2" style="padding-left: 2rem;">
+                                        <h5>trip Cost</h5>
+                                        <input type="text" readonly class="form-control" value="0">
+                                    </div>
+                                    <div class="col-2" style="padding-left: 2rem;">
+                                        <h5>Total Cost</h5>
+                                        <input type="text" readonly class="form-control" value="0">
+                                    </div>
+                                </div>
+                                <table id="table1" class="table table-striped dt-responsive nowrap w-100">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Visit</th>
+                                            <th>Event</th>
+                                            <th>Task Seq</th>
+                                            <th>Task Type</th>
+                                            <th>Error</th>
+                                            <th>Task Start</th>
+                                            <th>Min</th>
+                                            <th>KM</th>
+                                            <th>Location Co</th>
+                                            <th>Location </th>
+                                            <th>Product Code</th>
+                                            <th>Product Quantity</th>
+                                            <th>Product Name</th>
+
+                                        </tr>
+                                    </thead>
+
+
+
+                                    <tbody>
+                                        <tr>
+                                            <th>1</th>
+                                            <th>Visit</th>
+                                            <th>1</th>
+                                            <th>Visit</th>
+                                            <th>Error</th>
+                                            <th>2024/06/20</th>
+                                            <th>64</th>
+                                            <th>120</th>
+                                            <th>200</th>
+                                            <th>CKL</th>
+                                            <th>400049298</th>
+                                            <th>800</th>
+                                            <th>Super C</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>1705-29</th>
+                                            <th></th>
+                                            <th>200</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>800</th>
+                                            <th></th>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+
+
+                            </div> <!-- end tab-pane -->
+                            <!-- end about me section content -->
+
+                            <div class="tab-pane" id="loading">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Volume</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto"><button class="btn btn-soft-primary">Clear All
+                                                Qtys</button></div>
+                                        <div class="col-auto"><button class="btn btn-soft-primary">Calculate</button>
+                                        </div>
+                                        <div class="col-auto"><button class="btn btn-soft-primary">Swap</button></div>
+                                        <div class="col-auto"><button class="btn btn-soft-primary">Save</button></div>
+                                        <div class="col-auto"><button class="btn btn-soft-primary">Cancel
+                                                Changes</button></div>
+                                        <div class="col-auto"><button class="btn btn-soft-primary">OSNC</button></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="loading1" class="table table-striped dt-responsive  w-100">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Trailer</th>
+                                                    <th>ITEMG456</th>
+                                                    <th>ITEMG455</th>
+                                                    <th>ITEMG456</th>
+                                                    <th>ITEMG455</th>
+
+                                                </tr>
+
+                                            </thead>
+                                            <thead>
+                                                <tr>
+
+                                                    <th>CMP</th>
+                                                    <th>1</th>
+                                                    <th>2</th>
+                                                    <th>3</th>
+                                                    <th>4</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>cmp</td>
+                                                    <td>5000</td>
+                                                    <td>8000</td>
+                                                    <td>9000</td>
+                                                    <td>8000</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>cmp</td>
+                                                    <td>5000</td>
+                                                    <td>8000</td>
+                                                    <td>9000</td>
+                                                    <td>8000</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Item Capacity</th>
+                                                    <th>PCR Type</th>
+                                                    <th>PCR Max</th>
+                                                    <th>PCR Min</th>
+                                                    <th>Product</th>
+
+                                                </tr>
+
+                                            </thead>
+
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>HSD</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>Super C</td>
+
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>Orders</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <table id="loading1" class="table table-striped dt-responsive  w-100">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Seq</th>
+                                                            <th>Customer</th>
+                                                            <th>Product</th>
+                                                            <th>Tank</th>
+                                                            <th>Min</th>
+                                                            <th>Target</th>
+                                                            <th>Max</th>
+                                                            <th>Loaded</th>
+
+
+                                                        </tr>
+
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Depot 1</td>
+                                                            <td>Vpower</td>
+                                                            <td>3</td>
+                                                            <td>10000</td>
+                                                            <td>15000</td>
+                                                            <td>10000</td>
+                                                            <td>1</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Depot 2</td>
+                                                            <td>Vpower</td>
+                                                            <td>3</td>
+                                                            <td>10000</td>
+                                                            <td>15000</td>
+                                                            <td>10000</td>
+                                                            <td>1</td>
+
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Details</h5>
+
+                                            </div>
+                                            <div class="card-body">
+
+                                                <table class="table table-striped dt-responsive nowrap w-100">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Trailer</th>
+                                                            <th>Compartment</th>
+                                                            <th>Product</th>
+                                                            <th>Total (WGT)</th>
+
+
+                                                        </tr>
+
+                                                    </thead>
+
+
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>1</td>
+                                                            <td>HSD</td>
+                                                            <td>10000</td>
+                                                            <td>HSD</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>1</td>
+                                                            <td>HSD</td>
+                                                            <td>10000</td>
+                                                            <td>HSD</td>
+
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Errors</h5>
+
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-striped dt-responsive nowrap w-100">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Trailer</th>
+                                                            <th>Compartment</th>
+                                                            <th>Order Number</th>
+                                                            <th>Error Message</th>
+
+
+                                                        </tr>
+
+                                                    </thead>
+
+
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>0101</td>
+                                                            <td>Empty Compartment</td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>0101</td>
+                                                            <td>Empty Compartment</td>
+
+
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- end timeline content-->
+                            <div class="tab-pane" id="manage">
+                                <div class="card">
+                                    <div class="card-header">
+
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="managetbl" class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Seq</th>
+                                                    <th>Order No</th>
+                                                    <th>Customer </th>
+                                                    <th>Name</th>
+                                                    <th>Town</th>
+                                                    <th>Street</th>
+
+                                                </tr>
+
+                                            </thead>
+
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>190299920</td>
+                                                    <td>P264</td>
+                                                    <td>Pk10009 Depot</td>
+                                                    <td>Peshawar</td>
+                                                    <td>Depot</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>190299920</td>
+                                                    <td>P264</td>
+                                                    <td>Pk10009 Depot</td>
+                                                    <td>Peshawar</td>
+                                                    <td>Depot</td>
+
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Trip Error</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <table id="managetbl2" class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Seventy</th>
+                                                    <th>Code</th>
+                                                    <th>Description</th>
+
+                                                </tr>
+
+                                            </thead>
+
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>19</td>
+                                                    <td>Exceed Vehicle Shift Length</td>
+
+
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>20</td>
+                                                    <td>Location Not Open</td>
+
+
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- end settings content-->
+
+                        </div>
+
+                        <!-- ========== Table End ========== -->
+
+
+
+                    </div> <!-- end card body -->
+                </div> <!-- end card -->
+            </div>
+            <!-- end col-->
+
+            <!-- end col -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="assets/js/pages/demo.calendar.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/fullcalendar/main.min.js"></script>
+
+            <!-- Calendar App Demo js -->
+
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNyJWb04pByaU1CTmimoWNl3b86VV6qZ8&callback=initAutocomplete&libraries=places&v=weekly"
+                defer></script>
+
+
+            <!-- Datatable Demo Aapp js -->
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+            <script>
+
+                function initAutocomplete() {
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        center: { lat: -33.8688, lng: 151.2195 },
+                        zoom: 13,
+                        mapTypeId: "roadmap",
+                        fullscreenControl: false
+                    });
+
+                    // Create the search box and link it to the UI element.
+                    const input = document.getElementById("pac-input");
+                    const searchBox = new google.maps.places.SearchBox(input);
+
+                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                    // Bias the SearchBox results towards current map's viewport.
+                    map.addListener("bounds_changed", () => {
+                        searchBox.setBounds(map.getBounds());
+                    });
+
+                    let markers = [];
+
+                    searchBox.addListener("places_changed", () => {
+                        const places = searchBox.getPlaces();
+
+                        if (places.length == 0) {
+                            return;
+                        }
+
+                        // Clear out the old markers.
+                        markers.forEach((marker) => {
+                            marker.setMap(null);
+                        });
+                        markers = [];
+
+                        // For each place, get the icon, name and location.
+                        const bounds = new google.maps.LatLngBounds();
+
+                        places.forEach((place) => {
+                            if (!place.geometry || !place.geometry.location) {
+                                console.log("Returned place contains no geometry");
+                                return;
+                            }
+
+                            const lat = place.geometry.location.lat();
+                            const lng = place.geometry.location.lng();
+                            let city = "";
+                            let state = "";
+                            let country = "";
+                            let localAddress = "";
+                            let houseNumber = "";
+
+                            // Extract address components for city, state, country, local address, and house number.
+                            place.address_components.forEach((component) => {
+                                if (component.types.includes("locality")) {
+                                    city = component.long_name;
+                                } else if (component.types.includes("administrative_area_level_1")) {
+                                    state = component.long_name;
+                                } else if (component.types.includes("country")) {
+                                    country = component.long_name;
+                                } else if (component.types.includes("neighborhood") || component.types.includes("sublocality_level_1")) {
+                                    localAddress = component.long_name;
+                                } else if (component.types.includes("street_number")) {
+                                    houseNumber = component.long_name;
+                                } else if (component.types.includes("route")) {
+                                    houseNumber += " " + component.long_name;
+                                }
+                            });
+
+                            document.getElementById('addstreet').value = localAddress;
+                            document.getElementById('addlat').value = lat;
+                            document.getElementById('addlong').value = lng;
+                            document.getElementById('latlong').value = lat + ',' + lng;
+
+                            console.log("City: " + city);
+                            console.log("State: " + state);
+                            console.log("Country: " + country);
+                            console.log("Local Address: " + localAddress);
+                            console.log("House Number: " + houseNumber);
+                            console.log("Latitude: " + lat);
+                            console.log("Longitude: " + lng);
+
+                            const icon = {
+                                url: place.icon,
+                                size: new google.maps.Size(71, 71),
+                                origin: new google.maps.Point(0, 0),
+                                anchor: new google.maps.Point(17, 34),
+                                scaledSize: new google.maps.Size(25, 25),
+                            };
+
+                            // Create a marker for each place.
+                            markers.push(
+                                new google.maps.Marker({
+                                    map,
+                                    icon,
+                                    title: place.name,
+                                    position: place.geometry.location,
+                                }),
+                            );
+
+                            if (place.geometry.viewport) {
+                                bounds.union(place.geometry.viewport);
+                            } else {
+                                bounds.extend(place.geometry.location);
+                            }
+                        });
+                        map.fitBounds(bounds);
+                    });
+                }
+
+                window.initAutocomplete = initAutocomplete;
+                $(document).ready(() => {
+                    $('#table1').DataTable({
+                        dom: 'lrtip',
+                        keys: !0,
+                        
+                        searchBox: false,
+                        language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                    });
+                    $('#table2').DataTable({
+                        dom: 'lrtip',
+                        keys: !0,
+                        
+                        searchBox: false,
+                        language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                    });
+                    $('#loading1').DataTable({
+
+                        keys: !0,
+
+                        searchBox: false,
+                        language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                    });
+
+                    $('#managetbl').DataTable({
+
+                        keys: !0,
+
+                        searchBox: false,
+                        language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                    });
+
+
+
+                })
+            </script>

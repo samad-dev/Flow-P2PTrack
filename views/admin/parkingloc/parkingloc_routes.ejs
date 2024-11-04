@@ -1,0 +1,994 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+
+        <div class="card mt-3">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+                    <div class="col-auto"><a href="parkingloc_address?id=<%- id %>"
+                            class="btn btn-soft-primary">Address</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_tanks?id=<%- id %>" class="btn btn-soft-primary">Tanks</a>
+                    </div>
+                    <!-- <div class="col-auto"><a href="parkingloc_group?id=<%- id %>" class="btn btn-soft-primary">Groups</a>
+                </div> -->
+                    <div class="col-auto"><a href="parkingloc_timing?id=<%- id %>"
+                            class="btn btn-soft-primary">Timmings</a></div>
+                    <div class="col-auto"><a href="parkingloc_routes?id=<%- id %>"
+                            class="btn btn-soft-primary active">Routes</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_status?id=<%- id %>"
+                            class="btn btn-soft-primary">Status</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_event?id=<%- id %>"
+                            class="btn btn-soft-primary">Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-7">
+                <div class="card">
+                    <div class="card-body">
+
+
+                        <!-- ========== Table ========== -->
+
+
+                        <button class="btn btn-soft-primary  mb-3" onclick="clear_fields('modal_row')"
+                            data-bs-toggle="modal" data-bs-target="#modal"> Add Route</button>
+
+
+                        <table id="addroute" class="table table-striped dt-responsive wrap w-100 ">
+                            <thead>
+                                <tr>
+                                    <th>SNO</th>
+                                    <th>On/Off</th>
+                                    <th>From Location Code</th>
+                                    <th>From Location Name</th>
+                                    <th>To Location Code</th>
+                                    <th>To Location Name</th>
+                                    <th>Distance(KM)</th>
+                                    <th>Time (MINS)</th>
+                                    <th>Speed (KM/H)</th>
+                                    <th>Round Trip</th>
+                                    <th>Edit</th>
+                                    <!-- <th>Delete</th> -->
+
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                    <!-- end settings content-->
+
+                </div>
+                <!-- ========== Table End ========== -->
+
+
+
+            </div> <!-- end card body -->
+        </div> <!-- end card -->
+        </div>
+        <!-- end col-->
+
+        <!-- end col -->
+        </div>
+
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Routes</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label for="simpleinput" class="form-label">Location Code</label>
+                                    <select class="form-control select2" id="loc_code1"
+                                        onchange="site_name2(this.value,'loc_name1')" data-toggle="select2">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Location Name</label>
+                                    <input type="text" id="loc_name1" class="form-control">
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Distance</label>
+                                    <input type="text" id="distance" class="form-control">
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Time</label>
+                                    <input type="text" id="time" class="form-control">
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Speed</label>
+                                    <input type="text" id="speed" class="form-control">
+                                </div>
+                                <div class="col-6" style="display: flex; align-items: center;">
+
+                                    <div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="one_way"
+                                                name="travel_option">
+                                            <label class="form-check-label" for="one_way">One Way</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" id="two_way"
+                                                name="travel_option">
+                                            <label class="form-check-label" for="two_way">Two Way</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="row mt-3" id="modal_row1">
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label for="simpleinput" class="form-label">Location Code</label>
+                                    <select class="form-control select2" onchange="site_name2(this.value,'loc_name2')"
+                                        id="loc_code2" data-toggle="select2" data-placeholder="...select">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Location Name</label>
+                                    <input type="text" id="loc_name2" class="form-control">
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Distance</label>
+                                    <input type="text" id="distance1" class="form-control">
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Time</label>
+                                    <input type="text" id="time1" class="form-control">
+                                </div>
+                                <div class="mb-3 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Speed</label>
+                                    <input type="text" id="speed1" class="form-control">
+                                </div>
+
+
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <!-- Datatables js -->
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <!-- Input Mask Plugin js -->
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Touchspin Plugin js -->
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+            <!-- Bootstrap Maxlength Plugin js -->
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+            <!-- Typehead Plugin js -->
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+            <!-- Flatpickr Timepicker Plugin js -->
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+            <!-- Typehead Demo js -->
+
+            <!-- Timepicker Demo js -->
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+            <script>
+
+
+                $(document).ready(() => {
+                    $('#modal_row1').hide();
+                    $('#distance').on('input', function () {
+                        calculate('distance', 'time', 'speed');
+                    });
+                    $('#time').on('input', function () {
+                        calculate('distance', 'time', 'speed');
+                    });
+                    $('#speed').on('input', function () {
+                        calculate('distance', 'time', 'speed');
+                    });
+
+                    $('#distance1').on('input', function () {
+                        calculate('distance1', 'time1', 'speed1');
+                    });
+                    $('#time1').on('input', function () {
+                        calculate('distance1', 'time1', 'speed1');
+                    });
+                    $('#speed1').on('input', function () {
+                        calculate('distance1', 'time1', 'speed1');
+                    });
+                    $('#addtable').DataTable({
+                        keys: !0, language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") }
+                    });
+                    $('#addtable1').DataTable({
+                        keys: !0, language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") }
+                    });
+                    scope = localStorage.getItem('scope')
+                    $.ajax({
+                        url: 'get_all_shipto/' + scope,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            $('#loc_code1').append($('<option disabled selected>Select<option>'))
+                            $('#loc_code2').append($('<option disabled selected>Select<option>'))
+                            for (i = 0; i < response.length; i++) {
+
+
+                                $('#loc_code1').append($('<option>', {
+                                    value: response[i]['ship_to'],
+                                    text: response[i]['ship_to']
+                                }));
+                                $('#loc_code2').append($('<option>', {
+                                    value: response[i]['ship_to'],
+                                    text: response[i]['ship_to']
+                                }));
+
+                            }
+                        }
+                    })
+                    $('input[name="travel_option"]').on('change', function () {
+
+                        if ($('#two_way').is(':checked')) {
+                            $('#modal_row1').show();  // Show the element when "Two Way" is selected
+                        } else {
+                            $('#modal_row1').hide();  // Hide the element when "Two Way" is not selected
+                        }
+                    });
+
+
+
+                })
+
+
+
+
+
+                function calculate(dis, timeP, speedP) {
+                    // Get values from inputs, treat empty fields as 0
+                    var distance = parseFloat($('#' + dis).val()) || 0;
+                    var time = parseFloat($('#' + timeP).val()) || 0;
+                    var speed = parseFloat($('#' + speedP).val()) || 0;
+
+                    // Identify which input triggered the calculation
+                    var triggeredId = event.target.id;
+
+                    // Only recalculate if the triggered field is not being directly edited
+                    if (triggeredId === dis && time && speed) {
+                        $('#' + timeP).val((distance / speed).toFixed(2));
+                    } else if (triggeredId === timeP && distance && speed) {
+                        $('#' + speedP).val((distance / time).toFixed(2));
+                    } else if (triggeredId === speedP && distance && time) {
+                        $('#' + dis).val((time * speed).toFixed(2));
+                    } else if (!distance && time && speed) {
+                        $('#' + dis).val((time * speed).toFixed(2));
+                    } else if (distance && !time && speed) {
+                        $('#' + timeP).val((distance / speed).toFixed(2));
+                    } else if (distance && time && !speed) {
+                        $('#' + speedP).val((distance / time).toFixed(2));
+                    } else if (distance && !time && !speed) {
+                        $('#' + speedP).val(0);
+                        $('#' + timeP).val(0);
+                    } else if (time && !distance && !speed) {
+                        $('#' + dis).val(0);
+                        $('#' + speedP).val(0);
+                    } else if (speed && !distance && !time) {
+                        $('#' + dis).val(0);
+                        $('#' + timeP).val(0);
+                    }
+                }
+
+                function site_name(id, inp_id) {
+
+                    $.ajax({
+                        url: 'get_sitename/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $(`#${inp_id}`).val(response[0]['site_name'])
+
+                        }
+                    })
+                }
+
+                function site_name2(id, inp_id) {
+
+                    $.ajax({
+                        url: 'get_sitenamebyship/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $(`#${inp_id}`).val(response[0]['site_name'])
+
+                        }
+                    })
+                }
+
+
+                $(document).ready(() => {
+                    routes();
+                })
+                $('#save').click(() => {
+                    var customer;
+                    $.ajax({
+                        url: 'get_sitename/<%- id%>',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(response);
+
+                            customer = response;
+                            // Handle the response here
+                        },
+                        complete: function (req) {
+                            if ($("#one_way").is(':checked')) {
+                                var loc_code = $('#loc_code1').val();
+                                var loc_name = $('#loc_name1').val();
+                                var distance = $('#distance').val();
+                                var time = $('#time').val();
+                                var speed = $('#speed').val();
+
+                                var form = new FormData();
+                                form.append("customer_id", "<%- id%>");
+                                form.append("on_off", "active");
+                                form.append("from_loc_code", customer[0]['ship_to']);
+                                form.append("from_loc_name", customer[0]['site_name']);
+                                form.append("to_loc_code", loc_code);
+                                form.append("to_loc_name", loc_name);
+                                form.append("distance", distance);
+                                form.append("time", time);
+                                form.append("speed", speed);
+
+                                var settings = {
+                                    "url": "customer_route",
+                                    "method": "POST",
+                                    "timeout": 0,
+                                    "processData": false,
+                                    "mimeType": "multipart/form-data",
+                                    "contentType": false,
+                                    "data": form
+                                };
+                                $.ajax({
+                                    ...settings,
+                                    statusCode: {
+                                        200: function (response) {
+                                            console.log(response);
+                                        },
+
+                                    },
+                                    success: function (data) {
+                                        routes();
+
+                                        clear_fields('modal_row');
+                                        $('#modal').modal('hide');
+                                        Swal.fire(
+                                            'Success!', 'Route Created Successfully!', 'success'
+                                        )
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.log(xhr)
+                                        console.log(textStatus)
+                                        console.log(errorThrown)
+
+                                        console.log(errorThrown);
+
+
+                                        // console.log("Request failed with status code: " + xhr.status);
+                                    }
+                                });
+
+                            }
+                            else if ($('#two_way').is(':checked')) {
+
+                                var loc_code = $('#loc_code1').val();
+                                var loc_name = $('#loc_name1').val();
+                                var distance = $('#distance').val();
+                                var time = $('#time').val();
+                                var speed = $('#speed').val();
+                                var loc_code2 = $('#loc_code2').val();
+                                var loc_name2 = $('#loc_name2').val();
+                                var distance1 = $('#distance1').val();
+                                var time1 = $('#time1').val();
+                                var speed1 = $('#speed1').val();
+
+                                var form = new FormData();
+                                form.append("customer_id", "<%- id%>");
+                                form.append("on_off", "active");
+                                form.append("from_loc_code", customer[0]['ship_to']);
+                                form.append("from_loc_name", customer[0]['site_name']);
+                                form.append("to_loc_code", loc_code);
+                                form.append("to_loc_name", loc_name);
+                                form.append("distance", distance);
+                                form.append("time", time);
+                                form.append("speed", speed);
+
+                                var settings = {
+                                    "url": "customer_route",
+                                    "method": "POST",
+                                    "timeout": 0,
+                                    "processData": false,
+                                    "mimeType": "multipart/form-data",
+                                    "contentType": false,
+                                    "data": form
+                                };
+                                $.ajax({
+                                    ...settings,
+                                    statusCode: {
+                                        200: function (response) {
+                                            console.log(response);
+                                        },
+
+                                    },
+                                    success: function (data) {
+                                        var form = new FormData();
+                                        form.append("customer_id", "<%- id%>");
+                                        form.append("on_off", "active");
+                                        form.append("from_loc_code", loc_code);
+                                        form.append("from_loc_name", loc_name);
+                                        form.append("to_loc_code", loc_code2);
+                                        form.append("to_loc_name", loc_name2);
+                                        form.append("distance", distance1);
+                                        form.append("time", time1);
+                                        form.append("speed", speed1);
+
+                                        var settings = {
+                                            "url": "customer_route",
+                                            "method": "POST",
+                                            "timeout": 0,
+                                            "processData": false,
+                                            "mimeType": "multipart/form-data",
+                                            "contentType": false,
+                                            "data": form
+                                        };
+                                        $.ajax({
+                                            ...settings,
+                                            statusCode: {
+                                                200: function (response) {
+                                                    console.log(response);
+                                                },
+
+                                            },
+                                            success: function (data) {
+
+                                            },
+                                            error: function (xhr, textStatus, errorThrown) {
+                                                console.log(xhr)
+                                                console.log(textStatus)
+                                                console.log(errorThrown)
+
+                                                console.log(errorThrown);
+
+
+                                                // console.log("Request failed with status code: " + xhr.status);
+                                            }
+                                        });
+                                        routes();
+
+                                        clear_fields('modal_row');
+                                        $('#modal').modal('hide');
+                                        Swal.fire(
+                                            'Success!', 'Route Created Successfully!', 'success'
+                                        )
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.log(xhr)
+                                        console.log(textStatus)
+                                        console.log(errorThrown)
+
+                                        console.log(errorThrown);
+
+
+                                        // console.log("Request failed with status code: " + xhr.status);
+                                    }
+                                });
+                            }
+
+
+                            else {
+
+                                var loc_code = $('#loc_code1').val();
+                                var loc_name = $('#loc_name1').val();
+                                var distance = $('#distance').val();
+                                var time = $('#time').val();
+                                var speed = $('#speed').val();
+
+
+                                var form = new FormData();
+                                form.append("customer_id", "<%- id%>");
+                                form.append("on_off", "active");
+                                form.append("from_loc_code", customer[0]['ship_to']);
+                                form.append("from_loc_name", customer[0]['site_name']);
+                                form.append("to_loc_code", loc_code);
+                                form.append("to_loc_name", loc_name);
+                                form.append("distance", distance);
+                                form.append("time", time);
+                                form.append("speed", speed);
+
+                                var settings = {
+                                    "url": "customer_route",
+                                    "method": "POST",
+                                    "timeout": 0,
+                                    "processData": false,
+                                    "mimeType": "multipart/form-data",
+                                    "contentType": false,
+                                    "data": form
+                                };
+                                $.ajax({
+                                    ...settings,
+                                    statusCode: {
+                                        200: function (response) {
+                                            console.log(response);
+                                        },
+
+                                    },
+                                    success: function (data) {
+                                        var form = new FormData();
+                                        form.append("customer_id", "<%- id%>");
+                                        form.append("on_off", "active");
+                                        form.append("from_loc_code", loc_code);
+                                        form.append("from_loc_name", loc_name);
+                                        form.append("to_loc_code", customer[0]['ship_to']);
+                                        form.append("to_loc_name", customer[0]['site_name']);
+                                        form.append("distance", distance);
+                                        form.append("time", time);
+                                        form.append("speed", speed);
+
+                                        var settings = {
+                                            "url": "customer_route",
+                                            "method": "POST",
+                                            "timeout": 0,
+                                            "processData": false,
+                                            "mimeType": "multipart/form-data",
+                                            "contentType": false,
+                                            "data": form
+                                        };
+                                        $.ajax({
+                                            ...settings,
+                                            statusCode: {
+                                                200: function (response) {
+                                                    console.log(response);
+                                                },
+
+                                            },
+                                            success: function (data) {
+
+                                            },
+                                            error: function (xhr, textStatus, errorThrown) {
+                                                console.log(xhr)
+                                                console.log(textStatus)
+                                                console.log(errorThrown)
+
+                                                console.log(errorThrown);
+
+
+                                                // console.log("Request failed with status code: " + xhr.status);
+                                            }
+                                        });
+                                        routes();
+
+                                        clear_fields('modal_row');
+                                        $('#modal').modal('hide');
+                                        Swal.fire(
+                                            'Success!', 'Route Created Successfully!', 'success'
+                                        )
+                                    },
+                                    error: function (xhr, textStatus, errorThrown) {
+                                        console.log(xhr)
+                                        console.log(textStatus)
+                                        console.log(errorThrown)
+
+                                        console.log(errorThrown);
+
+
+                                        // console.log("Request failed with status code: " + xhr.status);
+                                    }
+                                });
+                            }
+
+
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle errors
+                            console.error('Error fetching data:', error);
+                        }
+                    });
+
+
+                    // try {
+
+                    //     var loc_code = $('#loc_code').val();
+                    //     var loc_name = $('#loc_name').val();
+                    //     var distance = $('#distance').val();
+                    //     var time = $('#time').val();
+                    //     var speed = $('#speed').val();
+
+                    //     // Check if any required field is empty
+                    //     if (!loc_code || !distance || !time || !speed || !loc_name) {
+                    //         throw new Error('All fields must be filled');
+                    //     }
+                    //     id = $('#update_id').val()
+                    //     if (id == "") {
+                    //         var form = new FormData();
+                    //         form.append("customer_id", "<%- id%>");
+                    //         form.append("on_off", "active");
+                    //         form.append("loc_code", loc_code);
+                    //         form.append("loc_name", loc_name);
+                    //         form.append("distance", distance);
+                    //         form.append("time", time);
+                    //         form.append("speed", speed);
+
+                    //         var settings = {
+                    //             "url": "customer_route",
+                    //             "method": "POST",
+                    //             "timeout": 0,
+                    //             "processData": false,
+                    //             "mimeType": "multipart/form-data",
+                    //             "contentType": false,
+                    //             "data": form
+                    //         };
+                    //         $.ajax({
+                    //             ...settings,
+                    //             statusCode: {
+                    //                 200: function (response) {
+                    //                     console.log(response);
+                    //                 },
+
+                    //             },
+                    //             success: function (data) {
+                    //                 routes();
+
+                    //                 clear_fields('modal_row');
+                    //                 $('#modal').modal('hide');
+                    //                 Swal.fire(
+                    //                     'Success!', 'Route Created Successfully!', 'success'
+                    //                 )
+                    //             },
+                    //             error: function (xhr, textStatus, errorThrown) {
+                    //                 console.log(xhr)
+                    //                 console.log(textStatus)
+                    //                 console.log(errorThrown)
+
+                    //                 console.log(errorThrown);
+
+
+                    //                 // console.log("Request failed with status code: " + xhr.status);
+                    //             }
+                    //         });
+                    //     } else {
+                    //         var form = new FormData();
+
+
+                    //         form.append("loc_code", loc_code);
+                    //         form.append("loc_name", loc_name);
+                    //         form.append("distance", distance);
+                    //         form.append("time", time);
+                    //         form.append("speed", speed);
+
+                    //         var settings = {
+                    //             "url": "customer_route/" + id,
+                    //             "method": "PUT",
+                    //             "timeout": 0,
+                    //             "processData": false,
+                    //             "mimeType": "multipart/form-data",
+                    //             "contentType": false,
+                    //             "data": form
+                    //         };
+                    //         $.ajax({
+                    //             ...settings,
+                    //             statusCode: {
+                    //                 200: function (response) {
+                    //                     console.log(response);
+                    //                 },
+
+                    //             },
+                    //             success: function (data) {
+                    //                 routes();
+                    //                 clear_fields('modal_row');
+                    //                 $('#modal').modal('hide');
+                    //                 Swal.fire(
+                    //                     'Success!', 'Route Updated Successfully!', 'success'
+                    //                 )
+                    //             },
+                    //             error: function (xhr, textStatus, errorThrown) {
+                    //                 console.log(xhr)
+                    //                 console.log(textStatus)
+                    //                 console.log(errorThrown)
+
+                    //                 console.log(errorThrown);
+
+
+                    //                 // console.log("Request failed with status code: " + xhr.status);
+                    //             }
+                    //         });
+
+                    //     }
+                    // } catch (error) {
+                    //     console.error(error.message);
+                    //     // Handle the error, e.g., display a message to the user
+                    //     Swal.fire(
+                    //         'Server Error!', 'Error', 'error'
+                    //     )
+                    // }
+
+
+                })
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function check_redirection(t_id) {
+                    if (window.location.pathname !== '/customer') {
+                        window.location.href = '/customer_details';
+                        $('.nav-link.active').removeClass('active');
+                        $(t_id).find('a.nav-link').addClass('active');
+
+                        $('.tab-pane.show.active').removeClass('show active');
+                        var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                        $(targetTabPane).addClass('show active');
+                    }
+                    $('.nav-link.active').removeClass('active');
+                    $(t_id).find('a.nav-link').addClass('active');
+
+                    $('.tab-pane.show.active').removeClass('show active');
+                    var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                    $(targetTabPane).addClass('show active');
+                }
+                function edit(id) {
+
+                    $.ajax({
+                        url: "customer_route/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            $('#update_id').val(response['id']);
+                            $('#loc_code').val(response['loc_code']).trigger('change');
+                            $('#loc_name').val(response['loc_name']);
+                            $('#distance').val(response['distance']);
+                            $('#time').val(response['time']);
+                            $('#speed').val(response['speed']);
+
+                        }
+                    });
+                }
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "customer_route/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    routes();
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+
+                function routes() {
+                    var settings = {
+                        "url": "customer_route_byId/<%- id%>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        route_tbl.clear().draw();
+
+
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check-' + data.id + '" ' + (data.status == "active" ? "checked" : "") + '>' +
+                                '</div>';
+                            route_tbl.row.add([
+                                index + 1,
+                                checkbox,
+                                data.from_loc_code,
+                                data.from_loc_name,
+                                data.to_loc_code,
+                                data.to_loc_name,
+                                data.distance,
+                                data.time,
+                                data.speed,
+                                1,
+                                '<th>' +
+                                '<button class="btn btn-soft-warning" onclick="edit(\'' + data.id + '\')" data-bs-toggle="modal" data-bs-target="#modal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</th>',
+                                // '<th>' +
+                                // '<button class="btn btn-soft-danger" onclick="delete_rec(\'' + data.id + '\')">' +
+                                // '<i class="ri-delete-bin-6-fill"></i>' +
+                                // '</button>' +
+                                // '</th>'
+                            ]).draw(false).node();
+
+
+                        });
+                    });
+                }
+
+
+                route_tbl = $('#addroute').DataTable({
+
+                    keys: !0,
+
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+
+                function update_status(id) {
+                    status = $('#check-' + id + '').is(':checked') ? "active" : "inactive"
+                    var form = new FormData();
+                    form.append("status", status);
+
+
+                    // Your code to submit the form or any other processing
+
+                    var settings = {
+                        "url": "route_status/" + id,
+                        "method": "PUT",
+                        "timeout": 0,
+                        "headers": {
+                            "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                        },
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax({
+                        ...settings,
+                        statusCode: {
+                            200: function (response) {
+                                console.log(response);
+                            },
+
+                        },
+                        success: function (data) {
+
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(xhr)
+                            console.log(textStatus)
+                            console.log(errorThrown)
+
+                            console.log(errorThrown);
+
+
+                            // console.log("Request failed with status code: " + xhr.status);
+                        }
+                    });
+
+                }
+
+            </script>

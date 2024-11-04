@@ -1,0 +1,528 @@
+<%- contentFor('HeaderCss') %>
+
+    <!-- Datatables css -->
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+    <style>
+
+    </style>
+    <%- contentFor('body') %>
+
+
+        <div class="row">
+            <div class="col-12 card card-body">
+                <div class="row ">
+                    <div class="col-3">
+                        <div style="display: flex;align-items: center;justify-content: center;">
+                            <label for="scope" class="form-label"
+                                style="margin-bottom: 0;padding-right: 1em;">Scope</label>
+                            <select class="form-control select2" id="scope" data-toggle="select2">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" id="save">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" style="padding-left: 0;">
+                <div class="card card-body">
+                    <h4>AM</h4>
+                    <table style="width: 0px;">
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="mon_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;">Mon</h5>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="mon_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="mon_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="tue_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;">Tue</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="tue_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="tue_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="wed_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Wed</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="wed_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="wed_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="thu_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Thu</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="thu_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="thu_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="fri_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Fri</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="fri_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="fri_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="sat_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Sat</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sat_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sat_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="sun_amcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Sun</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sun_amstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sun_amendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-6" style="padding-right: 0;">
+                <div class="card card-body">
+                    <h4>PM</h4>
+                    <table style="width: 0px;">
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="mon_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;">Mon</h5>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="mon_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="mon_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="tue_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;">Tue</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="tue_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="tue_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="wed_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Wed</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="wed_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="wed_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="thu_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Thu</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="thu_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="thu_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="fri_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Fri</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="fri_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="fri_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="sat_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Sat</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sat_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sat_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+
+
+                        <tr>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;"><input id="sun_pmcheck"
+                                    type="checkbox" class="form-check-input"></td>
+                            <td style="padding-right: 1em; padding-bottom: 0.5em;">
+                                <h5 style="margin-bottom:0;"> Sun</h5>
+                            </td>
+
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sun_pmstrtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+                            <td style="padding-right: 0.7em;padding-bottom: 0.5em;">
+                                <div class="input-group" style="width:10em;">
+                                    <input type="text" class="basic-timepicker form-control" id="sun_pmendtime">
+                                    <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div> <!-- end row-->
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+            <script>
+                function getCheckedTimeData() {
+                    const checkedTimes = [];
+                    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                    const periods = ['am', 'pm'];
+                    let scope = $('#scope').val();
+                    days.forEach(day => {
+                        periods.forEach(period => {
+                            const checkbox = $(`#${day}_${period}check`);
+                            if (checkbox.is(':checked')) {
+                                const startTime = $(`#${day}_${period}strtime`).val();
+                                const endTime = $(`#${day}_${period}endtime`).val();
+
+                                checkedTimes.push({
+                                    day: day,
+                                    period: period,
+                                    startTime: startTime,
+                                    endTime: endTime,
+                                    scopes: scope
+                                });
+                            }
+                        });
+                    });
+
+                    return checkedTimes;
+                }
+
+                // Example usage
+                $(document).ready(function () {
+                    select_topbar("scope")
+                    // Call this function and log the result when needed, e.g., on button click
+                    $('#save').click(function () {
+                        const data = getCheckedTimeData();
+                        data.forEach(dat => {
+                          
+                            var form = new FormData();
+                            form.append("day", dat.day);  // Append JSON string to the FormData object
+                            form.append("shift", dat.period);
+                            form.append("start_time", dat.startTime);  // Append JSON string to the FormData object
+                            form.append("end_time", dat.endTime);
+                            form.append("scope", dat.scopes);  // Append JSON string to the FormData object
+
+                            // Append JSON string to the FormData object
+                            // Append JSON string to the FormData object
+
+                            var settings = {
+                                "url": "/shift_planing",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+                                },
+                                success: function (data) {
+
+                                    Swal.fire('Success!', 'PDF generated successfully', 'success');
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+
+                                },
+                                complete: function (data) {
+
+                                }
+                            });
+
+                        })
+                        console.log(data);  // Output to console or process further as needed
+                    });
+                });
+
+                function select_topbar(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log("scopes", response)
+                        // $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#scope').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                       
+                    })
+                }
+
+
+
+            </script>

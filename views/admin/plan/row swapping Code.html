@@ -1,0 +1,1164 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+    <%- contentFor('body') %>
+        <style>
+            .order_inp {
+                border: none;
+            }
+
+            .order_inp:focus {
+
+                border: none;
+                outline-style: groove 2px solid blue;
+                box-shadow: 1px blue;
+
+            }
+        </style>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+        <div class="card mt-3">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+                    <div class="col-1"><label for="" class="form-label">CV</label><input type="text"
+                            class="form-control" id="veh_cv"></div>
+                    <div class="col-1"><label for="" class="form-label">Trip</label><input type="text"
+                            class="form-control" id="veh_trip" value="1"></div>
+                    <div class="col-1"><label for="" class="form-label">Status</label><input type="text"
+                            class="form-control" id="veh_status" value="Free"></div>
+                    <div class="col-1"><label for="" class="form-label">Driver</label><input type="text"
+                            class="form-control" id="veh_driver"></div>
+                    <div class="col-1"><label for="" class="form-label">Sum(L)</label><input type="text"
+                            class="form-control" id="veh_sum"></div>
+                    <div class="col-1"><label for="" class="form-label">Max(L)</label><input type="text"
+                            class="form-control" id="veh_max"></div>
+                    <div class="col-1"><label for="" class="form-label">Util(L)</label><input type="text"
+                            class="form-control" id="veh_util"></div>
+                    <div class="col-1"><label for="" class="form-label">Trg(L)</label><input type="text"
+                            class="form-control" id="veh_targ"></div>
+                    <div class="col-1"><label for="" class="form-label">Sum(Kg)</label><input type="text"
+                            class="form-control" id="veh_sumkg"></div>
+                    <div class="col-1"><label for="" class="form-label">Max(Kg)</label><input type="text"
+                            class="form-control" id="veh_maxkg"></div>
+                    <div class="col-1"><label for="" class="form-label">Util(Kg)</label><input type="text"
+                            class="form-control" id="veh_utilkg"></div>
+                    <div class="col-1"><label for="" class="form-label">Trg(Kg)</label><input type="text"
+                            class="form-control" id="veh_trgkg"></div>
+                </div>
+            </div>
+        </div>
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-xl-12 ">
+                <div class="card" id="order_card">
+                    <div class="card-body">
+
+
+                        <!-- ========== Table ========== -->
+
+                        <h4>Orders</h4>
+                        <button class="btn btn-primary" id="update-order" onclick="updateOrders() "><i
+                                class=" ri-calculator-line"></i></button>
+                        <button id="swap-btn" class="btn btn-primary"><i class="ri-swap-fill"></i></button>
+                        <div>
+                            <div style="display: flex; background: #F8F9FA;
+                            padding: 1em;">
+                                <div style="width: 12.5%;">SNO</div>
+                                <div style="width: 12.5%;">Customer</div>
+                                <div style="width: 12.5%;">Product</div>
+                                <div style="width: 12.5%;">Tank</div>
+                                <div style="width: 12.5%;">Min</div>
+                                <div style="width: 12.5%;">Target</div>
+                                <div style="width: 12.5%;">Max</div>
+                                <div style="width: 12.5%;">Loaded</div>
+
+                            </div>
+                            <div id="editable_orders">
+
+                            </div>
+                        </div>
+
+                        <!-- ========== Table End ========== -->
+                    </div> <!-- end card body -->
+                </div> <!-- end card -->
+            </div>
+
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4>Details</h4>
+
+                        <div class="row">
+                            <div class="col-2" style="background:#F8F9FA; ">
+                                <h5
+                                    style="font-size: 1em; border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em;">
+                                    Trailer</h5>
+                                <h5
+                                    style=" font-size: 1em;border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    Compartment</h5>
+                                <h5
+                                    style=" font-size: 1em;border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    Product</h5>
+                                <h5
+                                    style="font-size: 1em;border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em;">
+                                    Total(WGT)</h5>
+
+
+                            </div>
+                            <div class="col-10">
+                                <div class="row" id="compartment_details">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div> <!-- end card body -->
+                </div>
+            </div>
+
+            <div class="col-xl-6 ">
+
+
+                <div>
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <table id="error_tbl" class="table  dt-responsive wrap w-100 ">
+                                <thead>
+                                    <tr>
+                                        <th>SNO</th>
+
+                                        <th>Error Message</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div> <!-- end card body -->
+                    </div>
+                </div>
+
+                <!-- end card -->
+            </div>
+
+            <div class="col-xl-7">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="row mt-3" style="background: #F8F9FA;">
+                            <div class="col-2">
+                                <div class="" style="border-bottom: 2px solid #DEE2E6; padding-top: 0.5em;">
+                                    <h5>Trailer</h5>
+                                </div>
+                                <div style="border-bottom: 2px solid #DEE2E6; padding-top: 0.5em;">
+                                    <h5>Compartments</h5>
+                                </div>
+                                <div style="border-bottom: 2px solid #DEE2E6 ;padding-top: 2em;">
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-10">
+                                <div class="row" id="trailer_row">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div> <!-- end card body -->
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4>Rules</h4>
+
+                        <div class="row">
+                            <div class="col-2" style="background:#F8F9FA ;">
+                                <h6 class="clearfix" style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em; font-size: 0.7em;
+                                    font-weight: 800;">
+                                    Capacity</h6>
+                                <h6 class="clearfix" style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em; font-size: 0.7em;
+                                    font-weight: 800;">
+                                    Current Use</h6>
+                                <h6 class="clearfix" style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em; font-size: 0.7em;
+                                    font-weight: 800;">
+                                    Remaining Capcity</h6>
+                                <h6 class="clearfix" style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em; font-size: 0.7em;
+                                    font-weight: 800;">
+                                    Product</h6>
+
+                                <h6 class="clearfix" style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.3em; padding-bottom: 0.3em; font-size: 0.7em;
+                                    font-weight: 800;">
+                                    Part Fill</h6>
+
+
+                            </div>
+                            <div class="col-10">
+                                <div class="row" id="compartment_rules">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div> <!-- end card body -->
+                </div>
+            </div>
+
+            <!-- end col -->
+        </div>
+
+        <div id="timing" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Combination</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3">
+                                <div class="mb-3">
+                                    <label class="form-label">Depot Group</label>
+                                    <select class="form-control select2" data-toggle="select2">
+                                        <option>Select</option>
+                                        <option>Depot Group 1</option>
+                                        <option>Depot Group 2</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Depot Product Group </label>
+                                    <select class="form-control select2" data-toggle="select2">
+                                        <option>Select</option>
+                                        <option>Depot Product Group 1</option>
+                                        <option>Depot Product Group 2</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <!-- Input Mask Plugin js -->
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Touchspin Plugin js -->
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+            <!-- Bootstrap Maxlength Plugin js -->
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+            <!-- Typehead Plugin js -->
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+            <!-- Flatpickr Timepicker Plugin js -->
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+            <!-- Typehead Demo js -->
+
+            <!-- Timepicker Demo js -->
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+
+
+            <script>
+                var comprules;
+                var total_weight = 0;
+                let errors_window = [];
+                let codearray = [];
+                let accessarray = [];
+                let tanks_p = [];
+                let complete_order;
+                let allPresent;
+
+                order_tbl = $('#order_tbl').DataTable({
+                    keys: !0, language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") }
+                });
+
+
+                $(document).ready(() => {
+
+                    get_order()
+                    validateInputs()
+                    $.ajax({
+                        url: 'comp_rules',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            comprules = response
+
+                        }
+                    })
+
+                    error_tbl = $('#error_tbl').DataTable({
+                        keys: !0, language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") }
+                    });
+
+                    local_orders = localStorage.getItem('orders')
+                    veh_order1 = JSON.parse(local_orders);
+                    veh_order = veh_order1.filter(loc => {
+                        const isMatch = loc.id == '<%- id%>';
+                        return isMatch;  // Return true if the condition is met
+                    });
+
+
+                    console.log(veh_order)
+                    veh_order.forEach((veh, index) => {
+
+                        console.log("vehicleid", veh.id)
+                        $.ajax({
+                            url: 'get_vehicle_forOrders/' + veh.id,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (response) {
+                                var id = veh.id;
+                                var veh_index = veh_order.findIndex(item => item.id == id);
+                                total = parseInt(veh.trailer_size);
+                                var target1 = [];
+                                var compartment1;
+
+                                compartment_length = response['compartments'].length;
+
+                                // Transform response compartments into an array of objects with numbers and sizes
+                                compartment1 = response['compartments'].map(val => ({
+                                    compartment_no: val.compartment_no,
+                                    size: parseInt(val.loadable_volume)
+                                }));
+
+
+                                // Transform orders into the required format
+                                var orders1 = veh.orders.map(order => ({
+                                    order_id: order.orderId,
+                                    shipTo: order.shipTo,
+                                    product: order.materialCode,
+                                    quantity: parseInt(order.target)
+                                }));
+
+
+                                // console.log(compartment_length)
+                                let filtered_comprule = comprules.filter(comp => comp.compartments == compartment_length); // Corrected comparison and added return statement
+                                // console.log(filtered_comprule);
+
+
+                                var sortOrder = filtered_comprule[0]['seq'].split(',').map(num => Number(num) - 1);
+
+                                // console.log(sortOrder1);
+                                // console.log("seq", sortOrder);
+                                let trailerCompartments = response['compartments'];
+                                // console.log();
+                                console.log('trailerCompartments,', trailerCompartments);
+
+                                // let sortOrder = [5,3, 4, 2, 0];  // Example sort order, adjust as needed
+
+                                console.log(orders1)
+                                veh.orders.forEach(order => {
+                                    accessarray.push(order.shipTo);
+                                });
+                                customer_tank_byId()
+
+                                console.log(`http://localhost:8081/customer_shipto?id=${accessarray.toString()}`);
+
+                                var settings = {
+                                    "url": `http://localhost:8081/customer_shipto?id=${accessarray.toString()}`,
+                                    "method": "GET",
+                                    "timeout": 0,
+                                    "headers": {
+                                        "Cookie": "connect.sid=s%3ARK3mrO263y2yx9gDajMlbe7Z_L1wFICZ.eRRiEkCmzVa4snYJZc1hykCksqYDKY5kIm4aZPQSqrc"
+                                    },
+                                };
+
+                                $.ajax(settings).done(function (response) {
+                                    console.log(response[0]['multiple_drop']);
+                                    response.forEach(data => {
+                                        if (data.multiple_drop == 0) {
+                                            errors_window.push({ "error_name": "Must be a single drop", "severity": 3 })
+                                            var assignments = processOrders(veh.orders, trailerCompartments, sortOrder, veh.name);
+                                            veh_order[veh_index].compartments = assignments;
+                                            console.log("final Order", veh_order);
+                                            console.log("Vehicle Orders:", assignments);
+                                            generateCompartmentTable(veh_order);
+                                        }
+                                        else {
+                                            var assignments = processOrders(veh.orders, trailerCompartments, sortOrder, veh.name);
+                                            veh_order[veh_index].compartments = assignments;
+                                            console.log("final Order", veh_order);
+                                            console.log("Vehicle Orders:", assignments);
+                                            generateCompartmentTable(veh_order);
+                                        }
+                                    })
+
+                                });
+
+                                // } else {
+                                //     console.error("No matching rule found for the specified compartment length");
+                                // }
+                                // Define your custom sort order here
+
+                                // Transform compartments into the required trailer format
+
+
+
+
+
+                            },
+                            error: function (xhr, status, error) {
+                                console.error("Error fetching vehicle data:", error);
+                            }
+                        });
+                    });
+
+
+
+                })
+
+
+
+                function customer_tank_byId() {
+                    console.log(`http://localhost:8081/customer_tank_byId/${complete_order[0].pre_load}`);
+
+                    var settings = {
+                        "url": `customer_tank_byId/${complete_order[0].pre_load}`,
+                        "method": "GET",
+                        "timeout": 0,
+                        "headers": {
+                            "Cookie": "connect.sid=s%3ARK3mrO263y2yx9gDajMlbe7Z_L1wFICZ.eRRiEkCmzVa4snYJZc1hykCksqYDKY5kIm4aZPQSqrc"
+                        },
+                    };
+                    $.ajax(settings).done(function (response) {
+                        console.log(response[0]['multiple_drop']);
+                        response.forEach(data => {
+                            console.log(data);
+
+                            tanks_p.push(data.code);
+                        })
+                        allPresent = tanks_p.every(item => codearray.includes(item));
+                        console.log(allPresent);
+                        if (allPresent == false) {
+                            errors_window.push({ "error_name": "Product Not Available at Depot", "severity": 3 })
+
+                        }
+
+
+                    });
+
+                    return allPresent;
+
+                }
+
+
+                // async function get_order() {
+                //     let order = localStorage.getItem('orders');
+
+                //     if (!order) {
+                //         console.error("No orders found in localStorage");
+                //         return;
+                //     }
+
+                //     let order1;
+                //     try {
+                //         order1 = JSON.parse(order);
+
+                //     } catch (error) {
+                //         console.error("Failed to parse orders from localStorage:", error);
+                //         return;
+                //     }
+
+                //     // Filter orders to find the one with the specified ID
+                //     order1 = order1.filter(item => item.id == '<%- id %>');
+                //     complete_order = order1;
+                //     if (order1.length === 0) {
+                //         console.warn("No orders found with the specified ID");
+                //         return;
+                //     }
+
+                //     // Initialize the index
+                //     let index = 0;
+
+                //     // Iterate over the orders and add them to the table
+                //     for (const veh of order1) {
+                //         for (const veh_order of veh.orders) {
+                //             index++;
+                //             try {
+                //                 const product_name = await getproduct(veh_order.materialCode);
+                //                 $('#editable_orders').append(`
+                //                 <div style="display: flex; border-bottom:2px solid #F8F9FA ;
+                //                 padding: 1em;" >
+                //                 <div style="width: 12.5%;display:none;" >${veh_order.orderId}</div>
+                //                 <div style="width: 12.5%;">${index}</div>
+                //                 <div style="width: 12.5%;">${veh_order.customerName}</div>
+                //                 <div style="width: 12.5%;">${product_name}</div>
+                //                 <div style="width: 12.5%;"></div>
+                //                 <div style="width: 12.5%;"><input type="text" class="form-control" style="width:60%;" readonly value="${veh_order.minQuantity}"></div>
+                //                 <div style="width: 12.5%;"><input type="number" class="form-control" style="width:60%;" id="ord_${index}" data-value="${parseInt(veh_order.target)}" value="${veh_order.target}"></div>
+                //                 <div style="width: 12.5%;"><input type="text" class="form-control" style="width:60%;" readonly value="${veh_order.maxQty}"></div>
+                //                 <div style="width: 12.5%;"></div>
+                //                 </div>
+                //                 `)
+
+
+
+
+                //                 // Add row to table after getting the product name
+                //                 // order_tbl.row.add([
+                //                 //     index,
+                //                 //     veh_order.customerName,
+                //                 //     product_name,
+                //                 //     "", // Assuming this is an empty placeholder, adjust as needed
+                //                 //     veh_order.minQuantity,
+                //                 //     veh_order.target,
+                //                 //     veh_order.maxQty,
+                //                 //     "" // Assuming this is an empty placeholder, adjust as needed
+                //                 // ]).draw();
+                //             } catch (error) {
+                //                 console.error("Error fetching product:", error);
+                //                 // Optionally handle error by adding a row with an error message
+                //             }
+                //         } []
+                //     }
+                // }
+
+                async function get_order() {
+                    let order = localStorage.getItem('orders');
+
+                    if (!order) {
+                        console.error("No orders found in localStorage");
+                        return;
+                    }
+
+                    let order1;
+                    try {
+                        order1 = JSON.parse(order);
+                    } catch (error) {
+                        console.error("Failed to parse orders from localStorage:", error);
+                        return;
+                    }
+
+                    // Filter orders to find the one with the specified ID
+                    order1 = order1.filter(item => item.id == '<%- id %>');
+                    if (order1.length === 0) {
+                        console.warn("No orders found with the specified ID");
+                        return;
+                    }
+
+                    // Clear existing rows
+                    $('#editable_orders').empty();
+
+                    // Initialize the index
+                    let index = 0;
+
+                    // Iterate over the orders and add them to the table
+                    for (const veh of order1) {
+                        for (const veh_order of veh.orders) {
+                            index++;
+                            try {
+                                const product_name = await getproduct(veh_order.materialCode);
+                                $('#editable_orders').append(`
+                    <div class="order-row" data-order-id="${veh_order.orderId}" data-index="${index}" style="display: flex; border-bottom:2px solid #F8F9FA; padding: 1em;">
+                        <div style="width: 12.5%;"><input type="checkbox" class="row-checkbox"></div>
+                        <div style="width: 12.5%;">${index}</div>
+                        <div style="width: 12.5%;">${veh_order.customerName}</div>
+                        <div style="width: 12.5%;">${product_name}</div>
+                        <div style="width: 12.5%;"></div>
+                        <div style="width: 12.5%;"><input type="text" class="form-control" style="width:60%;" readonly value="${veh_order.minQuantity}"></div>
+                        <div style="width: 12.5%;"><input type="number" class="form-control order_inp" style="width:60%;" id="ord_${index}" data-value="${parseInt(veh_order.target)}" value="${veh_order.target}"></div>
+                        <div style="width: 12.5%;"><input type="text" class="form-control" style="width:60%;" readonly value="${veh_order.maxQty}"></div>
+                        <div style="width: 12.5%;"></div>
+                    </div>
+                `);
+                            } catch (error) {
+                                console.error("Error fetching product:", error);
+                            }
+                        }
+                    }
+
+                    // Swap button click handler
+                    $('#swap-btn').click(() => {
+                        let selectedRows = $('.row-checkbox:checked').closest('.order-row');
+                        if (selectedRows.length === 2) {
+                            let row1 = $(selectedRows[0]);
+                            let row2 = $(selectedRows[1]);
+                            swapRows(row1, row2);
+                        } else {
+                            alert('Please select exactly two rows to swap.');
+                        }
+                    });
+                }
+
+                function swapRows(row1, row2) {
+                    // Extract orderId from the rows
+                    let orderId1 = row1.data('order-id');
+                    let orderId2 = row2.data('order-id');
+
+                    if (!orderId1 || !orderId2) {
+                        console.error("Order IDs not found.");
+                        return;
+                    }
+
+                    // Swap rows in the DOM
+                    row1.before(row2);
+
+                    // Update orders in JSON
+                    swapOrdersInJSON(orderId1, orderId2);
+                }
+
+                function swapOrdersInJSON(orderId1, orderId2) {
+                    let data = JSON.parse(localStorage.getItem('orders'));
+
+                    if (!data) {
+                        console.error("No orders found in localStorage.");
+                        return;
+                    }
+
+                    data.forEach(veh => {
+                        let orders = veh.orders;
+                        let index1 = orders.findIndex(order => order.orderId == orderId1);
+                        let index2 = orders.findIndex(order => order.orderId == orderId2);
+
+                        if (index1 !== -1 && index2 !== -1) {
+                            // Swap the orders
+                            let temp = orders[index1];
+                            orders[index1] = orders[index2];
+                            orders[index2] = temp;
+
+                            // Save updated data back to localStorage
+                            localStorage.setItem('orders', JSON.stringify(data));
+                            console.log('Updated JSON:', JSON.stringify(data, null, 2));
+                        } else {
+                            console.error("Order IDs not found in JSON.");
+                        }
+                    });
+                }
+
+                function updateOrders() {
+                    let orders = JSON.parse(localStorage.getItem('orders'));
+
+                    if (!Array.isArray(orders)) {
+                        console.error('Invalid orders data in localStorage');
+                        return;
+                    }
+
+                    let updatedAnyOrder = false;
+
+                    $('#editable_orders > .order-row').each(function () {
+                        let orderId = $(this).data('order-id').toString(); // Ensure orderId is correctly retrieved
+                        let minQuantity = parseFloat($(this).find('.order_inp').eq(0).val()) || 0;
+                        let target = parseFloat($(this).find('.order_inp').eq(1).val()) || 0;
+                        let maxQty = parseFloat($(this).find('.order_inp').eq(2).val()) || 0;
+
+                        console.log('Processing Order:', { orderId, minQuantity, target, maxQty });
+
+                        let orderUpdated = false;
+
+                        orders.forEach(vehicle => {
+                            vehicle.orders.forEach(order => {
+                                if (order.orderId === orderId) {
+                                    order.minQuantity = minQuantity;
+                                    order.target = target;
+                                    order.maxQty = maxQty;
+                                    console.log('Order Updated:', order);
+                                    orderUpdated = true;
+                                }
+                            });
+                        });
+
+                        if (orderUpdated) {
+                            updatedAnyOrder = true;
+                        } else {
+                            console.error(`Order with ID ${orderId} not found`);
+                        }
+                    });
+
+                    if (updatedAnyOrder) {
+                        localStorage.setItem('orders', JSON.stringify(orders));
+                        console.log('Updated JSON:', JSON.stringify(orders, null, 2));
+                    } else {
+                        console.log('No orders were updated.');
+                    }
+                }
+
+                async function getproduct(code) {
+                    return new Promise((resolve, reject) => {
+                        if (code) {
+                            fetch(`product_bypcode/${code}`, { method: 'GET', redirect: 'follow' })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    const product_name = data.name; // Adjust if your data structure is different
+                                    resolve(product_name);
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    reject(error);
+                                });
+                        } else {
+                            reject("Invalid code provided.");
+                        }
+                    });
+                }
+
+                function validateInputs() {
+                    $('#editable_orders > .order-row').each(function () {
+                        let orderId = $(this).data('order-id').toString();
+
+                        $(this).find('input[type="number"]').each(function () {
+                            let input = $(this);
+                            let inputValue = parseFloat(input.val());
+                            let dataValue = parseFloat(input.attr('data-value'));
+
+                            console.log(`Order ID: ${orderId}, Input Value: ${inputValue}, Data Value: ${dataValue}`);
+
+                            if (inputValue > dataValue) {
+                                alert(`Error: Value ${inputValue} in order ${orderId} is greater than the allowed data value ${dataValue}`);
+                                input.focus();
+                                input.val(dataValue); // Optionally reset the value to dataValue
+                            }
+                        });
+                    });
+                }
+
+                function calculateTotalTargetValue() {
+                    let orders = JSON.parse(localStorage.getItem('orders'));
+                    let totalTarget = orders.reduce((total, vehicle) => {
+                        return total + vehicle.orders.reduce((sum, order) => sum + parseInt(order.target || 0), 0);
+                    }, 0);
+                    console.log('Total Target Value:', totalTarget);
+                    return totalTarget;
+                }
+
+                // Example of binding these functions to events (adjust based on your HTML structure)
+                $('#update-order').click(function () {
+                    validateInputs(); // First, validate inputs
+                    updateOrders();   // Then, update orders
+                    calculateTotalTargetValue(); // Optionally, recalculate total target value
+                });
+
+
+
+
+                function append_portion(scompart, name) {
+
+                    let total_weight = 0;  // Declare total_weight outside the loop
+
+                    let ajaxRequests = []; // Array to keep track of AJAX requests
+
+                    scompart.forEach((com, index) => {
+                        console.log('comp_no', com['compartment_no']);
+                        $('#compartment_rules').append(`
+        <div class="col-2">
+            <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em; font-size: 0.7em; font-weight: 800;">
+                ${com['size']}
+            </h6>
+            <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em; font-size: 0.7em; font-weight: 800;">
+                ${com['loaded_volume']}
+            </h6>
+            <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em; font-size: 0.7em; font-weight: 800;">
+                0
+            </h6>
+            <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em; font-size: 0.7em; font-weight: 800;">
+                ${com['product_id']}
+            </h6>
+            <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em; font-size: 0.7em; font-weight: 800;">
+                F
+            </h6>
+        </div>
+    `);
+
+                        $('#trailer_row').append(`
+            <div class="col-2">
+                <div class="checkbox" style="border-bottom: 2px solid #DEE2E6; padding-top: 0.9em;">
+                    <label>
+                        ${name} <input type="checkbox" id="autoUpdateInput" checked="checked"> 
+                    </label>
+                </div>
+                <div  style="border-bottom: 2px solid #DEE2E6; padding-top: 0.5em;">
+                    <h5>${com['compartment_no']}</h5>
+                </div>
+                <div class="center-align" style="border-bottom: 2px solid #DEE2E6;">
+                    <input type="text" value="${com['loaded_volume']}" class="form-control mt-1" style="padding: 0.1em;">
+                </div>
+            </div>
+        `);
+
+                        let ajaxRequest = $.ajax({
+                            url: 'product_bypcode/' + com['product_id'],
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (response) {
+                                let loaded_vol = parseInt(com['loaded_volume']);
+                                let density = parseFloat(response['density']);
+                                let weight = loaded_vol * density;
+                                total_weight += weight;
+
+                                $('#compartment_details').append(`
+           
+            <div class="col-2" >
+                <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.9em; padding-bottom: 0.3em;">
+                    1
+                </h6>
+                <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.7em; padding-bottom: 0.3em;">
+                    ${com['compartment_no']}
+                </h6>
+                <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.4em; padding-bottom: 0.5em;">
+                    ${com['product_id']}
+                </h6>
+                <h6 style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.4em; padding-bottom: 0.5em;">
+                    ${weight}
+                </h6>
+            </div>
+  
+        `);
+                            }
+                        });
+
+                        // Push the ajaxRequest promise to the array
+                        ajaxRequests.push(ajaxRequest);
+                    });
+
+                    // Wait for all AJAX requests to complete
+                    $.when.apply($, ajaxRequests).done(function () {
+                        // console.log(veh_order[0])
+                        if (total_weight > parseInt(veh_order[0]['weight'])) {
+                            errors_window.push({ "error_name": "Not Allowed to Carry that load" })
+
+                        }
+                        $.each(errors_window, function (index, data) {
+                            console.log(errors_window)
+                            error_row = error_tbl.row.add([
+                                index + 1,
+                                data.error_name
+                            ]).draw(false).node();
+                            $(error_row).css('background', '#fddad8')
+                            $(`#error_tbl tbody tr td`).css('color', '#f7473a')
+                        });
+                        console.log('Total Weight:', total_weight);
+                        // Any further operations depending on total_weight should go here
+                    });
+
+                }
+
+
+
+
+                function generateCompartmentTable(vehOrder) {
+                    // alert()
+                    // Check if vehOrder is an array and has data
+                    if (!Array.isArray(vehOrder) || vehOrder.length === 0) {
+                        console.error("vehOrder is not an array or it is empty");
+                        return;
+                    }
+
+                    let tableHtml = `<table border="1">
+                            <thead>
+                                <tr>
+                                    <th>Compartment No</th>
+                                    <th>Product</th>
+                                    <th>Loadable Volume</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+                    // Combine and sort all compartments
+                    let allCompartments = [];
+                    vehOrder.forEach(vehicle => {
+                        if (vehicle.compartments && Array.isArray(vehicle.compartments)) {
+                            vehicle.compartments.forEach(order => {
+                                if (order.compartments && Array.isArray(order.compartments)) {
+                                    order.compartments.forEach(compartment => {
+                                        allCompartments.push({
+                                            compartment_no: compartment.compartment_no,
+                                            product: order.product,
+                                            loadable_volume: compartment.loadable_volume
+                                        });
+                                    });
+                                }
+                            });
+                        }
+                    });
+
+                    // Sort compartments by compartment number
+                    allCompartments.sort((a, b) => a.compartment_no - b.compartment_no);
+
+                    // Generate table rows
+                    allCompartments.forEach(compartment => {
+
+
+
+                        // product_name= await getproduct(compartment.product)
+                        $('#compartment_rules').append(`
+
+                                <div class="col-2" >
+                                <h6 
+                                    style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em;font-size: 0.7em;font-weight: 800;">
+                                    ${compartment.loadable_volume}</h6>
+                                <h6
+                                style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em;font-size: 0.7em;font-weight: 800;">
+                                    ${compartment.loadable_volume}</h6>
+                                <h6
+                                style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em;font-size: 0.7em;font-weight: 800;">
+                                    0</h6>
+                                <h6
+                                style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em;font-size: 0.7em;font-weight: 800;">
+                                   ${compartment.product}</h6>
+
+                                    <h6
+                                    style="border-bottom: 0.2em solid #DEE2E6; padding-top: 0.5em; padding-bottom: 0.3em;font-size: 0.7em;font-weight: 800;">
+                                    F</h6>
+
+                            </div>
+                            `)
+
+                    });
+
+
+                }
+                // Usage example
+
+
+
+
+
+
+                function processOrders(orders, compartments, sequence, name) {
+                    let result = [];
+                    let compartmentUsed = new Set(); // Track used compartments
+                    complete_order[0].allowed_prod.forEach(val => {
+                        codearray.push(val.code);
+                    })
+                    console.log(codearray);
+
+                    let dup_orders = orders;
+                    let order_not_allowed = dup_orders.filter(order => !codearray.includes(parseInt(order.materialCode)));
+                    console.log(order_not_allowed);
+
+                    if (order_not_allowed.length >= 1) {
+                        errors_window.push({
+                            "error_name": "Vehicle Cannot Carry Product",
+                            "severity": 1
+                        })
+                    }
+                    orders = orders.filter(order => codearray.includes(parseInt(order.materialCode)));
+                    let totalTargetValue = calculateTotalTargetValue(orders);
+                    orders.forEach(order => {
+                        let targetQty = parseInt(order.target);
+                        let remainingQty = targetQty;
+                        let compartmentsToUse = [];
+
+                        // Use the sequence to fill compartments
+                        sequence.forEach(index => {
+                            if (remainingQty <= 0) return;
+
+                            let compartment = compartments[index];
+                            if (compartmentUsed.has(compartment.compartment_no)) return; // Skip if already used
+
+                            if (compartment.size > remainingQty) {
+                                compartmentsToUse.push({
+                                    compartment_no: compartment.compartment_no,
+                                    size: compartment.size,
+                                    loaded_volume: remainingQty,
+                                    product_id: order.materialCode,
+                                    order_id: order.orderId,
+                                    shipto: order.shipTo,
+                                    customer_name: order.customerName
+                                });
+                                remainingQty = 0;
+                            } else {
+                                compartmentsToUse.push({
+                                    compartment_no: compartment.compartment_no,
+                                    size: compartment.size,
+                                    loaded_volume: compartment.size,
+                                    product_id: order.materialCode,
+                                    order_id: order.orderId,
+                                    shipto: order.shipTo,
+                                    customer_name: order.customerName
+                                });
+                                remainingQty -= compartment.size;
+                            }
+                            compartmentUsed.add(compartment.compartment_no); // Mark compartment as used
+                        });
+
+                        // Check if there's any remaining quantity that hasn't been allocated
+                        if (remainingQty > 0) {
+                            errors_window.push({
+                                "error_name": "Discharge Sequence Violated",
+                                "severity": 1
+                            })
+                            errors_window.push({
+                                "error_name": "Compartmentation infeasible",
+                                "severity": 2
+                            })
+                            console.log(`Order ID: ${order.orderId} could not be fully allocated.`);
+                        } else {
+                            result.push(...compartmentsToUse);
+                        }
+                    });
+
+                    append_portion(result, name)
+
+                    if (errors_window.length > 0) {
+                        $('#order_card').css('border-top', '1em solid #f7473a')
+                    }
+                    else {
+                        $('#order_card').css('border-top', '1em solid rgb(23, 164, 151)')
+
+                    }
+
+
+
+
+                    console.log('total', total_weight)
+                    console.log("result", result)
+                    console.log("Errors", errors_window);
+                    if (totalTargetValue > complete_order[0].trailer_size) {
+                        errors_window.push({ "error_name": 'Trip Volume Exceeds Vehicle Volume' })
+                    }
+                    console.log("Errors", errors_window);
+
+
+                    return result;
+                }
+
+                function processOrders2(orders, compartments, sequence, name) {
+                    let result = [];
+                    let compartmentUsed = new Set(); // Track used compartments
+
+                    orders.forEach(order => {
+                        let targetQty = parseInt(order.target);
+                        let remainingQty = targetQty;
+                        let compartmentsToUse = [];
+
+                        // Use the sequence to fill compartments
+                        sequence.forEach(index => {
+                            if (remainingQty <= 0) return;
+
+                            let compartment = compartments[index];
+                            if (compartmentUsed.has(compartment.compartment_no)) return; // Skip if already used
+
+                            if (compartment.size > remainingQty) {
+                                compartmentsToUse.push({
+                                    compartment_no: compartment.compartment_no,
+                                    size: compartment.size,
+                                    loaded_volume: remainingQty,
+                                    product_id: order.materialCode,
+                                    order_id: order.orderId,
+                                    shipto: order.shipTo,
+                                    customer_name: order.customerName
+                                });
+                                remainingQty = 0;
+                            } else {
+                                compartmentsToUse.push({
+                                    compartment_no: compartment.compartment_no,
+                                    size: compartment.size,
+                                    loaded_volume: remainingQty,
+                                    product_id: order.materialCode,
+                                    order_id: order.orderId,
+                                    shipto: order.shipTo,
+                                    customer_name: order.customerName
+                                });
+                                remainingQty -= compartment.size;
+                            }
+                            compartmentUsed.add(compartment.compartment_no); // Mark compartment as used
+                        });
+
+                        // Check if there's any remaining quantity that hasn't been allocated
+                        if (remainingQty > 0) {
+                            console.log(`Order ID: ${order.orderId} could not be fully allocated.`);
+                        } else {
+                            result.push(...compartmentsToUse);
+                        }
+                    });
+                    append_portion(result, name)
+                    console.log("result", result)
+                    return result;
+
+                }
+
+
+                function sc(i) {
+                    // Retrieve the element by its id 'i'
+                    document.getElementById(i).style.backgroundColor = "#006400";
+                }
+
+
+            </script>

@@ -1,0 +1,268 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="leftside-menu">
+
+    <!-- Brand Logo Light -->
+    <a href="index" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="assets/images/logo.png" alt="logo">
+        </span>
+        <span class="logo-sm">
+            <img src="assets/images/logo-sm.png" alt="small logo">
+        </span>
+    </a>
+
+    <!-- Brand Logo Dark -->
+    <a href="index" class="logo logo-dark">
+        <span class="logo-lg">
+            <img src="assets/images/logo-dark.png" alt="dark logo">
+        </span>
+        <span class="logo-sm">
+            <img src="assets/images/logo-sm.png" alt="small logo">
+        </span>
+    </a>
+
+    <!-- Sidebar Hover Menu Toggle Button -->
+    <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+        <i class="ri-checkbox-blank-circle-line align-middle"></i>
+    </div>
+
+    <!-- Full Sidebar Menu Close Button -->
+    <div class="button-close-fullsidebar">
+        <i class="ri-close-fill align-middle"></i>
+    </div>
+
+    <!-- Sidebar -left -->
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
+        <!-- Leftbar User -->
+        <div class="leftbar-user p-3 text-white">
+            <a href="pages-profile" class="d-flex align-items-center text-reset">
+                <div class="flex-shrink-0">
+                    <img src="assets/images/users/avatar-1.jpg" alt="user-image" height="42"
+                        class="rounded-circle shadow">
+                </div>
+                <div class="flex-grow-1 ms-2">
+                    <span class="fw-semibold fs-15 d-block">Doris Larson</span>
+                    <span class="fs-13">Founder</span>
+                </div>
+                <div class="ms-auto">
+                    <i class="ri-arrow-right-s-fill fs-20"></i>
+                </div>
+            </a>
+        </div>
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+
+            <li class="side-nav-title mt-1"> Main</li>
+
+            <li class="side-nav-item">
+                <a href="index" class="side-nav-link">
+                    <i class="ri-dashboard-2-fill"></i>
+                    <span class="badge bg-success float-end">9+</span>
+                    <span> Dashboard </span>
+                </a>
+            </li>
+
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#customers" aria-expanded="false" aria-controls="customers"
+                    class="side-nav-link">
+                    <i class="ri-team-fill"></i>
+                    <span> Customer </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="customers">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="customers">Customer List</a>
+                        </li>
+                        <li>
+                            <a href="customer_details">Cusotmer Details</a>
+                        </li>
+                        <li>
+                            <a href="#" id="address_n" onclick="check_redirection('address_p')">Cusotmer Address</a>
+                        </li>
+                        <li>
+                            <a href="#" id="tanks_n" onclick="check_redirection('tanks_p')">Cusotmer Tanks</a>
+                        </li>
+                        <li>
+                            <a href="#" id="routes_n" onclick="check_redirection('routes_p')">Cusotmer Routes</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#depot" aria-expanded="false" aria-controls="depot"
+                    class="side-nav-link">
+                    <i class="ri-home-office-fill"></i>
+                    <span> Depot </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="depot">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="depot">Depot List</a>
+                        </li>
+                        <li>
+                            <a href="#">Depot Detail</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#parking_loc" aria-expanded="false" aria-controls="parking_loc"
+                    class="side-nav-link">
+                    <i class="ri-parking-box-fill"></i>
+                    <span> Parking Location </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="parking_loc">
+                    <ul class="side-nav-second-level">
+                        <!-- <li>
+                            <a href="#">Depot List</a>
+                        </li>
+                        <li>
+                            <a href="#">Depot Detail</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#vehicle" aria-expanded="false" aria-controls="vehicle"
+                    class="side-nav-link">
+                    <i class="ri-truck-fill"></i>
+                    <span> Vehicle </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="vehicle">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="vehicles">Vehicle List</a>
+                        </li>
+                        <li>
+                            <a href="#">Vehicle Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Tractor Details</a>
+                        </li>
+                        <li>
+                            <a href="#">Vehicle Groups</a>
+                        </li>
+                        <li>
+                            <a href="#">Vehicle Properties</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#data_management" aria-expanded="false"
+                    aria-controls="data_management" class="side-nav-link">
+                    <i class=" ri-database-fill"></i>
+                    <span> Data Management </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="data_management">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="#">Users</a>
+                        </li>
+                        <li>
+                            <a href="#">Vehicle</a>
+                        </li>
+                        <li>
+                            <a href="#">Product</a>
+                        </li>
+                        <li>
+                            <a href="#">On Setting</a>
+                        </li>
+                        <li>
+                            <a href="#">Scheduling Setting</a>
+                        </li>
+                        <li>
+                            <a href="#">CSV Import</a>
+                        </li>
+                        <li>
+                            <a href="#">Stock Management</a>
+                        </li>
+                        <li>
+                            <a href="#">OU Import</a>
+                        </li>
+                        <li>
+                            <a href="#">System</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#swt" aria-expanded="false" aria-controls="swt"
+                    class="side-nav-link">
+                    <i class=" ri-radio-button-fill"></i>
+                    <span> SWT </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="swt">
+                    <ul class="side-nav-second-level">
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#swt" aria-expanded="false" aria-controls="swt"
+                    class="side-nav-link">
+                    <i class=" ri-radio-button-fill"></i>
+                    <span> N </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="swt">
+                    <ul class="side-nav-second-level">
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#swt" aria-expanded="false" aria-controls="swt"
+                    class="side-nav-link">
+                    <i class=" ri-radio-button-fill"></i>
+                    <span> HM </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="swt">
+                    <ul class="side-nav-second-level">
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#swt" aria-expanded="false" aria-controls="swt"
+                    class="side-nav-link">
+                    <i class=" ri-radio-button-fill"></i>
+                    <span> T </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="swt">
+                    <ul class="side-nav-second-level">
+
+                    </ul>
+                </div>
+            </li>
+
+
+
+
+
+        </ul>
+        <!--- End Sidemenu -->
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- ========== Left Sidebar End ========== -->

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="topnav" data-menu-color="brand">
+
+<head>
+    <%- include ('./title-meta') %>
+
+    <%- HeaderCss %>
+    <%- include ('./head-css') %>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <%- include ('./topbar') %>
+    <%- include ('./horizontal-nav') %>
+
+    <div class="content-page">
+        <div class="content">
+
+            <div class="container-fluid">
+
+                <%- body %>
+
+            </div>
+
+        </div>
+
+        <%- include ('./footer') %>
+
+    </div>
+
+</div>
+
+<%- include ('./right-sidebar') %>
+
+<%- include ('./footer-scripts') %>
+
+<%- FooterJs %>
+
+<!-- App js -->
+<script src="assets/js/app.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <%- contentFor('body') %>
+
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+            data-bs-target="#standard-modal">Centermodal</button>
+
+
+        <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Modal</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Shipto
+                                    </label>
+                                    <select class="form-control select2" id="shipto" data-toggle="select2" onchange="shipto_name(this.value,'shipto_name')">
+                                        
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Name
+                                    </label>
+                                    <input type="text" class="form-control" id="shipto_name">
+                                </div>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <div class="row d-flex">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="" class="form-label">
+                                                Code
+                                            </label>
+                                            <select class="form-control select2" data-toggle="select2" id="product" onchange="product_name(this.value,'product_name')">
+                                                
+                                               
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group" style="margin-top: 0.6em;">
+                                            <label for="" class="form-label">
+
+                                            </label>
+                                            <input type="text" class="form-control" id="product_name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-6 mt-2">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Order Id
+                                    </label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Quantity
+                                    </label>
+                                    <input type="number" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <%- contentFor('FooterJs') %>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+            <script>
+                 var scope=localStorage.getItem('scope');
+
+                $(document).ready(() => {
+                    select_field('shipto');
+                    select_product('product')
+                })
+
+                function select_field(id,api,code) {
+                    var settings = {
+                        "url": "customers_byscope/"+scope,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').empty();
+
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['ship_to']
+                            }));
+                        }
+                    })
+                }
+
+                function select_product(id) {
+                    var settings = {
+                        "url": "product",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').empty();
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['code']
+                            }));
+                        }
+                    })
+                }
+
+                function shipto_name(id,inp){
+                    console.log( "id",id,inp)
+                    var settings = {
+                        "url": "customers_byscope/"+scope+"/"+id,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response[0]['site_name'])
+                        $('#'+inp).val(response[0]['site_name'])
+                        console.log(response)})
+                }
+          
+                function product_name(id,inp){
+                    console.log( "id",id,inp)
+                    var settings = {
+                        "url": "product/"+id,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        
+                        $('#'+inp).val(response['name'])
+                        console.log(response)})
+                }
+          
+          </script>
+
+            </html>
+
+
+
+            <!-----------------  Routes------------->
+
+
+            route.get('/modal', (req, res, next) => {
+                res.render('admin/modal', { title: 'Dashboard' });
+            })
+
+
+
+            route.get('/customers_byscope/:id', (req, res) => {
+                const { id } = req.params;
+                db.query('SELECT * FROM `customer` WHERE scope=?', [id], (err, results) => {
+                    if (err) throw err;
+                    res.json(results);
+                });
+            });
+            route.get('/customers_byscope/:id/:c_id', (req, res) => {
+                const { id } = req.params;
+                const { c_id } = req.params;
+                db.query('SELECT * FROM `customer` WHERE scope=? and id=?', [id,c_id], (err, results) => {
+                    if (err) throw err;
+                    res.json(results);
+                });
+            });
+            

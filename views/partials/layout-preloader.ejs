@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-menu-color="brand">
+
+<head>
+    <%- include ('./title-meta') %>
+
+    <%- HeaderCss %>
+    
+    <%- include ('./head-css') %>
+</head>
+
+<body>
+
+    <!-- Pre-loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="bouncing-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader-->
+
+    <div class="wrapper">
+
+        <%- include ('./menu') %>
+
+            <div class="content-page">
+                <div class="content">
+
+                    <div class="container-fluid">
+
+                        <%- body %>
+
+                    </div>
+
+                </div>
+
+                <%- include ('./footer') %>
+
+            </div>
+
+    </div>
+
+    <%- include ('./right-sidebar') %>
+
+    <%- include ('./footer-scripts') %>
+
+    <%- FooterJs %>
+
+    <!-- App js -->
+    <script src="assets/js/app.min.js"></script>
+
+</body>
+
+</html>

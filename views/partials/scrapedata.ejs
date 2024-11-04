@@ -1,0 +1,98 @@
+$('#searchInput').on('input', function () {
+    const query = $(this).val().toLowerCase();
+    if (query.length > 0) { // Only search if query is longer than 2 characters
+        $.ajax({
+            url: 'get_vehicle/' + scope, // Your API endpoint
+            method: 'GET',
+            data: { q: query },
+            success: function (data) {
+                $('#vehicle_cards').empty(); // Clear previous results
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        if (item.name.toLowerCase().includes(query) || item.tractor_reg.toLowerCase().includes(query) || item.trailer_reg.toLowerCase().includes(query)) {
+                            $('#vehicle_cards').append(`
+                            <div class="card">
+                            <div class="card-header" style="background:#6C757D;color:white;padding:1em 0.5em 0.8em 1em;  display: flex;justify-content: space-between;align-items: center;">
+                                <h5 style="margin-top: 0.3em;">${item.name}</h5>
+                                <div style="float: right">
+                                <button class="btn btn-light">Assign</button></div>
+                            </div>
+                                <div class="card-body" style="background:lightgrey;color:black;">
+                                    <div class="row" >
+                                        <div class="col-6"style="text-align:left;">
+                                            <h6 >${item.name}</h6>
+                                            <h6 >${item.start_location}</h6>
+                                            <h6 >${item.start_time}</h6>
+                                        </div>
+                                        <div class="col-6" style="text-align:right;">
+                                            <h6 >${cleanTrailerSize(item.trailer_size)}</h6>
+                                            <h6 >${item.end_location}</h6>
+                                            <h6 >${item.end_time}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    `);
+                        }
+                    });
+                } else {
+                    $('#vehicle_cards').append('<li class="list-group-item">No results found</li>');
+                }
+            },
+            error: function () {
+                $('#vehicle_cards').empty();
+                $('#vehicle_cards').append('<li class="list-group-item text-danger">Error fetching results</li>');
+            }
+        });
+    } else {
+
+        $('#vehicle_cards').empty();
+        $.ajax({
+            url: 'get_vehicle/' + scope, // Your API endpoint
+            method: 'GET',
+            data: { q: query },
+            success: function (data) {
+                $('#vehicle_cards').empty(); // Clear previous results
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        if (item.name.toLowerCase().includes(query) || item.tractor_reg.toLowerCase().includes(query) || item.trailer_reg.toLowerCase().includes(query)) {
+                            $('#vehicle_cards').append(`
+                            <div class="card" >
+                            <div class="card-header" style="background:#6C757D;color:white;padding:1em 0.5em 0.8em 1em;  display: flex;justify-content: space-between;align-items: center;">
+                                <h5 style="margin-top: 0.3em;">${item.name}</h5>
+                                <div style="float: right">
+                                <button class="btn btn-light" onclick="tsd_edit(${item.id})">Assign</button></div>
+                            </div>
+                                <div class="card-body" style="background:lightgrey;color:black;">
+                                    <div class="row" >
+                                        <div class="col-6"style="text-align:left;">
+                                            <h6 >${item.name}</h6>
+                                            <h6 >${item.start_location}</h6>
+                                            <h6 >${item.start_time}</h6>
+                                        </div>
+                                        <div class="col-6" style="text-align:right;">
+                                            <h6 >${cleanTrailerSize(item.trailer_size)}</h6>
+                                            <h6 >${item.end_location}</h6>
+                                            <h6 >${item.end_time}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                    `);
+                        }
+                    });
+                } else {
+                    $('#vehicle_cards').append('<li class="list-group-item">No results found</li>');
+                }
+            },
+            error: function () {
+                $('#vehicle_cards').empty();
+                $('#vehicle_cards').append('<li class="list-group-item text-danger">Error fetching results</li>');
+            }
+        }); // Clear results if query is too short
+    }
+
+})
+

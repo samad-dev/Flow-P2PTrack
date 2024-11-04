@@ -1,0 +1,371 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Flatpickr Timepicker css -->
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <!-- <div class="card">
+            <div class="card-body">
+                <div class="row " style=" display:flex; align-items: center;">
+                    <div class="col-auto" style="display: flex;justify-content: center; align-items: center;">
+                        <label for="">Code</label>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>Select</option>
+                            <option>Email</option>
+                            <option>Call</option>
+                            <option>SMS</option>
+
+                        </select>
+                    </div>
+                    <div class="col-auto"><button class="btn btn-soft-primary">Create CV</button></div>
+                    <div class="col-auto"><button class="btn btn-soft-primary">Rename CV</button></div>
+                </div>
+            </div>
+        </div> -->
+        <div class="card ">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+
+                    <div class="col-auto"><a href="vehicle_properties"
+                            class="btn btn-soft-primary active">Properties</a>
+                    </div>
+                    <div class="col-auto"><a href="vehicle_tracktor?id=<%- id%>"
+                            class="btn btn-soft-primary">Tracktor</a></div>
+                    <div class="col-auto"><a href="vehicle_trailer?id=<%- id%>" class="btn btn-soft-primary">Trailer</a>
+                    </div>
+                    <!-- <div class="col-auto"><a href="#" class="btn btn-soft-primary">Weight</a></div>
+                    <div class="col-auto"><a href="vehicle_group?id=<%- id%>" class="btn btn-soft-primary">Groups</a></div> -->
+                    <div class="col-auto"><a href="#" class="btn btn-soft-primary">Status</a></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="row mt-3" style="display:flex; justify-content: space-evenly;">
+                                <div class="col-6 col-sm-12 col-lg-6" style="padding: 29px;">
+
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Plainboard
+                                            Abbreviation</label>
+                                        <input type="text" id="plainabb" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Volume (L)</label>
+                                        <input type="text" id="volume" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Weight (WGT)</label>
+                                        <input type="text" id="weight" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Loading Factor</label>
+                                        <input type="text" id="loading_fac" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Discharge Factor </label>
+                                        <input type="text" id="discharge_factor" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <label for="simpleinput" class="form-label">Fuel Type</label>
+
+                                        <select class="form-control select2" id="fuel_type" data-toggle="select2">
+                                            <option disabled selected hidden></option>
+                                            <option>Petrol</option>
+                                            <option>Diesel</option>
+
+
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <label for="simpleinput" class="form-label">Products</label>
+
+                                        <select class="select2 select2-multiple" style="height: 0;" id="veh_products"
+                                            data-toggle="select2" multiple="multiple">
+
+                                        </select>
+                                    </div>
+                                    <div class="check-boxes mt-3" style="padding-left: 10px;">
+                                        <div class="form-check mb-2">
+                                            <input type="checkbox" class="form-check-input" id="drop_last">
+                                            <label class="form-check-label" for="customCheckcolor1">Drop Last
+                                                Trailer</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input type="checkbox" class="form-check-input" id="simultaneous_loading">
+                                            <label class="form-check-label" for="customCheckcolor1">Simultaneous
+                                                Loading
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input type="checkbox" class="form-check-input" id="product_subs">
+                                            <label class="form-check-label" for="customCheckcolor1">Product
+                                                Substitution
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-12 col-lg-6">
+
+                                    <h4>
+                                        Co2 Details
+                                    </h4>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Volume (L)</label>
+                                        <input type="text" id="simpleinput" class="form-control">
+                                    </div>
+
+                                    <select class="form-control select2" data-toggle="select2">
+                                        <option>Select</option>
+                                        <option>Petrol</option>
+                                        <option>Diesel</option>
+
+                                    </select>
+                                    <div class="mb-3 mt-3 col-6 col-sm-12  col-lg-6">
+                                        <label class="form-label">Last Schedule Date</label>
+                                        <input type="text" id="basic-datepicker" class="form-control">
+                                    </div>
+                                    <h4 class="mt-4 mb-3">Inter Trader Pumping factor</h4>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Front To Back</label>
+                                        <input type="text" id="simpleinput" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Back To Front</label>
+                                        <input type="text" id="simpleinput" class="form-control">
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: center;">
+                                        <button class="btn btn-soft-info" type="button" id="save"> Save</button>
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </form>
+
+
+
+
+                    </div> <!-- end card body -->
+                </div> <!-- end card -->
+            </div>
+
+            <!-- end col -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+
+            <!-- Input Mask Plugin js -->
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Touchspin Plugin js -->
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+            <!-- Bootstrap Maxlength Plugin js -->
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+            <!-- Typehead Plugin js -->
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+            <!-- Flatpickr Timepicker Plugin js -->
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+            <!-- Typehead Demo js -->
+
+            <!-- Timepicker Demo js -->
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+
+            <script src="assets/js/pages/demo.typehead.js"></script>
+
+
+            <Script>
+                $(document).ready(() => {
+                    $("#basic-datepicker").flatpickr()
+                    properties()
+
+
+                    $.ajax({
+                        url: 'product',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            for (i = 0; i < response.length; i++) {
+                                $('#veh_products').append($('<option>', {
+                                    value: response[i]['id'],
+                                    text: response[i]['name']
+                                }));
+
+                            }
+                        }
+                    })
+                })
+
+                function properties() {
+                    veh_product = [];
+
+                    $.ajax({
+                        url: "vehicle_property/<%- id%>",
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            // Clear the veh_product array
+                            console.log("veh_id", response['vehicleProducts']);
+                            // Populate the veh_product array with the IDs from the vehicleProducts
+                            response['vehicleProducts'].forEach(vp => {
+                                veh_product.push(vp.product_id);
+                            });
+
+                            // console.log('vp',veh_product)
+                            // Set the form fields with the corresponding values from the response
+                            $('#plainabb').val(response['name']);
+                            $('#volume').val(response['trailer_size']);
+                            $('#weight').val(response['cvweight']);
+                            $('#loading_fac').val(1);
+                            $('#discharge_factor').val(1);
+                            // $('#fuel_type').val(response['fuel_type']).trigger('change');
+                            // $('#drop_last').prop("checked", response['m_drop_all'] == 1);
+                            // $('#simultaneous_loading').prop("checked", response['simultaneous_loading'] == 1);
+                            // $('#product_subs').prop("checked", response['product_subs'] == 1);
+                        },
+                        complete: function () {
+                            // This code runs after the AJAX request is complete
+                            setTimeout(() => {
+                                $('#veh_products').val(veh_product).trigger('change');
+                            }, 1000)
+
+
+                        }
+                    });
+                }
+
+                $('#save').click(() => {
+
+                    // Create a FormData object and append all required fields
+                    var form = new FormData();
+                    form.append("plan_abb", $('#plainabb').val());
+                    form.append("volume", $('#volume').val());
+                    form.append("weight", $('#weight').val());
+                    form.append("loading_factor", $('#loading_fac').val());
+                    form.append("dicharge_factor", $('#discharge_factor').val());
+                    form.append("fuel_type", $('#fuel_type').val());
+                    form.append("m_drop_all", $('#drop_last').is(':checked') ? "1" : "0");
+                    form.append("simultaneous_loading", $('#simultaneous_loading').is(':checked') ? "1" : "0");
+                    form.append("product_subs", $('#product_subs').is(':checked') ? "1" : "0");
+
+                    // Set up the first AJAX request to update vehicle properties
+                    var settings = {
+                        "url": `vehicle_property/<%- id %>`, // Ensure this id is correctly passed in the template
+                        "method": "PUT",
+                        "timeout": 0,
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax({
+                        ...settings,
+                        success: function (data) {
+                            // After the vehicle property update succeeds, proceed with assigning products
+                            let veh_product = $('#veh_products').val(); // Assuming this is a Select2 field returning an array
+
+                            if (Array.isArray(veh_product)) {
+                                veh_product.forEach(product_id => {
+                                    $.ajax({
+                                        url: "veh_byid&p_id/<%- id%>/" + product_id,
+                                        type: 'GET',
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            if (response.length > 0) {
+                                                console.log("response",response)
+
+                                            }
+                                            else {
+                                                
+                                                // For each product, create a new FormData object
+                                                let productForm = new FormData();
+                                                productForm.append("veh_id", `<%- id %>`);
+                                                productForm.append("product_id", product_id);
+
+                                                var productSettings = {
+                                                    "url": "assign_productv",
+                                                    "method": "POST",
+                                                    "timeout": 0,
+                                                    "processData": false,
+                                                    "mimeType": "multipart/form-data",
+                                                    "contentType": false,
+                                                    "data": productForm
+                                                };
+
+                                                $.ajax({
+                                                    ...productSettings,
+                                                    success: function (response) {
+                                                        console.log(`Product ${product_id} assigned successfully`);
+                                                    },
+                                                    error: function (xhr, textStatus, errorThrown) {
+                                                        console.error(`Failed to assign product ${product_id}:`, errorThrown);
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    })
+
+                                });
+
+                                // After all products are processed, notify the user
+                                Swal.fire(
+                                    'Success!',
+                                    'Properties Updated Successfully!',
+                                    'success'
+                                );
+                            } else {
+                                console.error('Expected veh_product to be an array.');
+                            }
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.error('Failed to update vehicle properties:', errorThrown);
+                        }
+                    });
+
+                    console.log("Request initiated");
+
+                });
+
+            </Script>
+            <!-- Datatables js -->

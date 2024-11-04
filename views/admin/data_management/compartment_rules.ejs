@@ -1,0 +1,432 @@
+<%- contentFor('HeaderCss') %>
+
+    <!-- Datatables css -->
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+
+        <div class="row">
+            <div class="col-12">
+                <div
+                    class="page-title-box justify-content-between d-flex align-items-md-center flex-md-row flex-column">
+                    <h4 class="page-title">Compartments</h4>
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Management</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript: void(0);">Compartments</a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <button class="btn btn-soft-primary  mb-3" data-bs-toggle="modal" data-bs-target="#modal"
+                            id="add" onclick="clear_fields('modal_row')"> Add
+                            Compartment</button>
+
+                        <table id="comp_tbl" class="table table-striped dt-responsive nowrap w-100">
+                            <thead>
+                                <tr>
+                                    <th>SNO</th>
+                                    <th>Name</th>
+                                    <th>No Of Compartments</th>
+                                    <th>Edit</th>
+                                    <!-- <th>Delete</th> -->
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+                            </tbody>
+                        </table>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
+        </div> <!-- end row-->
+
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class=" modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Compartment</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+                                <div class="mb-3  col-sm-12  col-lg-6">
+                                    <input type="hidden" id="update_id">
+                                    <label for="simpleinput" class="form-label">Name</label>
+                                    <input type="text" id="name" class="form-control">
+                                </div>
+                                <div class="mb-3  col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Total Compartment</label>
+                                    <input type="text" id="compartment" class="form-control">
+                                </div>
+                                <div class="row" id="compartment_row">
+
+                                </div>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+
+            <script>
+                $(document).ready(() => {
+                    compartments();
+
+                })
+                $('#save').click(() => {
+
+                    try {
+                        var name = $('#name').val();
+                        var total_comp = $('#compartment').val();
+                        let values = [];
+                        var compartment = []
+
+                        $('#compartment_row input').each(function (index) {
+                            values.push($(this).val());
+                        });
+
+                        // Check if any required field is empty
+                        if (!name || !total_comp) {
+                        }
+                        id = $('#update_id').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("name", name);
+                            form.append("compartments", total_comp);
+                            form.append("seq", values);
+
+
+
+                            // Your code to submit the form or any other processing
+
+                            var settings = {
+                                "url": "comp_rules",
+                                "method": "POST",
+                                "timeout": 0,
+                                "headers": {
+                                    "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                                },
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    compartments();
+                                    clear_fields('modal_row');
+                                    $('#compartment_row').empty();
+                                    $('#modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Compartment Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+                                    Swal.fire(
+                                        'Success!', 'Compartment Not Created Successfully!', 'error'
+                                    )
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("name", name);
+                            form.append("compartments", total_comp);
+                            form.append("seq", values);
+
+                            // Your code to submit the form or any other processing
+
+                            var settings = {
+                                "url": "comp_rules/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+
+                                    compartments();
+                                    clear_fields('modal_row');
+                                    $('#compartment_row').empty();
+                                    $('#modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Product Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                            console.log("else")
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function check_redirection(t_id) {
+                    if (window.location.pathname !== '/customer') {
+                        window.location.href = '/customer_details';
+                        $('.nav-link.active').removeClass('active');
+                        $(t_id).find('a.nav-link').addClass('active');
+
+                        $('.tab-pane.show.active').removeClass('show active');
+                        var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                        $(targetTabPane).addClass('show active');
+                    }
+                    $('.nav-link.active').removeClass('active');
+                    $(t_id).find('a.nav-link').addClass('active');
+
+                    $('.tab-pane.show.active').removeClass('show active');
+                    var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                    $(targetTabPane).addClass('show active');
+                }
+                function edit(id) {
+                    $.ajax({
+                        url: "comp_rules/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                        
+                            let seq = response['seq'];
+                            seq = seq.split(','); // Split the seq string into an array
+                     $('#update_id').val(response['id'])
+                     $('#name').val(response['name'])
+                     $('#compartment').val(response['compartments'])
+                            $('#compartment_row').empty(); // Clear previous elements
+                                    for (let i = 0; i < response['compartments']; i++) {
+                                        $('#compartment_row').append(`
+                            <div class="mb-3 col-sm-12 col-lg-6">
+                                <label for="seq${i}" class="form-label">Compartment No ${i + 1}</label>
+                                <input type="text" id="seq${i}" value="${seq[i]}" class="form-control">
+                            </div>`);
+                            }
+
+                            
+                        }
+                    });
+                }
+
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "product/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    compartments();
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+                function compartments() {
+                    var settings = {
+                        "url": "comp_rules",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        comp_tbl.clear().draw();
+                        $.each(response, function (index, data) {
+
+
+                            comp_tbl.row.add([
+                                index + 1,
+                                data.name,
+                                data.compartments,
+                                '<td>' +
+                                '<button class="btn btn-soft-warning" onclick="edit(\'' + data.id + '\')" data-bs-toggle="modal" data-bs-target="#modal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</td>',
+                                // '<td>' +
+                                // '<button class="btn btn-soft-danger" onclick="delete_rec(\'' + data.id + '\')">' +
+                                // '<i class="ri-delete-bin-6-fill"></i>' +
+                                // '</button>' +
+                                // '</td>'
+                            ]).draw(false).node();
+
+                            // Add double-click event to the row
+
+
+                        });
+                    });
+                }
+
+
+
+                comp_tbl = $('#comp_tbl').DataTable({
+
+                    keys: !0,
+
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+
+
+
+                $('#compartment').on('input', function () {
+                    let compartment_number = [];
+                    let seq = [];
+                    let input = $(this).val();
+                    $('#compartment_row').empty(); // Clear previous elements
+                    for (let i = 0; i < input; i++) {
+                        $('#compartment_row').append(`
+            <div class="mb-3 col-sm-12 col-lg-6">
+                <label for="seq${i}" class="form-label">Compartment No ${i + 1}</label>
+                <input type="text" id="seq${i}" class="form-control">
+            </div>`);
+                        seq.push($('#seq' + i));
+                        compartment_number.push(i);
+                    }
+                    console.log(seq, "=====", compartment_number);
+                });
+
+
+            </script>

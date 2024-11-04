@@ -1,0 +1,1113 @@
+<%- contentFor('HeaderCss') %>
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/vendor/jquery-toast-plugin/jquery.toast.min.css">
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+    <link rel='stylesheet' href='https://fullcalendar.io/releases/core/4.1.0/main.min.css'>
+    <link rel='stylesheet' href='https://fullcalendar.io/releases/timeline/4.1.0/main.min.css'>
+    <link rel='stylesheet' href='https://fullcalendar.io/releases/resource-timeline/4.1.0/main.min.css'>
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline/main.js'></script>
+    <style>
+        .fc-resource-area {
+            width: 10% !important;
+        }
+
+        #calendar {
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            /* Allow horizontal scrolling */
+            overflow-y: hidden;
+            /* Disable vertical scrolling */
+        }
+
+        :root {
+            --primary-color: #007bff;
+            /* Define your primary color here */
+            --scrollbar-bg: #f0f0f0;
+            /* Define scrollbar background color */
+            --scrollbar-thumb: lightgray;
+            /* Define scrollbar thumb color */
+        }
+
+        /* WebKit-based browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            /* Width of vertical scrollbar */
+            height: 0.3em;
+            /* Height of horizontal scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-bg);
+            border-radius: 10px;
+            /* Background of the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D3D3D3;
+            /* Background of the scrollbar thumb */
+            border-radius: 10px;
+            /* Rounded corners for the scrollbar thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4254ba;
+            ;
+        }
+
+        /* darken(var(--scrollbar-thumb), 50%); */
+
+
+        .select-checkbox::before {
+            display: none;
+        }
+
+        .select-checkbox::after {
+            display: none;
+        }
+
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 50%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+            box-shadow: 1px 2px 2px 1px darkblue;
+        }
+
+        .h6_text {
+            text-align: center;
+        }
+
+        th {
+            font-size: 0.7em;
+
+        }
+
+        tr td {
+            font-size: 0.7em;
+            padding: 0.3em 0.3em;
+        }
+
+
+        table.dataTable tbody>tr.selected td {
+            color: var(--light-color);
+            background-color: var(--primary-color);
+        }
+
+        .sheduled {
+            background-color: yellow;
+        }
+
+        .disabled {
+            background-color: #e0e0e0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .order-list-container {
+            display: block;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: auto;
+            /* Let the width expand dynamically */
+            max-width: 600px;
+            /* Maximum width is 600px */
+            height: 300px;
+            /* Set the height to 300px */
+            background-color: #f8d7da;
+            /* Light red background */
+            padding: 10px;
+            /* Add padding around the content */
+            border-radius: 5px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Shadow effect */
+            z-index: 9999;
+            /* Keeps it on top of other elements */
+            column-gap: 20px;
+            /* Gap between columns */
+            overflow-y: auto;
+            /* Overflow-y for vertical scrolling */
+            white-space: nowrap;
+            /* Prevents wrapping of content */
+            transition: width 0.3s ease;
+            /* Smooth width transition */
+        }
+
+        .order-list-container.overflow {
+            column-count: 2;
+            /* Split into two columns on overflow */
+        }
+
+        .order-list-container li {
+            list-style-type: none;
+            /* Remove bullet points */
+            padding: 5px 0;
+            /* Add spacing between items */
+            font-size: 14px;
+            /* Adjust font size */
+            color: #721c24;
+            /* Text color */
+        }
+
+        /* Custom ascending icon */
+        .dataTables_wrapper .sorting_asc:after {
+            content: "\f0de";
+            /* Font Awesome 'up' icon */
+            font-family: FontAwesome;
+            font-size: 12px;
+            padding-left: 5px;
+        }
+
+        /* Custom descending icon */
+        .dataTables_wrapper .sorting_desc:after {
+            content: "\f0dd";
+            /* Font Awesome 'down' icon */
+            font-family: FontAwesome;
+            font-size: 12px;
+            padding-left: 5px;
+        }
+
+        /* Custom neutral icon when no sorting applied */
+        .dataTables_wrapper .sorting:after {
+            content: "\f0dc";
+            /* Font Awesome 'sort' icon */
+            font-family: FontAwesome;
+            font-size: 50px;
+            padding-left: 5px;
+        }
+    </style>
+    <%- contentFor('body') %>
+        <div id="imp_order_error" class="order-list-container" style="display: none;">
+            <!-- The order IDs will be appended here as list items -->
+        </div>
+
+        <div class="row" style="padding-top:0.4em;">
+            <div class="card col-12 card-body" style="padding: 1em;margin-bottom: 0.2em;">
+                <div class="row">
+                    <div class="col-3" style="display: flex; justify-content: flex-start;">
+                        <h4 for="" style="display:flex; align-items: center;">
+                            Import Orders
+                        </h4>
+
+                    </div>
+
+                    <div class="col-9" style="display:flex; justify-content: flex-end;">
+                        <select class="form-control select2" id="scope_top" data-toggle="select2">
+                            <option disabled selected hidden>Scopes</option>
+                            <option value="ALL">ALL</option>
+                        </select>
+
+
+                        <input type="text" placeholder="Select Date" id="date" class="form-control basic-datepicker">
+                        <select class="form-control select2" id="am_pm" data-toggle="select2"
+                            onchange="get_vehicle(),distictvalfilter()">
+                            <option hidden disabled selected>AM/PM</option>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+
+                        </select>
+                        <select class="form-control select2" id="shift_ord" data-toggle="select2"
+                            onchange="get_vehicle(),distictvalfilter()">
+                            <option hidden disabled selected>Select</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+
+                        </select>
+                        <input type="hidden" name="" id="textInput">
+                        <input id="output" type="hidden" class="mt-3"></input>
+                        <input type="file" name="" id="fileInput" class="form-control" style="margin-right: 20px;">
+
+                        <!-- <button class="btn btn-primary" onclick="insert_orders()">INSERT ORDERS</button> -->
+                        <button type="button" class="btn btn-primary" id="decodeButton">Import</button>&nbsp;
+                        <div class="col-2">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                data-bs-target="#standard-modal"><i class="ri-add-box-fill me-1"></i> <span>Create
+                                    Order</span> </button>
+                        </div>
+                        <!-- <button onclick="" type="button" class="btn btn-soft-primary m-2" style="margin-right: 20px;">Create Order</button> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-7" style="padding: 0;">
+                <div class="card">
+                    <div class="card-body">
+                        <div id='calendar'></div>
+                    </div>
+                    <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
+            <div class="col-5" style="padding-right: 0;">
+                <div class=" card card-body" style="box-shadow:7px 9px 14px -5px grey;">
+
+
+                    <table id="ordersTable" class="table c  nowrap w-100" style="width:100%">
+                        <thead style="background: lightgray;">
+                            <tr>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">Order Id</th>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">Ship To</th>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">Customer Name</th>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">Order Date</th>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">Product</th>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">Target</th>
+                                <th style=" padding-top: 0.3em;padding-bottom: 0.3em;">City</th>
+                                <!-- <th>Address</th> -->
+                                <!-- Add more columns if needed -->
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Ship To</th>
+                                <th>Customer Name</th>
+                                <th>Order Date</th>
+                                <th>Product</th>
+                                <th>Target</th>
+                                <th>City</th>
+                                <!-- <th>Address</th> -->
+                                <!-- Add more columns if needed -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div> <!-- end row-->
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel" style="padding: 10px 0px 10px 24px">Order
+                            Details</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="padding-right: 2rem;"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;" id="modal_row">
+                        <div class="row">
+                            <div class="col-5" style="padding-right: 20px;">
+                                <div class="card card-body">
+                                    <div class="row">
+
+                                        <div class="col-6">
+
+                                            <div class="mb-3">
+                                                <h5>Customer:</h5>
+
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>ACS Number:</h5>
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>ShipTo:</h5>
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>Type:</h5>
+
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>Location Priority:</h5>
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>Scheduling Status:</h5>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="customer_name"></h6>
+
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="asc_number"></h6>
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="ship_to"></h6>
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="type"></h6>
+
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="location_priority"></h6>
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="scheduling_status"></h6>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7 card card-body">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <input type="hidden" id="update_id">
+                                            <label for="orderPriority" class="form-label">Order Priority</label>
+                                            <select class="form-control select2" id="orderPriority"
+                                                data-toggle="select2">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 ">
+                                            <label for="orderReason" class="form-label">Order Reason</label>
+                                            <select class="form-control select2" id="orderReason" data-toggle="select2">
+                                                <option value="select" hidden selected disabled>Select</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3  ">
+                                            <label for="orderStatus" class="form-label">Order Status</label>
+                                            <select class="form-control select2" id="orderStatus" data-toggle="select2">
+                                                <option disabled hidden selected>Status</option>
+                                                <option value="Must">Must</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 ">
+                                            <label for="scope" class="form-label">Scope</label>
+                                            <select class="form-control select2" id="scope" data-toggle="select2">
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card card-body">
+                            <div class="row mt-3">
+
+
+
+                                <div class="mb-3 col-sm-12 col-lg-6">
+                                    <label for="acsSpecialInstruction" class="form-label">ACS Special
+                                        Instruction</label>
+                                    <textarea id="acsSpecialInstruction" class="form-control" cols="30"
+                                        rows="3"></textarea>
+                                </div>
+                                <div class="mb-3 col-sm-12 col-lg-6">
+                                    <label for="deliveryInstruction" class="form-label">Delivery Instruction</label>
+                                    <textarea id="deliveryInstruction" class="form-control" cols="30"
+                                        rows="3"></textarea>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Product Tank</th>
+                                        <th>Min</th>
+                                        <th>Target</th>
+                                        <th>Max</th>
+                                        <th>Hit Dead Stock</th>
+                                        <th>Hit Buffer Stock</th>
+                                        <th>Sales</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="tank"></td>
+                                        <td id="min"></td>
+                                        <td id="target"></td>
+                                        <td id="max"></td>
+                                        <td id="dead_stock"></td>
+                                        <td id="buffer_stock"></td>
+                                        <td id="sales"></td>
+                                        <td id="stock"></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div> -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <div id="assign_veh" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel" style="padding: 10px 0px 10px 24px">Shipments
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="padding-right: 2rem;"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;" id="modal_row">
+
+                        <div id="veh_alert"></div>
+                        <Label class="form-label">Vehicles</Label>
+                        <select class="form-control select2" id="veh" data-toggle="select2">
+
+
+                        </select>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <div class="offcanvas offcanvas-bottom w-100 h-100" tabindex="-1" id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <!-- <h5 id="offcanvasRightLabel">Offcanvas right</h5> -->
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div> <!-- end offcanvas-header-->
+
+            <div class="offcanvas-body" id="canvas_body">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="col">
+
+                        <h5 style="margin: 0;">Assign vehicle</h5>
+                    </div>
+                    <div class="col mb-2" style="display: flex; justify-content: right; align-items: center;">
+                        <button class="btn btn-primary" style="margin-right: 0.2em; border-bottom-left-radius: 20px;
+                        border-top-left-radius: 20px;" onclick="presend()">Pre <i
+                                class=" ri-send-plane-fill"></i></button>
+                        <button class="btn btn-primary" style="margin-right: 0.2em;" onclick="postsend()">Post <i
+                                class=" ri-send-plane-fill"></i></button>
+                        <button class="btn btn-primary" style="margin-right: 0.2em; border-bottom-right-radius: 20px;
+                        border-top-right-radius: 20px;" onclick="sendme()"><i class=" ri-send-plane-fill"></i>
+                            Me</button>
+                        <!-- <button onclick="generate2()" type="button" class="btn btn-primary" style="margin-right: 0.2em;"><i
+                                class="ri-upload-2-fill"></i></button>
+                        <button onclick="clear()" type="button" class="btn btn-soft-primary" style="margin-right: 0.2em;"><i
+                                class="ri-refresh-line"></i></button> -->
+                    </div>
+
+                </div>
+
+                <!-- <input type="text" class="form-control mb-3" id="searchInput" placeholder="Search..."> -->
+                <div class="row" id="vehicle_cards">
+
+                </div>
+                <div class="row" id="vehicle_cards2">
+
+                </div>
+
+            </div> <!-- end offcanvas-body-->
+        </div>
+
+        <!-- Modal Structure -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Failed Orders</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="height: 400px;overflow: scroll; width: auto; ">
+                        <div id="totals">
+
+                        </div>
+                        <div id="modalBody"></div>
+
+                        <!-- The content will be dynamically updated here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="tsd_edit_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">TSD EDIT</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+
+                                <div class="col-6 card card-body">
+
+                                    <h4>TSD CV Details</h4>
+                                    <div class="mb-3">
+                                        <input type="hidden" name="" id="update_tsd_id">
+                                        <label for="simpleinput" class="form-label">CV</label>
+                                        <input type="text" class="form-control" id="cv" readonly>
+                                    </div>
+
+                                    <div class="mb-3">
+
+                                        <div>
+                                            <label for="" class="form-label">Shift</label>
+                                            <select class="form-control select2" id="tsd_shift" data-toggle="select2">
+                                                <option>Select</option>
+                                                <option value="AM">AM</option>
+                                                <option value="PM">PM</option>
+
+                                            </select>
+                                            <!-- <div class="input-group">
+                                                <input type="text" id="tsd_shift" class="datetime-datepicker form-control">
+                                                <span class="input-group-text"><i class="ri-calendar-line"></i></span>
+                                            </div> -->
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="mb-3 ">
+
+                                        <label for="simpleinput" class="form-label">Tracktor</label>
+                                        <input type="text" class="form-control" id="tsd_tracktor" readonly>
+                                    </div>
+
+                                    <div class="mb-3  ">
+
+                                        <label for="simpleinput" class="form-label">Trailer</label>
+                                        <input type="text" class="form-control" id="tsd_trailer" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-body">
+                                        <h4>TSD Availability</h4>
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Availability </label>
+                                            <select class="form-control select2" id="tsd_availability"
+                                                data-toggle="select2">
+                                                <option>Select</option>
+                                                <option value="Fully Available">Fully Available</option>
+                                                <option value="Not Available">Not Available</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+
+                                            <div>
+                                                <label for="" class="form-label">Contact Type</label>
+                                                <select class="form-control select2" id="tsd_contact_type"
+                                                    data-toggle="select2">
+                                                    <option>Select</option>
+                                                    <option value="Email">Email</option>
+                                                    <option value="SMS">SMS</option>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="mb-3  ">
+                                            <label for="simpleinput" class="form-label">Driver</label>
+                                            <input type="text" class="form-control" id="tsd_driver">
+                                        </div>
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Notes</label>
+                                            <textarea name="" class="form-control" id="tsd_notes" cols="30"
+                                                rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3" style="display: flex; justify-content: center;">
+                                    <h4>TSD Time And Location</h4>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-body">
+                                        <h4>Start</h4>
+
+                                        <div class="mb-3  ">
+                                            <label for="simpleinput" class="form-label">Date/Time</label>
+                                            <input type="text" class="form-control" id="tsd_str_time">
+                                        </div>
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Parking Location</label>
+                                            <select class="form-control select2" id="tsd_str_location"
+                                                data-toggle="select2">
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="mb-3  ">
+
+
+                                            <label for="simpleinput" class="form-label">Pre Load Depot</label>
+                                            <select class="form-control select2" id="tsd_pre_load_depot"
+                                                data-toggle="select2">
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-body">
+                                        <h4>End</h4>
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Date/Time</label>
+                                            <input type="text" class="form-control" id="tsd_end_time">
+                                        </div>
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Location</label>
+                                            <select class="form-control select2" id="tsd_end_location"
+                                                data-toggle="select2">
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Post Load Depot</label>
+                                            <select class="form-control select2" id="tsd_post_load_depot"
+                                                data-toggle="select2">
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="tsd_update()" id="tsd_edit_modsave">Save
+                            changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Modal</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Shipto
+                                    </label>
+                                    <select class="form-control select2" id="shipto" data-toggle="select2"
+                                        onchange="shipto_name(this.value,'shipto_name')">
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Name
+                                    </label>
+                                    <input type="text" class="form-control" id="shipto_name">
+                                </div>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <div class="row d-flex">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="" class="form-label">
+                                                Code
+                                            </label>
+                                            <select class="form-control select2" data-toggle="select2" id="product"
+                                                onchange="product_name(this.value,'product_name')">
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group" style="margin-top: 0.6em;">
+                                            <label for="" class="form-label">
+
+                                            </label>
+                                            <input type="text" class="form-control" id="product_name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-6 mt-2">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Order Id
+                                    </label>
+                                    <input type="text" class="form-control" id="order_id" disabled>
+                                </div>
+                            </div>
+                            <div class="col-6 mt-2">
+                                <div class="form-group">
+                                    <label for="" class="form-label">
+                                        Quantity
+                                    </label>
+                                    <input type="number" id="qty" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" onclick="create_order()" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <input type="hidden" id="target1" value="">
+
+        <div class="modal fade" id="multipletsdedit" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <input type="hidden" id="multtsdhid" name="">
+
+                        <h5 class="modal-title">Multiple TSDs Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="">TSDs</label>
+                        <select id="multitsdselect"
+                            class="select2 form-control select2-multiple select2-hidden-accessible"
+                            data-toggle="select2" multiple="" data-select2-id="select2-data-4-moyr" tabindex="-1"
+                            aria-hidden="true">
+
+                        </select>
+
+                        <!-- The content will be dynamically updated here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" onclick="getselval()">Edit</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mult_tsd_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">TSD EDIT</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+
+                                <div class="col-6 card card-body">
+
+                                    <h4>TSD Details</h4>
+
+                                    <div class="mb-3">
+
+                                        <div>
+                                            <label for="" class="form-label">Shift</label>
+                                            <select class="form-control select2" id="tsd_shift" data-toggle="select2">
+                                                <option>Select</option>
+                                                <option value="AM">AM</option>
+                                                <option value="PM">PM</option>
+
+                                            </select>
+                                            <!-- <div class="input-group">
+                                            <input type="text" id="tsd_shift" class="datetime-datepicker form-control">
+                                            <span class="input-group-text"><i class="ri-calendar-line"></i></span>
+                                        </div> -->
+                                        </div>
+                                        <div class="mb-3">
+
+                                            <div>
+                                                <label for="" class="form-label">Contact Type</label>
+                                                <select class="form-control select2" id="tsd_contact_type"
+                                                    data-toggle="select2">
+                                                    <option>Select</option>
+                                                    <option value="Email">Email</option>
+                                                    <option value="SMS">SMS</option>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-body">
+                                        <h4>TSD Availability</h4>
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Availability </label>
+                                            <select class="form-control select2" id="tsd_availability"
+                                                data-toggle="select2">
+                                                <option>Select</option>
+                                                <option value="Fully Available">Fully Available</option>
+                                                <option value="Not Available">Not Available</option>
+
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Notes</label>
+                                            <textarea name="" class="form-control" id="tsd_notes" cols="30"
+                                                rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-3" style="display: flex; justify-content: center;">
+                                    <h4>TSD Time And Location</h4>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-body">
+                                        <h4>Start</h4>
+
+                                        <div class="mb-3  ">
+                                            <label for="simpleinput" class="form-label">Date/Time</label>
+                                            <input type="text" class="form-control basic-timepicker" id="tsd_str_time">
+                                        </div>
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Parking Location</label>
+                                            <select class="form-control select2" id="tsd_str_location1"
+                                                data-toggle="select2">
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="mb-3  ">
+
+
+                                            <label for="simpleinput" class="form-label">Pre Load Depot</label>
+                                            <select class="form-control select2" id="tsd_pre_load_depot1"
+                                                data-toggle="select2">
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card card-body">
+                                        <h4>End</h4>
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Date/Time</label>
+                                            <input type="text" class="form-control basic-timepicker" id="tsd_end_time">
+                                        </div>
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Location</label>
+                                            <select class="form-control select2" id="tsd_end_location1"
+                                                data-toggle="select2">
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="mb-3  ">
+
+                                            <label for="simpleinput" class="form-label">Post Load Depot</label>
+                                            <select class="form-control select2" id="tsd_post_load_depot1"
+                                                data-toggle="select2">
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="tsd_update()" id="tsd_edit_modsave">Save
+                            changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+            <script src='https://unpkg.com/react/umd/react.development.js'></script>
+            <script src='https://unpkg.com/react-dom/umd/react-dom.development.js'></script>
+            <script src='https://fullcalendar.io/releases/core/4.1.0/main.min.js'></script>
+            <script src='https://fullcalendar.io/releases/interaction/4.1.0/main.min.js'></script>
+            <script src='https://fullcalendar.io/releases/timeline/4.1.0/main.min.js'></script>
+            <script src='https://fullcalendar.io/releases/resource-common/4.1.0/main.min.js'></script>
+            <script src='https://fullcalendar.io/releases/resource-timeline/4.1.0/main.min.js'></script>
+            <script src='https://unpkg.com/popper.js/dist/umd/popper.min.js'></script>
+            <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var calendarEl = document.getElementById('calendar');
+            
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        plugins: [ 'resourceTimeline' ],
+                        initialView: 'resourceTimelineDay',  // Show the resource timeline for the week
+                        resources: [
+                            { id: 'a', title: 'Room A' },
+                            { id: 'b', title: 'Room B' },
+                            { id: 'c', title: 'Room C' }
+                        ],
+                        events: [
+                            { id: '1', resourceId: 'a', start: '2024-10-15T09:00:00', end: '2024-10-15T11:00:00', title: 'Meeting' },
+                            { id: '2', resourceId: 'b', start: '2024-10-15T13:00:00', end: '2024-10-15T15:00:00', title: 'Workshop' }
+                        ],
+                        businessHours: {
+                            daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
+                            startTime: '09:00',          // Business hours start at 9am
+                            endTime: '18:00'             // Business hours end at 6pm
+                        },
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'resourceTimelineDay,resourceTimelineWeek'
+                        },
+                        editable: true,
+                        selectable: true
+                    });
+            
+                    calendar.render();
+                });
+            </script>
+            

@@ -1,0 +1,2117 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- <style>
+        @-webkit-keyframes come-in {
+            0% {
+                -webkit-transform: translatey(100px);
+                transform: translatey(100px);
+                opacity: 0;
+            }
+
+            30% {
+                -webkit-transform: translateX(-50px) scale(0.4);
+                transform: translateX(-50px) scale(0.4);
+            }
+
+            70% {
+                -webkit-transform: translateX(0px) scale(1.2);
+                transform: translateX(0px) scale(1.2);
+            }
+
+            100% {
+                -webkit-transform: translatey(0px) scale(1);
+                transform: translatey(0px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes come-in {
+            0% {
+                -webkit-transform: translatey(100px);
+                transform: translatey(100px);
+                opacity: 0;
+            }
+
+            30% {
+                -webkit-transform: translateX(-50px) scale(0.4);
+                transform: translateX(-50px) scale(0.4);
+            }
+
+            70% {
+                -webkit-transform: translateX(0px) scale(1.2);
+                transform: translateX(0px) scale(1.2);
+            }
+
+            100% {
+                -webkit-transform: translatey(0px) scale(1);
+                transform: translatey(0px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background: #eaedf2;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .floating-container {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            bottom: 0;
+            right: 0;
+            margin: 35px 25px;
+        }
+
+        .floating-container:hover {
+            height: 300px;
+        }
+
+        .floating-container:hover .floating-button {
+            box-shadow: 0 10px 25px rgba(22, 34, 145, 0.6);
+            -webkit-transform: translatey(5px);
+            transform: translatey(5px);
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .floating-container:hover .element-container .float-element:nth-child(1) {
+            -webkit-animation: come-in 0.4s forwards 0.2s;
+            animation: come-in 0.4s forwards 0.2s;
+        }
+
+        .floating-container:hover .element-container .float-element:nth-child(2) {
+            -webkit-animation: come-in 0.4s forwards 0.4s;
+            animation: come-in 0.4s forwards 0.4s;
+        }
+
+        .floating-container:hover .element-container .float-element:nth-child(3) {
+            -webkit-animation: come-in 0.4s forwards 0.6s;
+            animation: come-in 0.4s forwards 0.6s;
+        }
+
+        .floating-container .floating-button {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            background: #3B4CA7;
+            bottom: 0;
+            border-radius: 50%;
+            left: 0;
+            right: 0;
+            bottom: 70px;
+            margin: auto;
+            color: white;
+            line-height: 65px;
+            text-align: center;
+            font-size: 23px;
+            z-index: 100;
+            box-shadow: 0 10px 25px -5px rgba(58, 4, 255, 0.6);
+            cursor: pointer;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .floating-container .float-element {
+            position: relative;
+            display: block;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 15px auto;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            line-height: 50px;
+            z-index: 0;
+            opacity: 0;
+            -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+        }
+
+        .floating-container .float-element .material-icons {
+            vertical-align: middle;
+            font-size: 16px;
+        }
+
+        .floating-container .float-element:nth-child(1) {
+            background: #3B4CA7;
+            box-shadow: 0 20px 20px -10px #3B4CA7(66, 165, 245, 0.5);
+        }
+
+        .floating-container .float-element:nth-child(2) {
+            background: #4CAF50;
+            box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
+        }
+
+        .floating-container .float-element:nth-child(3) {
+            background: #FF9800;
+            box-shadow: 0 20px 20px -10px rgba(255, 152, 0, 0.5);
+        }
+    </style> -->
+    <style>
+        :root {
+            --primary-color: #007bff;
+            /* Define your primary color here */
+            --scrollbar-bg: #f0f0f0;
+            /* Define scrollbar background color */
+            --scrollbar-thumb: lightgray;
+            /* Define scrollbar thumb color */
+        }
+
+        /* WebKit-based browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            /* Width of vertical scrollbar */
+            height: 8px;
+            /* Height of horizontal scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-bg);
+            border-radius: 10px;
+            /* Background of the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: lightgray;
+            /* Background of the scrollbar thumb */
+            border-radius: 10px;
+            /* Rounded corners for the scrollbar thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: grey;
+            ;
+        }
+
+        /* darken(var(--scrollbar-thumb), 50%); */
+
+
+        .select-checkbox::before {
+            display: none;
+        }
+
+        .select-checkbox::after {
+            display: none;
+        }
+
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 50%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+            box-shadow: 1px 2px 2px 1px darkblue;
+        }
+
+        .h6_text {
+            text-align: center;
+        }
+
+        th {
+            font-size: 0.7em;
+
+        }
+
+        tr td {
+            font-size: 0.7em;
+
+        }
+
+        table.dataTable tbody>tr.selected td {
+            color: var(--light-color);
+            background-color: var(--primary-color);
+        }
+
+        .sheduled {
+            background-color: yellow;
+        }
+
+        .disabled {
+            background-color: #e0e0e0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
+    <%- contentFor('body') %>
+
+        <div class="row" style="padding-top:0.4em;">
+            <div class="card col-12 card-body" style="padding: 1em;margin-bottom: 0.2em;">
+                <div class="row">
+                    <div class="col-8" style="display: flex; justify-content: flex-start;">
+                        <h4 for="" style="display:flex; align-items: center;">
+                            Import Orders
+                        </h4>
+                    </div>
+
+                    <div class="col-4" style="display:flex; justify-content: flex-end;">
+                        <input type="hidden" name="" id="textInput">
+                        <input id="output" type="hidden" class="mt-3"></input>
+                        <input type="file" name="" id="fileInput" class="form-control" style="margin-right: 20px;">
+                        <button type="button" class="btn btn-primary" id="decodeButton">Import</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class=" card card-body" style="box-shadow:7px 9px 14px -5px grey;">
+
+
+                    <table id="ordersTable" class="table c  nowrap w-100" style="width:100%">
+                        <thead style="background: lightgray;">
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Ship To</th>
+                                <th>Customer Name</th>
+                                <th>Order Date</th>
+                                <th>Product</th>
+                                <th>Target</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <!-- Add more columns if needed -->
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Ship To</th>
+                                <th>Customer Name</th>
+                                <th>Order Date</th>
+                                <th>Product</th>
+                                <th>Target</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <!-- Add more columns if needed -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card card-body" style="box-shadow:7px 9px 14px -5px grey;">
+                    <h5>Available TSDs</h5>
+
+                    <table id="veh_tbl" class="table  nowrap w-100" style="width:100%">
+                        <thead style="background: lightgray;">
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Size</th>
+                                <th>Start Location</th>
+                                <th>Start Time</th>
+                                <th>End Location</th>
+                                <th>End Time</th>
+                                <th>Edit</th>
+
+                                <!-- Add more columns if needed -->
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Vehicle</th>
+                                <th>Size</th>
+                                <th>Start Location</th>
+                                <th>Start Time</th>
+                                <th>End Location</th>
+                                <th>End Time</th>
+                                <th>Edit</th>
+
+                                <!-- Add more columns if needed -->
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!-- <input type="text" class="form-control mb-3" id="searchInput" placeholder="Search...">
+                        <div class="" id="vehicle_cards" style="height: 20rem; overflow: scroll;">
+
+                        </div> -->
+                </div>
+
+            </div>
+        </div>
+        <div id="compartmentTable">
+
+        </div>
+
+        <!-- <div class="row" id="order_card">
+
+
+        </div> -->
+
+        <!-- <button type="button" id="get_order">get</button> -->
+
+        <!-- <div class="floating-container">
+            <div class="floating-button">+</div>
+            <div class="element-container">
+
+
+            </div> -->
+
+        <button type="button" class="btn btn-primary floating-btn" style="border-radius:20px;"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Assign</button>
+
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel" style="padding: 10px 0px 10px 24px">Order
+                            Details</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="padding-right: 2rem;"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;" id="modal_row">
+                        <div class="row">
+                            <div class="col-5" style="padding-right: 20px;">
+                                <div class="card card-body">
+                                    <div class="row">
+
+                                        <div class="col-6">
+
+                                            <div class="mb-3">
+                                                <h5>Customer:</h5>
+
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>ACS Number:</h5>
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>ShipTo:</h5>
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>Type:</h5>
+
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>Location Priority:</h5>
+
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <h5>Scheduling Status:</h5>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="customer_name"></h6>
+
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="asc_number"></h6>
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="ship_to"></h6>
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="type"></h6>
+
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="location_priority"></h6>
+
+                                            </div>
+                                            <div class="mb-3">
+
+                                                <h6 style="margin-bottom: 1.4rem;" id="scheduling_status"></h6>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7 card card-body">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <input type="hidden" id="update_id">
+                                            <label for="orderPriority" class="form-label">Order Priority</label>
+                                            <select class="form-control select2" id="orderPriority"
+                                                data-toggle="select2">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 ">
+                                            <label for="orderReason" class="form-label">Order Reason</label>
+                                            <select class="form-control select2" id="orderReason" data-toggle="select2">
+                                                <option value="select" hidden selected disabled>Select</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3  ">
+                                            <label for="orderStatus" class="form-label">Order Status</label>
+                                            <select class="form-control select2" id="orderStatus" data-toggle="select2">
+                                                <option disabled hidden selected>Status</option>
+                                                <option value="Must">Must</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 ">
+                                            <label for="scope" class="form-label">Scope</label>
+                                            <select class="form-control select2" id="scope" data-toggle="select2">
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card card-body">
+                            <div class="row mt-3">
+
+
+
+                                <div class="mb-3 col-sm-12 col-lg-6">
+                                    <label for="acsSpecialInstruction" class="form-label">ACS Special
+                                        Instruction</label>
+                                    <textarea id="acsSpecialInstruction" class="form-control" cols="30"
+                                        rows="3"></textarea>
+                                </div>
+                                <div class="mb-3 col-sm-12 col-lg-6">
+                                    <label for="deliveryInstruction" class="form-label">Delivery Instruction</label>
+                                    <textarea id="deliveryInstruction" class="form-control" cols="30"
+                                        rows="3"></textarea>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Product Tank</th>
+                                        <th>Min</th>
+                                        <th>Target</th>
+                                        <th>Max</th>
+                                        <th>Hit Dead Stock</th>
+                                        <th>Hit Buffer Stock</th>
+                                        <th>Sales</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="tank"></td>
+                                        <td id="min"></td>
+                                        <td id="target"></td>
+                                        <td id="max"></td>
+                                        <td id="dead_stock"></td>
+                                        <td id="buffer_stock"></td>
+                                        <td id="sales"></td>
+                                        <td id="stock"></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div> -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <div id="assign_veh" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel" style="padding: 10px 0px 10px 24px">Assign
+                            Vehicle</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="padding-right: 2rem;"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;" id="modal_row">
+
+                        <div id="veh_alert"></div>
+                        <Label class="form-label">Vehicles</Label>
+                        <select class="form-control select2" id="veh" data-toggle="select2">
+
+
+                        </select>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <!-- <h5 id="offcanvasRightLabel">Offcanvas right</h5> -->
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div> <!-- end offcanvas-header-->
+
+            <div class="offcanvas-body">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h5 style="margin: 0;">Assign vehicle</h5>
+
+                    <button onclick="generate()" type="button" class="btn btn-primary mb-2"><i
+                            class="ri-upload-2-fill"></i></button>
+                </div>
+
+                <!-- <input type="text" class="form-control mb-3" id="searchInput" placeholder="Search..."> -->
+                <div class="" id="vehicle_cards">
+
+                </div>
+            </div> <!-- end offcanvas-body-->
+        </div>
+
+        <div id="tsd_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Tracktor TSD</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <input type="hidden" name="" id="update_tsd_id">
+                                    <label for="simpleinput" class="form-label">CV</label>
+                                    <input type="text" class="form-control" id="cv">
+                                </div>
+
+                                <div class="mb-3 col-sm-12  col-lg-6">
+
+                                    <div>
+                                        <label for="" class="form-label">Shift</label>
+                                        <div class="input-group">
+                                            <input type="text" id="tsd_shift" class="datetime-datepicker form-control">
+                                            <span class="input-group-text"><i class="ri-time-line"></i></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Tracktor</label>
+                                    <input type="text" class="form-control" id="tsd_tracktor">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Trailer</label>
+                                    <input type="text" class="form-control" id="tsd_trailer">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Driver</label>
+                                    <input type="text" class="form-control" id="tsd_driver">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Notes</label>
+                                    <textarea name="" class="form-control" id="tsd_notes" cols="30" rows="2"></textarea>
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Start Date/Time</label>
+                                    <input type="text" class="form-control" id="tsd_str_time">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">End Date/Time</label>
+                                    <input type="text" class="form-control" id="tsd_end_time">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Start Location</label>
+                                    <input type="text" class="form-control" id="tsd_str_location">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">End Location</label>
+                                    <input type="text" class="form-control" id="tsd_end_location">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Pre Load Depot</label>
+                                    <input type="text" class="form-control" id="tsd_pre_load_depot">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Post Load Depot</label>
+                                    <input type="text" class="form-control" id="tsd_post_load_depot">
+                                </div>
+
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+
+                                    <label for="simpleinput" class="form-label">Availability </label>
+                                    <select class="form-control select2" id="tsd_availability" data-toggle="select2">
+                                        <option>Select</option>
+                                        <option value="Fully Available">Fully Available</option>
+                                        <option value="Not Available">Not Available</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-sm-12  col-lg-6">
+
+                                    <div>
+                                        <label for="" class="form-label">Contact Type</label>
+                                        <select class="form-control select2" id="tsd_contact_type"
+                                            data-toggle="select2">
+                                            <option>Select</option>
+                                            <option value="Email">Email</option>
+                                            <option value="SMS">SMS</option>
+                                        </select>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="modal_save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        <input type="hidden" id="target1" value="">
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <!-- Datatables js -->
+
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+            <script src="assets/js/import_orders_js/script.js"></script>
+
+            <!-- Datatable Demo Aapp js -->
+
+
+            <script>
+                var table;
+                var text1;
+                var order_id, veh_id = [];
+                var filteredData = []
+                var veh_order = []
+                var orders;
+                let filled_volume = 0;
+                var total = 0;
+                let remaining_volume = 0;
+                var comprules;
+                var total_weight = 0;
+                let errors_window = [];
+                let codearray = [];
+                let accessarray = [];
+                let tanks_p = [];
+                let complete_order;
+                let allPresent;
+
+
+
+                $(document).ready(() => {
+                    // $('#modal').modal('show');
+                    scope = localStorage.getItem('scope')
+                    get_vehicle()
+                    $.ajax({
+                        url: 'comp_rules',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            comprules = response
+
+                        }
+                    })
+                    select_field("scope")
+                    table = $('#ordersTable').DataTable({
+                        scrollX: true,
+                        buttons: ["copy", "print"],
+                        lengthMenu: [[50, -1], [50, "All"]],
+                        columnDefs: [{
+                            orderable: false,
+                            className: 'select-checkbox',
+                            targets: 0
+                        }],
+                        select: {
+                            style: 'multi',
+                            selector: 'td:first-child'
+                        },
+                        language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+                        scrollCollapse: true,
+                        scrollY: '50vh',
+                        createdRow: function (row, data, dataIndex) {
+                            // Set the ID attribute of the row
+                            $(row).attr('id', 'row-' + data[0]); // Assuming data[0] is the orderId
+                        },
+                        order: [[1, 'asc']]
+
+                    });
+                    table.columns().every(function () {
+                        let column = this;
+                        let title = $(column.footer()).text();
+
+                        // Create input element
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        input.className = 'form-control';
+                        $(column.footer()).empty().append(input);
+
+                        // Event listener for user input
+                        $(input).on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                    });
+
+                    table1 = $('#veh_tbl').DataTable({
+                        dom: 'lrt',
+                        keys: !0,
+
+                        scrollX: true,
+                        scrollCollapse: true,
+                        scrollY: '50vh',
+                        select: {
+                            style: 'single',
+                        },
+                        language: {
+                            paginate:
+                                { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                        },
+                        drawCallback:
+                            function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+                        order: [[1, 'asc']],
+                        createdRow: function (row, data, dataIndex) {
+                            // Set the ID attribute of the row
+                            $(row).attr('id', 'row-' + data[0]); // Assuming data[0] is the orderId
+                        }
+
+                    });
+                    table1.columns().every(function () {
+                        let column = this;
+                        let title = $(column.footer()).text();
+
+                        // Create input element
+                        let input = document.createElement('input');
+                        input.placeholder = title;
+                        input.className = 'form-control';
+                        $(column.footer()).empty().append(input);
+
+                        // Event listener for user input
+                        $(input).on('keyup change clear', function () {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                    });
+
+
+
+                    var settings = {
+                        "url": "get_vehicle/" + scope,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#veh').append('<option label="Scope..." >Scope</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#veh').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                    })
+                    $('tfoot tr th input').css({
+                        'font-size': '0.9em'
+                    });
+
+
+
+                })
+
+                scope = localStorage.getItem('scope');
+
+                function tsd_edit(id) {
+                    $.ajax({
+                        url: "tsd_edit/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(id)
+                            console.log(response)
+                            // alert()
+                            $('#update_tsd_id').val(response[0]['id']);
+                            $('#cv').val(response[0]['name']).trigger('change');
+                            $('#tsd_shift').val(response[0]['shift']);
+                            $('#tsd_tracktor').val(response[0]['tractor_code'] == null ? response[0]['tractor_reg'] : response[0]['tractor_code']);
+                            $('#tsd_trailer').val(response[0]['trailer_code'] == null ? response[0]['trailer_reg'] : response[0]['trailer_code']);
+                            $('#tsd_driver').val(response[0]['driver']);
+                            $('#tsd_notes').val(response[0]['notes']);
+                            $('#tsd_str_time').val(response[0]['start_time'])
+                            $('#tsd_end_time').val(response[0]['end_time'])
+                            $('#tsd_str_location').val(response[0]['start_location'])
+                            $('#tsd_end_location').val(response[0]['end_location'])
+                            $('#tsd_pre_load_depot').val(response[0]['preload_depot'])
+                            $('#tsd_post_load_depot').val(response[0]['postload_depot'])
+                            $('#tsd_availability').val(response[0]['availability']).trigger('change');
+                            $('#tsd_contact_type').val(response[0]['contact_type']).trigger('change');
+                            $('tsd_modal').modal('show')
+
+
+                        }
+                    });
+                }
+
+                function cleanTrailerSize(trailerSize) {
+                    // Remove trailing '000' and add 'KL'
+                    return trailerSize.replace(/000$/, '') + 'KL';
+                }
+
+
+                function get_vehicle() {
+                    $.ajax({
+                        url: 'get_vehicle/' + scope,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            filteredData = response;
+                            table1.clear().draw();
+                            var total_size;
+                            response.forEach(veh => {
+                                total_size = veh.trailer_size;
+                                const vehicles = table1.row.add([
+                                    veh.name,
+                                    cleanTrailerSize(veh.trailer_size),
+                                    veh.start_location,
+                                    veh.start_time,
+                                    veh.end_location,
+                                    veh.end_time,
+                                    `<td>
+                                        <button class="btn btn-soft-warning" onclick="redirect('tsd_edit?id=${veh.id}')">
+                                            <i class="ri-pencil-fill"></i>
+                                        </button>
+                                    </td>`
+                                    // Add more columns as needed
+                                ]).draw().node();
+
+
+                            });
+                            $('#veh_tbl tbody').on('click', 'tr', function () {
+                                console.log('clicked');
+                                veh_array = table1.row(this).data()
+                                // console.log(orders);
+                                var vehi = filteredData.find(veh => veh.name == veh_array[0]);
+                                var selectedOrders1 = getSelectedData();
+                                console.log('orders', selectedOrders1)
+                                let matchingIndices = orders.reduce((acc, order, index) => {
+                                    if (selectedOrders1.includes(order.orderId)) {
+                                        acc.push(index);
+                                    }
+                                    return acc;
+                                }, []);
+                                const vehicleExists = veh_order.some(vehicle => vehicle.name === veh_array[0]);
+                                if (vehicleExists) {
+                                    var total_filled_order = 0;
+                                    var selectedOrders = getSelectedData();
+                                    const vehicle_index1 = veh_order.findIndex(vehicle => vehicle.name === veh_array[0]);
+                                    var temp_order1 = veh_order[vehicle_index1].orders;
+                                    var temp_order = orders.filter(order => selectedOrders1.includes(order.orderId));
+                                    console.log("SOMI", temp_order);
+                                    temp_order1.forEach(order => {
+                                        filled_volume += parseInt(order.target)
+                                    })
+
+                                    console.log("Filled Volume", filled_volume, "Total Target", total_size)
+                                    var total_capacity = parseInt(veh_array[1]) * 1000
+                                    // console.log("Samad--"+remain-total_filled_order);
+
+                                    if (total_size >= filled_volume) {
+                                        const vehicle_index = veh_order.findIndex(vehicle => vehicle.name === veh_array[0]);
+
+                                        var total_s = 0;
+                                        veh_order[vehicle_index].orders.forEach(order => {
+                                            console.log(order.target);
+                                            total_s += parseInt(order.target);
+                                        });
+                                        var total_cfilled = parseInt(total_s) + parseInt(total_filled_order)
+                                        console.log("TOTAL===" + total_cfilled);
+                                        if (total_capacity == total_cfilled) {
+                                            temp_order.forEach(order => {
+
+                                                veh_order[vehicle_index].orders.push(order);
+                                            })
+                                            matchingIndices.forEach(index => {
+                                                orders[index].status = "Scheduled";
+                                            })
+
+
+                                            // $('#ordersTable tbody tr.selected').removeClass('selected').addClass('sheduled').prop('disabled', true);
+                                            unsheduled_orderlist(orders)
+                                            console.log('ifif', veh_order);
+                                            total = 0
+                                            veh_id = []
+                                            console.log('#row-' + veh_array[0]);
+                                            var row = document.getElementById('row-' + veh_array[0]);
+                                            row.classList.add('disabled');
+
+
+                                            console.log(veh_order);
+
+                                        }
+                                        // else if (total_cfilled > total_capacity) {
+                                        //     // $('#row-' + veh_array[0]).prop('disabled', true)
+                                        //     alert('Vehicle Does not have Capacity');
+                                        // }
+                                        else {
+                                            temp_order.forEach(order => {
+                                                // console.log(order.target);
+
+                                                veh_order[vehicle_index].orders.push(order);
+                                            })
+                                            matchingIndices.forEach(index => {
+                                                orders[index].status = "Scheduled";
+                                            })
+
+                                            unsheduled_orderlist(orders)
+
+                                            console.log('ififelse', veh_order)
+
+                                            // $('#ordersTable tbody tr.selected').removeClass('selected').addClass('sheduled').prop('disabled', true);
+                                            total = 0
+                                            veh_id = []
+                                        }
+                                        if (total_capacity == total_cfilled) {
+
+                                        }
+                                        veh_card()
+
+
+
+
+
+
+                                        // insertNewOrders(temp_order, veh_order);
+                                    }
+                                    else {
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Vehicle is already full!.",
+                                            text: "Is it Another Trip?",
+                                            showDenyButton: true,
+                                            confirmButtonText: "Yes",
+                                            denyButtonText: `No`
+
+                                        }).then((result) => {
+                                            /* Read more about isConfirmed, isDenied below */
+                                            if (result.isConfirmed) {
+                                                Swal.fire("New Trip Created!", "", "success");
+                                            } else if (result.isDenied) {
+                                                Swal.fire("Changes are not saved", "", "info");
+                                            }
+                                        });
+                                        // alert("vehicle Already Exist");
+                                    }
+
+
+                                }
+                                else {
+                                    veh_order.push(vehi);
+                                    var total_filled_order = 0;
+                                    // console.log(selectedOrders);
+
+
+                                    var selectedOrders = getSelectedData();
+                                    // console.log(selectedOrders);
+                                    var temp_order = orders.filter(order => selectedOrders.includes(order.orderId))
+                                    temp_order.forEach(order => {
+
+                                        total_filled_order += parseInt(order.target)
+
+                                    })
+                                    // console.log(orders.filter(order => selectedOrders.includes(order.orderId)))
+                                    console.log(veh_order);
+                                    const vehicle_index = veh_order.findIndex(vehicle => vehicle.name === veh_array[0]);
+                                    veh_order[vehicle_index].trip = [];
+                                    
+                                    veh_order[vehicle_index].trip.push({
+                                        "trip_no":veh_order[vehicle_index].trip.length+1,
+                                        "orders":temp_order,
+
+
+                                    });
+                                    orders_v(veh_order);
+                                    veh_order[vehicle_index].orders = temp_order;
+                                    var total_s = 0;
+                                    veh_order[vehicle_index].orders.forEach(order => {
+                                        console.log(order.target);
+                                        total_s += parseInt(order.target);
+                                    });
+                                    var total_cfilled = parseInt(total_s) + parseInt(total_filled_order)
+                                    console.log("TOTAL===" + total_cfilled);
+                                    if (total_capacity == total_cfilled) {
+
+                                        var row = document.getElementById('row-' + veh_array[0]);
+                                        row.classList.add('disabled');
+                                    }
+                                    console.log(veh_order);
+
+                                    // $('#ordersTable tbody tr.selected').removeClass('selected').addClass('sheduled').prop('disabled', true);
+                                    matchingIndices.forEach(index => {
+                                        orders[index].status = "Scheduled";
+                                    })
+
+                                    unsheduled_orderlist(orders)
+
+                                    total = 0
+                                    veh_id = []
+
+                                    console.log("else", veh_order);
+                                    // console.log(temp_order);
+                                    veh_card()
+
+
+
+
+                                }
+
+
+                            });
+
+
+                            console.log(veh_order);
+                            $('tr td').css({
+                                'padding': '0.7em 1em 0.7em 1em'
+                            });
+
+                        }
+
+
+                    })
+
+                }
+
+                function filterVehicleTable(target, id) {
+
+                    if (veh_id.includes(id)) {
+
+
+                        val = parseInt(target)
+                        total -= val;
+                        console.log(val);
+                        console.log(total);
+                        data = filteredData.find(item => parseInt(item.trailer_size) >= total);
+                        // table1.clear().draw();
+                        // $.fn.dataTable.ext.search.push(
+                        //     function (settings, data, dataIndex) {
+                        //         var totalw = total.toString().replace(/000$/, '')
+                        //         console.log(totalw);
+                        //         var min = parseInt(totalw, 10);
+                        //         var max;
+                        //         var age = parseInt(data[1]); // Use data for the age column
+
+                        //         if ((isNaN(min) && isNaN(max)) ||
+                        //             (isNaN(min) && age <= max) ||
+                        //             (min <= age && isNaN(max)) ||
+                        //             (min <= age && age <= max)) {
+                        //             return true;
+                        //         }
+                        //         return false;
+                        //     }
+                        // );
+                        table1.draw();
+                        // data.forEach(veh => {
+                        //     console.log(veh.shipTo);
+                        //     table1.row.add([
+                        //         veh.name,
+                        //         cleanTrailerSize(veh.trailer_size),
+                        //         veh.start_location,
+                        //         veh.start_time,
+                        //         veh.end_location,
+                        //         veh.end_time,
+
+                        //         // Add more columns as needed
+                        //     ]).draw();
+                        // })
+                        $('tr td').css({
+                            'padding': '0.7em 1em 0.7em 1em'
+                        });
+                        veh_id = veh_id.filter(item => item !== id);
+
+                        // console.log("pop"+veh_id)
+
+
+
+                    } else {
+
+                        val = parseInt(target)
+                        total += val
+
+                        data = filteredData.filter(item => parseInt(item.trailer_size) >= total);
+                        // $.fn.dataTable.ext.search.push(
+                        //     function (settings, data, dataIndex) {
+                        //         var totalw = total.toString().replace(/000$/, '')
+                        //         var min = parseInt(totalw, 10);
+                        //         var max;
+                        //         var age = parseInt(data[1]); // Use data for the age column
+
+                        //         if ((isNaN(min) && isNaN(max)) ||
+                        //             (isNaN(min) && age <= max) ||
+                        //             (min <= age && isNaN(max)) ||
+                        //             (min <= age && age <= max)) {
+                        //             return true;
+                        //         }
+                        //         return false;
+                        //     }
+                        // );
+                        table1.draw();
+                        // table1.clear().draw();
+                        // data.forEach(veh => {
+                        //     console.log(veh.shipTo);
+                        //     table1.row.add([
+                        //         veh.name,
+                        //         cleanTrailerSize(veh.trailer_size),
+                        //         veh.start_location,
+                        //         veh.start_time,
+                        //         veh.end_location,
+                        //         veh.end_time,
+
+                        //         // Add more columns as needed
+                        //     ]).draw();
+                        // })
+
+                        $('tr td').css({
+                            'padding': '0.7em 1em 0.7em 1em'
+                        });
+                        // Assuming 'Trailer Size' is the 6th column
+                        veh_id.push(id);
+                        // console.log("push"+veh_id)
+
+                    }
+                }
+
+                // Event listener for row selection in ordersTable
+                $('#ordersTable tbody').on('click', 'tr', function () {
+                    let data = table.row(this).data();
+                    let target = data[5]; // Assuming 'Target' is the 7th column in ordersTable      
+                    filterVehicleTable(target, data[1] + data[4]);
+                    console.log(veh_order);
+
+
+                });
+
+
+
+
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+
+                function removeOrderFromVehOrders(orderIds, vehicle_name) {
+
+                    // Corrected findIndex usage
+                    let order_index = orders.findIndex(ord => ord.orderId == orderIds);
+
+
+                    if (order_index !== -1) {
+                        // Update the order status to 'Not Scheduled'
+                        orders[order_index].status = 'Not Scheduled';
+                    } else {
+                        console.error('Order ID not found:', orderIds);
+                        return; // Stop execution if the order ID is not found
+                    }
+
+                    // Find the vehicle by name
+                    var shipment_index = veh_order.findIndex(vehicle => vehicle.name === vehicle_name);
+                    if (shipment_index != -1) {
+                        // Remove the order from the vehicle's order list
+                        var tmp_orders = veh_order[shipment_index].orders.filter(order => order.orderId != orderIds);
+                        veh_order[shipment_index].orders = tmp_orders;
+
+                        // Enable the row for the vehicle
+                        // var row = document.getElementById('row-' + vehicle_name);
+                        // row.classList.remove('disabled');
+                    } else {
+                        console.error('Vehicle not found:', vehicle_name);
+                        return; // Stop execution if the vehicle is not found
+                    }
+
+                    // Filter out vehicles with empty orders array
+                    veh_order = veh_order.filter(veh => veh.orders.length > 0);
+
+                    // Update unscheduled order list and vehicle card
+                    unsheduled_orderlist(orders);
+                    veh_card();
+                }
+
+
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function veh_card() {
+
+                    // This code runs after orders_v is complete
+                    errors_window = [];
+
+                    $('#vehicle_cards').empty();
+                    $('#vehicle_cards').append(`
+                        ${veh_order.trip.map(veh => {
+                        let remainvolume = parseFloat(veh.trailer_size);
+                        let filled_volume = 0;
+                        let remaining_volume = 0;
+                            
+                        veh.orders.forEach(order => {
+                            filled_volume += parseFloat(order.target);
+                            remaining_volume = remainvolume - filled_volume;
+                        });
+
+                        console.log("Vehicle:", veh);
+                        console.log("Errors:", veh.erros);
+
+                        // Check if vehicle has any errors
+                        let hasErrors = Array.isArray(veh.erros) && veh.erros.length > 0;
+                        let headerBackgroundColor = hasErrors ? 'soft red' : 'lightgrey';
+                        let color_s = hasErrors ? 'white' : 'inherit';
+
+                        return `
+                <div class="card" id="card${veh.id}">
+                    <div class="card-body" style="padding:0;">
+                        <div style="background:${headerBackgroundColor};padding:1em;">
+                            <div class="card-widgets">
+                                <a data-bs-toggle="collapse" href="#collapse${veh.id}" style="color:${color_s}" role="button" aria-expanded="false" aria-controls="collapse${veh.id}">
+                                    <i class="ri-subtract-line" style="float:right;"></i>
+                                </a>
+                                <a href="compartments?id=${veh.id}" target="_blank" style="color:${color_s}" >
+                                    <i class="ri-eye-fill" style="float:right;"></i>
+                                </a>
+                               
+                            </div>
+                            <h5 class="card-title mb-0" style="color:${color_s}">${veh.name}</h5>
+                        </div>
+                        
+                        <div id="collapse${veh.id}" class="collapse pt-3 show">
+                            <div class="row container">
+                                <div style="display:flex;" class="col-4"> 
+                                    <h5>Total Volume:</h5>
+                                    <p style="margin-top: -0.2em;padding-left: 0.5em;">${veh.trailer_size}</p>
+                                </div>
+                                <div style="display:flex;" class="col-4">
+                                    <h5>Filled Volume: </h5>
+                                    <p style="margin-top: -0.2em;padding-left: 0.5em;">${filled_volume}</p>
+                                </div>
+                                <div style="display:flex;" class="col-4">
+                                    <h5>Remaining Volume:</h5>
+                                    <p style="margin-top: -0.2em;padding-left: 0.5em;">${remaining_volume}</p>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Ship To</th>
+                                        <th>Customer Name</th>
+                                        <th>Target</th>
+                                        <th>Product Code</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${veh.orders.map(order => `
+                                        <tr>
+                                            <td>${order.orderId}</td>
+                                            <td>${order.shipTo}</td>
+                                            <td>${order.customerName}</td>
+                                            <td>${order.target}</td>
+                                            <td>${order.materialCode}</td>
+                                            <td onclick="removeOrderFromVehOrders(${order.orderId},'${veh.name}')">
+                                                <i class="btn btn-danger ri-delete-bin-fill" style="font-size:1.3em"></i>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>`;
+                    }).join('')}
+    `);
+
+                    // Resolve when everything in veh_card is done
+
+                    localStorage.setItem('orders', JSON.stringify(veh_order));
+                    complete_order = veh_order;
+
+                    orders_v(veh_order); // Wait for orders_v to complete
+
+                }
+
+
+
+                // // Use async/await to ensure code runs after veh_card
+                // async function runAfterVehCard() {
+                //     await veh_card(); // Wait for veh_card to complete
+
+                //     console.log("SOMI", veh_order.erros);
+                //     // This code runs after veh_card is completely done
+                //     veh_order.forEach(veh => {
+                //         console.log("vehloop", veh)
+                //         veh.erros.forEach(vehord => {
+                //             console.log($(`#card${veh.id}`))
+                //             $(`#card${veh.id}`).css('background', 'red');
+
+                //         })
+
+                //     });
+
+                //     console.log('Post-veh_card processing complete');
+                // }
+
+                // Call the function that includes veh_card and the follow-up actions
+
+                function calculateTotalTargetValue(orders) {
+                    return orders.reduce((total, order) => total + parseInt(order.target), 0);
+                }
+
+
+
+                function orders_v(veh_ord) {
+
+                    console.log('veh_order', veh_order.length);
+
+                    veh_order.forEach((veh, index) => {
+
+                        console.log("vehicleid", veh.id)
+                        $.ajax({
+                            url: 'get_vehicle_forOrders/' + veh.id,
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (response) {
+                                var id = veh.id;
+                                var veh_index = veh_order.findIndex(item => item.id == id);
+                                total = parseInt(veh.trailer_size);
+                                var target1 = [];
+                                var compartment1;
+
+                                compartment_length = response['compartments'].length;
+
+                                // Transform response compartments into an array of objects with numbers and sizes
+                                compartment1 = response['compartments'].map(val => ({
+                                    compartment_no: val.compartment_no,
+                                    size: parseInt(val.loadable_volume)
+                                }));
+                                let filtered_comprule = comprules.filter(comp => comp.compartments == compartment_length); // Corrected comparison and added return statement
+                                // console.log(filtered_comprule);
+
+
+                                var sortOrder = filtered_comprule[0]['seq'].split(',').map(num => Number(num) - 1);
+
+                                // console.log(sortOrder1);
+                                // console.log("seq", sortOrder);
+                                let trailerCompartments = response['compartments'];
+                                // console.log();
+                                console.log('trailerCompartments,', trailerCompartments);
+
+                                // Example usage of assignCompartments function with the custom sort order
+                                // let sortOrder = [5,3, 4, 2, 0];  // Example sort order, adjust as needed
+
+                                // console.log(orders1)
+                                var assignments;
+                                veh.trip.forEach(trip =>{
+                                    console.log(trip);
+                                     assignments = processOrders(trip.orders, trailerCompartments, sortOrder, veh.name);
+                                     trip.compartments = assignments;
+                                     trip.erros = errors_window;
+                                })
+                                
+
+                                console.log("final Order", veh_order);
+
+                                localStorage.setItem("orders", JSON.stringify(veh_order))
+                                
+
+
+                                console.log("Vehicle Orders:", assignments);
+                                // generateCompartmentTable(veh_order);
+                                // } else {
+                                //     console.error("No matching rule found for the specified compartment length");
+                                // }
+                                // Define your custom sort order here
+
+                                // Transform compartments into the required trailer format
+                            },
+                            error: function (xhr, status, error) {
+                                console.error("Error fetching vehicle data:", error);
+                            },
+                            complete: function (res) {
+                                // errors_window = [];
+
+                                $('#vehicle_cards').empty();
+                                $('#vehicle_cards').append(`
+    ${veh_order.map(veh => {
+                                    let remainvolume = parseFloat(veh.trailer_size);
+                                    let filled_volume = 0;
+                                    let remaining_volume = 0;
+
+                                    veh.orders.forEach(order => {
+                                        filled_volume += parseFloat(order.target);
+                                        remaining_volume = remainvolume - filled_volume;
+                                    });
+
+                                    console.log("Vehicle:", veh);
+                                    console.log("Errors:", veh.erros);
+
+                                    // Check if vehicle has any errors
+                                    let hasErrors = Array.isArray(veh.erros) && veh.erros.length > 0;
+                                    let headerBackgroundColor = hasErrors ? 'red' : '#6AB424;';
+                                    let color_s = hasErrors ? 'white' : 'white';
+
+                                    // Create a tooltip content by joining all error names into a list
+                                    // let tooltipContent = '<ul>' + veh.erros.map(error => `<li>${error.error_name}</li>`).join('') + '</ul>';
+
+                                    return `
+            <div class="card" id="card${veh.id}">
+                <div class="card-body" style="padding:0;">
+                    <div style="background:${headerBackgroundColor};padding:1em;">
+                        <div class="card-widgets" style="display:flex;align-items:center;">
+                            <i class="ri-information-fill" style="color:${color_s}; font-size:1.2em;padding-left:0.1em;" data-bs-toggle="tooltip" data-bs-placement="right" title="$tooltipContent"></i>
+                            <a href="compartments?id=${veh.id}" style="color:${color_s}" target="_blank">
+                                <i class="ri-eye-fill" style="float:right;"></i>
+                            </a>
+                            <a data-bs-toggle="collapse" href="#collapse${veh.id}" style="color:${color_s}" role="button" aria-expanded="false" aria-controls="collapse${veh.id}">
+                                <i class="ri-subtract-line" style="float:right;"></i>
+                            </a>
+                        </div>
+                        <h5 class="card-title mb-0" style="color:${color_s}">${veh.name}</h5>
+                    </div>
+                    
+                    <div id="collapse${veh.id}" class="collapse pt-3 show">
+                        <div class="row container">
+                            <div style="display:flex;" class="col-4"> 
+                                <h5>Total Volume:</h5>
+                                <p style="margin-top: -0.2em;padding-left: 0.5em;">${veh.trailer_size}</p>
+                            </div>
+                            <div style="display:flex;" class="col-4">
+                                <h5>Filled Volume: </h5>
+                                <p style="margin-top: -0.2em;padding-left: 0.5em;">${filled_volume}</p>
+                            </div>
+                            <div style="display:flex;" class="col-4">
+                                <h5>Remaining Volume:</h5>
+                                <p style="margin-top: -0.2em;padding-left: 0.5em;">${remaining_volume}</p>
+                            </div>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Ship To</th>
+                                    <th>Customer Name</th>
+                                    <th>Target</th>
+                                    <th>Product Code</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${veh.orders.map(order => `
+                                    <tr>
+                                        <td>${order.orderId}</td>
+                                        <td>${order.shipTo}</td>
+                                        <td>${order.customerName}</td>
+                                        <td>${order.target}</td>
+                                        <td>${order.materialCode}</td>
+                                        <td onclick="removeOrderFromVehOrders(${order.orderId},'${veh.name}')">
+                                            <i class="btn btn-danger ri-delete-bin-fill" style="font-size:1.3em"></i>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>`;
+                                }).join('')}
+`);
+
+                                // Initialize Bootstrap tooltips after appending the content
+                                $('[data-bs-toggle="tooltip"]').tooltip({
+                                    html: true // Enable HTML content in tooltips
+                                });
+
+                            }
+                        });
+                    });
+                }
+
+
+                function append_portion(scompart, name) {
+
+                    let total_weight = 0;  // Declare total_weight outside the loop
+
+                    let ajaxRequests = []; // Array to keep track of AJAX requests
+
+                    scompart.forEach((com, index) => {
+                        console.log('comp_no', com['compartment_no']);
+
+
+                        let ajaxRequest = $.ajax({
+                            url: 'product_bypcode/' + com['product_id'],
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (response) {
+                                let loaded_vol = parseInt(com['loaded_volume']);
+                                let density = parseFloat(response['density']);
+                                let weight = loaded_vol * density;
+                                total_weight += weight;
+
+
+                            }
+                        });
+
+                        // Push the ajaxRequest promise to the array
+                        ajaxRequests.push(ajaxRequest);
+                    });
+
+                    // Wait for all AJAX requests to complete
+                    $.when.apply($, ajaxRequests).done(function () {
+                        // console.log(veh_order[0])
+                        if (total_weight > parseInt(veh_order[0]['weight'])) {
+
+                            if (!errors_window.some(error => error.error_name === 'Not Allowed to Carry that load')) {
+                                errors_window.push({ "error_name": "Not Allowed to Carry that load" });
+                            }
+
+
+                        }
+
+                    });
+
+                }
+
+
+
+                function processOrders(orders, compartments, sequence, name) {
+                    let result = [];
+                    let compartmentUsed = new Set(); // Track used compartments
+                    complete_order[0].allowed_prod.forEach(val => {
+                        codearray.push(val.code);
+                    })
+                    console.log(codearray);
+
+                    let dup_orders = orders;
+                    let order_not_allowed = dup_orders.filter(order => !codearray.includes(parseInt(order.materialCode)));
+                    console.log(order_not_allowed);
+
+                    if (order_not_allowed.length >= 1) {
+                        // errors_window.push({
+                        //     "error_name": "Vehicle Cannot Carry Product",
+                        //     "severity": 1
+                        // })
+                        if (!errors_window.some(error => error.error_name === 'Vehicle Cannot Carry Product')) {
+                            errors_window.push({
+                                "error_name": "Vehicle Cannot Carry Product",
+                                "severity": 1
+                            });
+                        }
+
+                    }
+                    orders = orders.filter(order => codearray.includes(parseInt(order.materialCode)));
+                    let totalTargetValue = calculateTotalTargetValue(orders);
+                    orders.forEach(order => {
+                        let targetQty = parseInt(order.target);
+                        let remainingQty = targetQty;
+                        let compartmentsToUse = [];
+
+                        // Use the sequence to fill compartments
+                        sequence.forEach(index => {
+                            if (remainingQty <= 0) return;
+
+                            let compartment = compartments[index];
+                            if (compartmentUsed.has(compartment.compartment_no)) return; // Skip if already used
+
+                            if (compartment.size > remainingQty) {
+                                compartmentsToUse.push({
+                                    compartment_no: compartment.compartment_no,
+                                    size: compartment.size,
+                                    loaded_volume: remainingQty,
+                                    product_id: order.materialCode,
+                                    order_id: order.orderId,
+                                    shipto: order.shipTo,
+                                    customer_name: order.customerName
+                                });
+                                remainingQty = 0;
+                            } else {
+                                compartmentsToUse.push({
+                                    compartment_no: compartment.compartment_no,
+                                    size: compartment.size,
+                                    loaded_volume: compartment.size,
+                                    product_id: order.materialCode,
+                                    order_id: order.orderId,
+                                    shipto: order.shipTo,
+                                    customer_name: order.customerName
+                                });
+                                remainingQty -= compartment.size;
+                            }
+                            compartmentUsed.add(compartment.compartment_no); // Mark compartment as used
+                        });
+
+                        // Check if there's any remaining quantity that hasn't been allocated
+                        if (remainingQty > 0) {
+                            // errors_window.push({
+                            //     "error_name": "Discharge Sequence Violated",
+                            //     "severity": 1
+                            // })
+                            // errors_window.push({
+                            //     "error_name": "Compartmentation infeasible",
+                            //     "severity": 2
+                            // })
+                            // Define the errors you want to add
+                            const errorsToAdd = [
+                                { "error_name": "Discharge Sequence Violated", "severity": 1 },
+                                { "error_name": "Compartmentation infeasible", "severity": 2 }
+                            ];
+
+                            // Loop through each error in errorsToAdd
+                            errorsToAdd.forEach(error => {
+                                // Check if the error is already in errors_window
+                                if (!errors_window.some(existingError => existingError.error_name === error.error_name)) {
+                                    errors_window.push(error);
+                                }
+                            });
+
+                            console.log(`Order ID: ${order.orderId} could not be fully allocated.`);
+                        } else {
+                            result.push(...compartmentsToUse);
+                        }
+                    });
+
+
+                    append_portion(result, name)
+
+                    if (errors_window.length > 0) {
+                        $('#order_card').css('border-top', '1em solid #f7473a')
+                    }
+                    else {
+                        $('#order_card').css('border-top', '1em solid rgb(23, 164, 151)')
+
+                    }
+
+
+
+
+                    console.log('total', total_weight)
+                    console.log("result", result)
+                    console.log("Errors", errors_window);
+                    if (totalTargetValue > complete_order[0].trailer_size) {
+                        if (!errors_window.some(error => error.error_name === 'Trip Volume Exceeds Vehicle Volume')) {
+                            errors_window.push({ "error_name": 'Trip Volume Exceeds Vehicle Volume' });
+                        }
+
+
+                    }
+
+                    console.log("Errors", errors_window);
+
+
+                    return result;
+                }
+
+
+                function generate() {
+                    const shipment = veh_order;
+                    console.log(shipment);
+                    const tch = '0383';
+                    const gsap = '1379';
+                    var currentdate = new Date();
+                    var datetime = ('0' + currentdate.getDate()).slice(-2) + "-" + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "-" + currentdate.getFullYear() + "" + currentdate.getHours() + ":" + currentdate.getMinutes();
+                    // console.log(datetime);
+                    var sdate = ('0' + currentdate.getDate()).slice(-2) + "" + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "" + currentdate.getFullYear();
+
+
+                    var line1 = "#TCH" + tch + "GSAP" + gsap + "" + datetime;
+                    var line2 = "#BCH" + tch + "GSAPBS1" + gsap + "" + datetime;
+                    var line3 = "B LTRK CZZZ" + sdate + "PM";
+                    var line4 = "";
+                    var line5 = "";
+                    var line6 = "";
+                    let output7 = "";
+                    let output8 = "";
+                    let line7 = "C";
+                    let line8 = "";
+                    let d_portion = "";
+                    console.log(shipment.length);
+                    shipment.forEach((ship, index) => {
+                        console.log("Samad ", index);
+                        var identifier = ship.tractor_code;
+                        var reg = ship.tractor_reg;
+                        var end_depot = "1";
+                        var f_end_depot = ship.end_depot;
+                        var stime = "2100"
+                        var etime = "0639"
+                        var trips = "01"
+                        var no_trail = "1";
+                        var first_trail = "t" + ship.tractor_code;
+                        var second_trail = "";
+                        var third_trail = "";
+                        var start_date = ('0' + currentdate.getDate() + 1).slice(-2) + "" + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "" + currentdate.getFullYear().toString().substr(-2);
+                        var end_date = ('0' + currentdate.getDate() + 2).slice(-2) + "" + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "" + currentdate.getFullYear().toString().substr(-2);
+                        identifier = identifier.padEnd(8, ' ')
+                        reg = reg.padEnd(10, ' ')
+                        end_depot = end_depot.padEnd(1, ' ')
+                        f_end_depot = f_end_depot.padEnd(3, ' ')
+                        sec_depot = '   ';
+                        stime = stime.padEnd(4, ' ')
+                        etime = etime.padEnd(4, ' ')
+                        trips = trips.padEnd(2, ' ')
+                        no_trail = no_trail.padEnd(1, ' ')
+                        first_trail = first_trail.padEnd(8, ' ')
+                        second_trail = second_trail.padEnd(8, ' ')
+                        third_trail = third_trail.padEnd(8, ' ')
+                        start_date = start_date.padEnd(6, ' ')
+                        end_date = end_date.padEnd(6, ' ')
+                        line4 = "T" + identifier + "" + reg + "" + end_depot + "" + f_end_depot + "" + sec_depot + "" + stime + "" + etime + "" + trips + "" + no_trail + "" + first_trail + "" + second_trail + "" + third_trail + "" + start_date + "" + end_date;
+                        line4 = line4.padEnd(80, ' ');
+                        const distinctMaterialCodes = [...new Set(ship.orders.map(order => order.materialCode))];
+
+                        // console.log(distinctMaterialCodes);
+                        var eta_sec_depot;
+                        var code_sec_depot;
+                        var time_spend_2;
+                        var name_of_mate;
+                        var trip_number = "01";
+                        var n_start_depot = "1";
+                        var start_depot = ship.load_depot;
+                        var c_end_depot = ship.end_depot;
+                        var stimet = "2100";
+                        var estime = "0649";
+                        var time_spend_1 = "0025";
+                        var n_prods = "0" + distinctMaterialCodes.length;
+                        var edistance = "0316";
+                        var n_driver = "CHAKLALA SCOPE";
+                        var code_driver = "CKLDRI";
+                        var n_compartments = "0" + ship.compartments.length;
+                        var n_orders = "0" + ship.orders.length;
+                        trip_number = trip_number.padEnd(2, ' ')
+                        n_start_depot = n_start_depot.padEnd(1, ' ')
+                        start_depot = start_depot.padEnd(3, ' ')
+                        stimet = stimet.padEnd(4, ' ')
+                        code_sec_depot = '   ';
+                        estime = estime.padEnd(4, ' ')
+                        time_spend_1 = time_spend_1.padEnd(4, ' ')
+                        time_spend_2 = '    ';
+                        n_prods = n_prods.padEnd(2, ' ')
+                        edistance = edistance.padEnd(4, ' ')
+                        name_of_mate = '              ';
+                        n_driver = n_driver.padEnd(14, ' ');
+                        code_driver = code_driver.padEnd(6, ' ')
+                        n_compartments = n_compartments.padEnd(2, ' ')
+                        n_orders = n_orders.padEnd(2, ' ')
+                        eta_sec_depot = '    ';
+
+
+
+                        line5 = "R" + trip_number + "" + n_start_depot + "" + start_depot + "" + code_sec_depot + "" + c_end_depot + "" + stimet + "" + eta_sec_depot + "" + estime + "" + time_spend_1 + "" + time_spend_2 + "" + n_prods + "" + edistance + "" + name_of_mate + "" + n_driver + "" + code_driver + "" + n_compartments + "" + n_orders;
+                        line5 = line5.padEnd(80, ' ');
+                        var tdesc = "";
+                        // var tstart = document.getElementById('tstart').value;
+                        // var tend = document.getElementById('tend').value;
+                        var ship_num = "9999999901";
+                        var svcode = ship.tractor_reg + "CV";
+                        tdesc = tdesc.padEnd(40, ' ')
+                        // tstart = tstart.padEnd(6, ' ')
+                        // tend = tend.padEnd(6, ' ')
+                        ship_num = ship_num.padEnd(15, ' ')
+                        svcode = svcode.padEnd(8, ' ')
+                        line6 = "X" + tdesc + "" + start_date + "" + end_date + "" + ship_num + "" + svcode;
+                        line6 = line6.padEnd(80, ' ');
+                        ship.compartments.forEach((compartment, index) => {
+                            let compartmentString = compartment.product_id.padEnd(12) +
+                                compartment.loaded_volume.toString().padStart(6, '0') +
+                                f_end_depot.padEnd(3);
+
+                            line7 += compartmentString;
+                            // console.log(line7);
+
+                            // If three compartments have been added or if it's the last compartment, add the line to output
+                            if ((index + 1) % 3 === 0 || index === ship.compartments.length - 1) {
+                                line7 = line7.padEnd(80); // Fill the remaining spaces to make the line 80 characters long
+                                output7 += line7;
+                                line7 = "\nC"; // Reset line for the next set of compartments
+                            }
+                        });
+
+                        ship.orders.forEach(order => {
+
+                            var onumber = order.orderId;
+                            var pcode = order.shipTo;
+                            var otype = "P";
+                            var ostatus = "N";
+                            var tcouple = "0";
+                            var eta = "0129";
+                            var trd = "0055";
+                            var pweigth = "35000";
+                            var n_prods1 = "01";
+                            var sap_mcode = order.materialCode;
+                            var tgcode = "   ";
+                            var pqtyw = order.target;
+                            var dates = end_date;
+                            onumber = onumber.padEnd(11, ' ');
+                            pcode = pcode.padEnd(12, ' ');
+                            otype = otype.padEnd(1, ' ');
+                            ostatus = ostatus.padEnd(1, ' ');
+                            eta = eta.padEnd(4, ' ');
+                            trd = trd.padEnd(4, ' ');
+                            pweigth = pweigth.padEnd(6, ' ');
+                            n_prods1 = n_prods1.padEnd(2, ' ');
+                            sap_mcode = sap_mcode.padEnd(12, ' ');
+                            tgcode = tgcode.padEnd(3, ' ');
+                            pqtyw = pqtyw.padEnd(6, ' ');
+                            dates = dates.padEnd(6, ' ');
+                            line8 = "O" + onumber + "" + pcode + "" + otype + "" + ostatus + "" + tcouple + "" + eta + "" + trd + "" + pweigth + "" + n_prods1 + "" + sap_mcode + "" + tgcode + "" + pqtyw + "" + dates;
+                            line8 = line8.padEnd(80, ' ');
+                            // line8 += line8+"\n";
+                            output8 += line8 + "\n";
+                            const compartment = ship.compartments.filter(comp => comp.order_id === order.orderId);
+                            // console.log(compartment);
+
+
+
+
+                            const recordIdentifier = "L";
+                            let output = '';
+                            let line = recordIdentifier;
+                            const tankCode = "";
+                            for (let i = 0; i < compartment.length; i++) {
+                                let compartments = compartment[i];
+
+                                let compartmentInfo = compartments.order_id + compartments.product_id.toString().padStart(12, ' ') +
+                                    tankCode.padEnd(3, ' ') + compartments.compartment_no.toString().padStart(2, '0') + compartments.loaded_volume.toString().padStart(6, '0');
+
+                                if (line.length + compartmentInfo.length > 80) {
+                                    output += line.padEnd(80, ' ') + '\n';
+                                    line = recordIdentifier + compartmentInfo;
+                                } else {
+                                    line += compartmentInfo;
+                                }
+                            }
+                            if (line.length > 0) {
+                                output += line.padEnd(80, ' ') + '\n';
+                                output8 += output;
+                            }
+                            // console.log(output);
+
+
+                            // line9 = line9.padEnd(80, ' ');
+
+                            // console.log(line8);
+                        });
+
+
+                        // line4 += ""
+                        if (d_portion == "") {
+
+                            d_portion += line4 + "\n" + line5 + "\n" + line6 + "\n" + output7.padEnd(80, ' ') + "\n" + output8;
+                        }
+                        else {
+                            d_portion += "\n" + line4 + "\n" + line5 + "\n" + line6 + "\n" + output7.padEnd(80, ' ') + "\n" + output8;
+
+                        }
+
+                        let lines = d_portion.split('\n');
+
+                        // Iterate over each line and pad it to 80 characters
+                        let paddedLines = lines.map(line => {
+                            if (line.length < 80) {
+                                return line.padEnd(80, ' '); // Pad with spaces to make the length 80
+                            } else {
+                                return line;
+                            }
+                        });
+
+                        // Join the lines back together with newline characters
+                        d_portion = paddedLines.join('\n');
+
+
+                        output8 = "";
+                        output7 = "";
+                    });
+                    line1 = line1.padEnd(80, ' ');
+                    line2 = line2.padEnd(80, ' ');
+                    line3 = line3.padEnd(80, ' ');
+                    var line11 = "\n#BCT" + tch + "GSAPBS1" + gsap + "" + "000010";
+                    line11 = line11.padEnd(81, ' ');
+
+                    var line12 = "#TCT" + tch + "GSAP" + gsap + "" + "000012" + "" + "001";
+                    line12 = line12.padEnd(80, ' ');
+
+
+                    console.log(line1 + "\n" + line2 + "\n" + line3 + "\n" + d_portion + line11 + "\n" + line12);
+
+                    var text = line1 + "\n" + line2 + "\n" + line3 + "\n" + d_portion + line11 + "\n" + line12;
+                    let lines = text.split('\n');
+                    // Filter out lines that are empty or contain only whitespace
+                    let nonEmptyLines = lines.filter(line => line.trim() !== '');
+                    // Join the non-empty lines back together with newline characters
+                    text = nonEmptyLines.join('\n');
+
+                    line4 = "";
+                    line5 = "";
+                    line6 = "";
+                    console.log(text);
+                    const link = document.createElement("a");
+                    const file = new Blob([text], { type: 'text/plain' });
+
+                    link.href = URL.createObjectURL(file);
+
+                    link.download = "flow_flat_file_" + datetime + ".txt";
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+
+                    calc_rtd();
+
+                }
+
+
+
+                // Your JSON data
+
+                // Function to change row background color based on errors
+                // Your JSON data (veh_order)
+
+
+                function highlightSelectedRow() {
+                    // Get the selected row (assuming there is a way to identify the selected row, e.g., a 'selected' class)
+                    const selectedRow = document.querySelector('#veh_tbl tbody tr.selected');
+
+                    if (!selectedRow) {
+                        console.error('No row selected');
+                        return; // Exit if no row is selected
+                    }
+
+                    // Get the vehicle name from the first cell of the selected row
+                    const vehName = selectedRow.cells[0].textContent.trim();
+
+                    // Filter the veh_order JSON to find the vehicle by name
+                    const vehicleData = veh_order.find(vehicle => vehicle.name == vehName);
+
+                    if (vehicleData && vehicleData.erros && vehicleData.erros.length > 0) {
+                        // If errors are present, change the background color to red
+                        selectedRow.style.backgroundColor = 'red';
+                    } else {
+                        // Optional: Reset background color if no errors
+                        selectedRow.style.backgroundColor = '';
+                    }
+                }
+
+                function calc_rtd() {
+                    const shipment = veh_order;
+                    const allShipTo = shipment.flatMap(shipment =>
+                        shipment.orders.map(order => order.shipTo)
+                    );
+
+                    // Create a distinct array of shipTo values
+                    const distinctShipTo = [...new Set(allShipTo)];
+
+                    // console.log(distinctShipTo);
+                    const loadDepot = shipment[0].load_depot;
+
+                    // Add load depot at the start of the array
+                    const resultArray = [loadDepot, ...distinctShipTo];
+                    console.log(resultArray);
+                }
+            </script>

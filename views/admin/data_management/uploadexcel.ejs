@@ -1,0 +1,401 @@
+<%- contentFor('HeaderCss') %>
+
+    <!-- Datatables css -->
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+
+        <div class="row">
+            <div class="col-12">
+                <div
+                    class="page-title-box justify-content-between d-flex align-items-md-center flex-md-row flex-column">
+                    <h4 class="page-title">Upload Excel</h4>
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Management</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript: void(0);">Scope</a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Customers
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <form action="upload_customers/" id="customer_form" method="post" enctype="multipart/form-data">
+
+                            <div class="row">
+                                <div class="col-8">
+                                    <input type="file" name="customers" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="customer_message" class="mt-3"></div>
+
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Products
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <form id="product_form" action="upload_products" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-8">
+                                    <input type="file" name="products" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="message" class="mt-3"></div>
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Depots
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <form action="upload_depots" id="depot_form" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-8">
+                                    <input type="file" name="depots" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="depot_message" class="mt-3"></div>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Scopes
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-8">
+                                    <input type="file" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="scope_message" class="mt-3"></div>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Parking Location
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <form action="#" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-8">
+                                    <input type="file" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="parking_message" class="mt-3"></div>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Vehicles
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <form action="upload_vehicles" id="vehicle_form" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-8">
+                                    <input type="file" name="vehicle" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary" type="submit">Upload</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="vehicle_message" class="mt-3"></div>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+            <!-- end col-->
+        </div> <!-- end row-->
+
+
+
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+
+            <script>
+                $(document).ready(() => {
+                    select_topbar("topbar_scope")
+                    scope = localStorage.getItem("scope")
+                    topbar = $('#topbar_scope');
+
+                    if (scope != "") {
+                        topbar.val(scope).trigger('change');
+                    }
+                    $('#topbar_scope').change(() => {
+                        localStorage.setItem("scope", topbar.val());
+
+
+                    })
+                    var currentUrl = window.location.href;
+                    if (currentUrl.includes('vehicles') || currentUrl.includes('customers') || currentUrl.includes('depot') || currentUrl.includes('upload_excels')) {
+                        $('#topbar_scope_div').css('display', 'block');
+
+                        // Perform actions if URL contains "vehicle"
+                    } else {
+                        $('#topbar_scope_div').css('display', 'none');
+
+
+                        // Perform actions if URL does not contain "vehicle"
+                    }
+
+                    $('#product_form').on('submit', function (event) {
+                        event.preventDefault();
+
+                        var formData = new FormData(this);
+
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                $('#message').html('<div class="alert alert-success">' + response.message + '</div>');
+                                $('#message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            },
+                            error: function (xhr, status, error) {
+                                var err = JSON.parse(xhr.responseText);
+                                $('#message').html('<div class="alert alert-danger">' + err.error + '</div>');
+                                $('#message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            }
+                        });
+                    });
+
+                    $('#customer_form').on('submit', function (event) {
+                        event.preventDefault();
+                        var scope = localStorage.getItem('scope');
+
+
+                        // Update the form action with the scope value
+                        if (scope) {
+                            this.action = 'upload_customers/' + scope;
+                        }
+
+                        var formData = new FormData(this);
+
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                $('#customer_message').html('<div class="alert alert-success">' + response.message + '</div>');
+                                $('#customer_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(xhr)
+
+                                var err = JSON.parse(xhr.responseText);
+                                $('#customer_message').html('<div class="alert alert-danger">' + err.error + '</div>');
+                                $('#customer_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            }
+                        });
+                    });
+
+
+                    $('#depot_form').on('submit', function (event) {
+                        event.preventDefault();
+                        var scope = localStorage.getItem('scope');
+
+
+                        // Update the form action with the scope value
+                        if (scope) {
+                            this.action = 'upload_depots/' + scope;
+                        }
+                        var formData = new FormData(this);
+
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                $('#depot_message').html('<div class="alert alert-success">' + response.message + '</div>');
+                                $('#depot_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            },
+                            error: function (xhr, status, error) {
+                                var err = JSON.parse(xhr.responseText);
+                                $('#depot_message').html('<div class="alert alert-danger">' + err.error + '</div>');
+                                $('#depot_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            }
+                        });
+                    });
+
+
+                    $('#vehicle_form').on('submit', function (event) {
+                        event.preventDefault();
+
+                        var formData = new FormData(this);
+
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                $('#vehicle_message').html('<div class="alert alert-success">' + response.message + '</div>');
+                                $('#vehicle_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            },
+                            error: function (xhr, status, error) {
+                                var err = JSON.parse(xhr.responseText);
+                                $('#vehicle_message').html('<div class="alert alert-danger">' + err.error + '</div>');
+                                $('#vehicle_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            }
+                        });
+                    });
+
+
+
+                })
+
+
+                function select_topbar(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        // $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                        scope_id = localStorage.getItem("scope");
+                        $('#topbar_scope').val(scope_id).trigger('change')
+                    })
+                }
+
+
+            </script>

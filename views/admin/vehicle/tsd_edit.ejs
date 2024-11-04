@@ -1,0 +1,639 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <!-- <div class="card">
+            <div class="card-body">
+                <div class="row " style=" display:flex; align-items: center;">
+                    <div class="col-auto" style="display: flex;justify-content: center; align-items: center;">
+                        <label for="">Code</label>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>Select</option>
+                            <option>Email</option>
+                            <option>Call</option>
+                            <option>SMS</option>
+
+                        </select>
+                    </div>
+                    <div class="col-auto"><button class="btn btn-soft-primary">Create CV</button></div>
+                    <div class="col-auto"><button class="btn btn-soft-primary">Rename CV</button></div>
+                </div>
+            </div>
+        </div> -->
+        <!--  -->
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+        <div class="card card-body">
+
+            <div class="row mt-3" id="modal_row">
+                <div class="" style="display: flex; align-items: center;justify-content: center;">
+                    <h3>TSD EDIT</h3>
+                </div>
+                <div class="col-6 card card-body">
+
+                    <h4>TSD CV Details</h4>
+                    <div class="mb-3">
+                        <input type="hidden" name="" id="update_tsd_id">
+                        <label for="simpleinput" class="form-label">CV</label>
+                        <input type="text" class="form-control" id="cv" readonly>
+                    </div>
+
+                    <div class="mb-3">
+
+                        <div>
+                            <label for="" class="form-label">Shift</label>
+                            <select class="form-control select2" id="tsd_shift" data-toggle="select2">
+                                <option>Select</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Evening">Evening</option>
+
+                            </select>
+                            <!-- <div class="input-group">
+                                <input type="text" id="tsd_shift" class="datetime-datepicker form-control">
+                                <span class="input-group-text"><i class="ri-calendar-line"></i></span>
+                            </div> -->
+                        </div>
+
+
+                    </div>
+
+                    <div class="mb-3 ">
+
+                        <label for="simpleinput" class="form-label">Tracktor</label>
+                        <input type="text" class="form-control" id="tsd_tracktor" readonly>
+                    </div>
+
+                    <div class="mb-3  ">
+
+                        <label for="simpleinput" class="form-label">Trailer</label>
+                        <input type="text" class="form-control" id="tsd_trailer" readonly>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card card-body">
+                        <h4>TSD Availability</h4>
+                        <div class="mb-3  ">
+
+                            <label for="simpleinput" class="form-label">Availability </label>
+                            <select class="form-control select2" id="tsd_availability" data-toggle="select2">
+                                <option>Select</option>
+                                <option value="Fully Available">Fully Available</option>
+                                <option value="Not Available">Not Available</option>
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+
+                            <div>
+                                <label for="" class="form-label">Contact Type</label>
+                                <select class="form-control select2" id="tsd_contact_type" data-toggle="select2">
+                                    <option>Select</option>
+                                    <option value="Email">Email</option>
+                                    <option value="SMS">SMS</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="mb-3  ">
+                            <label for="simpleinput" class="form-label">Driver</label>
+                            <input type="text" class="form-control" id="tsd_driver">
+                        </div>
+                        <div class="mb-3  ">
+
+                            <label for="simpleinput" class="form-label">Notes</label>
+                            <textarea name="" class="form-control" id="tsd_notes" cols="30" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3" style="display: flex; justify-content: center;">
+                    <h4>TSD Time And Location</h4>
+
+                </div>
+                <div class="col-6">
+                    <div class="card card-body">
+                        <h4>Start</h4>
+
+                        <div class="mb-3  ">
+                            <label for="simpleinput" class="form-label">Date/Time</label>
+                            <input type="text" class="form-control" id="tsd_str_time">
+                        </div>
+                        <div class="mb-3  ">
+
+                            <label for="simpleinput" class="form-label">Parking Location</label>
+                            <select class="form-control select2" id="tsd_str_location" data-toggle="select2">
+
+                            </select>
+
+
+                        </div>
+                        <div class="mb-3  ">
+
+
+                            <label for="simpleinput" class="form-label">Pre Load Depot</label>
+                            <select class="form-control select2" id="tsd_pre_load_depot" data-toggle="select2">
+
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card card-body">
+                        <h4>End</h4>
+
+                        <div class="mb-3  ">
+
+                            <label for="simpleinput" class="form-label">Date/Time</label>
+                            <input type="text" class="form-control" id="tsd_end_time">
+                        </div>
+
+                        <div class="mb-3  ">
+
+                            <label for="simpleinput" class="form-label">Location</label>
+                            <select class="form-control select2" id="tsd_end_location" data-toggle="select2">
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3  ">
+
+                            <label for="simpleinput" class="form-label">Post Load Depot</label>
+                            <select class="form-control select2" id="tsd_post_load_depot" data-toggle="select2">
+
+                            </select>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <button type="button" class="btn btn-primary" style=" border-radius: 2em;" id="save">Save</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <!-- Input Mask Plugin js -->
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Touchspin Plugin js -->
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+            <!-- Bootstrap Maxlength Plugin js -->
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+            <!-- Typehead Plugin js -->
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+            <!-- Flatpickr Timepicker Plugin js -->
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+            <!-- Typehead Demo js -->
+
+            <!-- Timepicker Demo js -->
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+            <!-- Datatable Demo Aapp js -->
+
+
+            <script>
+
+                $(document).ready(() => {
+                    tsd_edit('<%- id%>')
+                    parking_loc('tsd_str_location')
+                    depot('tsd_pre_load_depot')
+                    parking_loc('tsd_end_location')
+                    depot('tsd_post_load_depot')
+
+
+
+
+                })
+                function tractor() {
+                    $.ajax({
+                        url: "vehicle_tracktors/<%- id%>",
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+
+                            $('#tracktor_code').val(response[0]['tractor_code']);
+                            $('#reg_no').val(response[0]['tractor_reg']);
+                            $('#weight').val(response[0]['weight']);
+
+                            $('#scopesel').val(response[0]['scope']).trigger('change');
+                            $('#discharge_factor').val(response[0]['dicharge_factor']);
+                            $('#exp_date').val(response[0]['expiry_date']);
+                            setTimeout(() => {
+                                $('#parking_locs').val(response[0]['parking_location']).trigger('change');
+
+                            }, 1000)
+
+                        }
+                    });
+                }
+               
+               
+                $('#save').click(() => {
+                    var form = new FormData();
+
+                    form.append("shift", $('#tsd_shift').val());
+                    form.append("tractor_code", $('#tsd_tracktor').val());
+                    form.append("trailer_code", $('#tsd_trailer').val());
+                    form.append("driver", $('#tsd_driver').val());
+                    form.append("notes", $('#tsd_notes').val());
+                    form.append("start_time", $('#tsd_str_time').val());
+                    form.append("end_time", $('#tsd_end_time').val());
+                    form.append("start_location", $('#tsd_str_location').val());
+                    form.append("end_location", $('#tsd_end_location').val());
+                    form.append("preload_depot", $('#tsd_pre_load_depot').val());
+                    form.append("postload_depot", $('#tsd_post_load_depot').val());
+                    form.append("availability", $('#tsd_availability').val());
+                    form.append("contact_type", $('#tsd_contact_type').val());
+
+                    // Assuming <%- id %> is replaced by the actual vehicle id
+                    var vehicleId = '<%- id %>'; // Ensure to replace this with the actual ID from your template engine
+
+                    var settings = {
+                        "url": `plan_tsd_edit/${vehicleId}`,
+                        "method": "PUT",
+                        "timeout": 0,
+                        "processData": false,
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax(settings)
+                        .done(function (data) {
+                            Swal.fire('Success!', 'TSD Updated Successfully!', 'success');
+                        })
+                        .fail(function (xhr, textStatus, errorThrown) {
+                            console.error(xhr);
+                            console.error(textStatus);
+                            console.error(errorThrown);
+                            // Additional error handling can be added here
+                        });
+                });
+
+                
+                // $('#save').click(() => {
+                //     var form = new FormData();
+                //     form.append("weight", $('#weight').val());
+                //     form.append("scope", $('#scopesel').val());
+                //     form.append("discharge_factor", $('#discharge_factor').val());
+                //     form.append("expiry_date", $('#exp_date').val());
+                //     form.append("parking_location", $('#parking_locs').val());
+
+                //     // Your code to submit the form or any other processing
+
+                //     var settings = {
+                //         "url": "vehicle_tracktors/<%- id %>",
+                //         "method": "PUT",
+                //         "timeout": 0,
+                //         "processData": false,
+                //         "mimeType": "multipart/form-data",
+                //         "contentType": false,
+                //         "data": form
+                //     };
+
+                //     $.ajax({
+                //         ...settings,
+                //         statusCode: {
+                //             200: function (response) {
+                //                 console.log(response);
+                //             },
+
+                //         },
+                //         success: function (data) {
+                //             tractor()
+
+                //             Swal.fire(
+                //                 'Success!', 'Compartment Updated Successfully!', 'success'
+                //             )
+                //         },
+                //         error: function (xhr, textStatus, errorThrown) {
+                //             console.log(xhr)
+                //             console.log(textStatus)
+                //             console.log(errorThrown)
+
+                //             console.log(errorThrown);
+
+
+                //             // console.log("Request failed with status code: " + xhr.status);
+                //         }
+                //     });
+
+
+                // })
+                function select_field(id, api, val = null, name = null) {
+                    if (val == null) {
+                        var settings = {
+                            "url": api,
+                            "method": "GET",
+                            "timeout": 0,
+                        };
+                    }
+                    else {
+                        var settings = {
+                            "url": api + "/" + val,
+                            "method": "GET",
+                            "timeout": 0,
+                        };
+                    }
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['' + name + '']
+                            }));
+                        }
+                    })
+                }
+
+                function edit(id) {
+                    $.ajax({
+                        url: "tsd_byId/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(id)
+                            console.log(response)
+                            $('#update_id').val(response[0]['id']);
+                            $('#strt_day').val(response[0]['start_day']).trigger('change');
+                            $('#str_time').val(response[0]['start_time']);
+                            $('#end_day').val(response[0]['end_day']).trigger('change');
+                            $('#end_time').val(response[0]['end_time']);
+                            $('#availability').val(response[0]['availability']).trigger('change');
+                            $('#shift').val(response[0]['shift']).trigger('change');
+                            $('#str_loc').val(response[0]['start_location']).trigger('change');
+                            $('#end_loc').val(response[0]['end_location']).trigger('change');
+                            $('#preload_loc').val(response[0]['preload_depot']).trigger('change');
+                            $('#post_loc').val(response[0]['postload_depot']).trigger('change');
+                            $('#driver').val(response[0]['driver']).trigger('change');
+
+                        }
+                    });
+                }
+
+                function tsd_edit(id) {
+                    
+                    $.ajax({
+                        url: "tsd_edit/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(id)
+                            console.log(response)
+                            console.log(response[0]['post_load'])
+                            $('#update_tsd_id').val(response[0]['id']);
+                            $('#cv').val(response[0]['name']).trigger('change');
+                            $('#tsd_shift').val(response[0]['shift']).trigger('change');
+                            $('#tsd_tracktor').val(response[0]['tractor_code'] == null ? response[0]['tractor_reg'] : response[0]['tractor_code']);
+                            $('#tsd_trailer').val(response[0]['trailer_code'] == null ? response[0]['trailer_reg'] : response[0]['trailer_code']);
+                            $('#tsd_driver').val(response[0]['driver']);
+                            $('#tsd_notes').val(response[0]['notes']);
+                            $('#tsd_str_time').val(response[0]['start_time'])
+                            $('#tsd_end_time').val(response[0]['end_time'])
+                            setTimeout(()=>{
+                            $('#tsd_str_location').val(response[0]['start_loc']).trigger('change');
+                            $('#tsd_end_location').val(response[0]['end_loc']).trigger('change');
+                            $('#tsd_pre_load_depot').val(response[0]['pre_load']).trigger('change');
+                            $('#tsd_post_load_depot').val(response[0]['post_load']).trigger('change');
+                            },1000)
+                          
+                            $('#tsd_availability').val(response[0]['availability']).trigger('change');
+                            $('#tsd_contact_type').val(response[0]['contact_type']).trigger('change')
+
+
+                        }
+                    });
+                }
+
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "vehicle/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    vehicle($('#topbar_scope').val());
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+
+                function tsd(id) {
+                    const settings = {
+                        url: "tsd_byvehId/" + id,
+                        method: "GET",
+                        timeout: 0
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        tracktor_tsd.clear().draw();
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check_' + data.id + '" ' + (data.active == "active" ? "checked" : "") + '>' +
+                                '</div>';
+
+                            tracktor_tsd.row.add([
+                                index + 1,
+                                data.name,
+                                data.start_day,
+                                data.start_time,
+                                data.end_day,
+                                data.end_time,
+                                data.shift,
+                                data.availability,
+                                data.start_location,
+                                data.end_location,
+                                data.preload_depot,
+                                data.postload_depot,
+
+
+                                `<td>
+                    <button class="btn btn-soft-warning" onclick="tsd_edit('${data.vehicle_id}')"  data-bs-toggle="modal" data-bs-target="#tsd_modal">
+                        <i class="ri-pencil-fill"></i>
+                    </button>
+                </td>`,
+                                `<td>
+                    <button class="btn btn-soft-danger" onclick="delete_rec('${data.id}')">
+                        <i class="ri-delete-bin-6-fill"></i>
+                    </button>
+                </td>`
+                            ]).draw(false).node();
+
+                            // Add double-click event to the row
+
+                        });
+                    });
+                }
+
+
+
+                tracktor_tsd = $('#tracktor_tsd').DataTable({
+
+                    keys: !0,
+
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+
+
+
+                function parking_loc(id) {
+
+                    scope_id = localStorage.getItem('scope')
+
+
+                    var settings = {
+                        "url": "parkingloc_byscopes/" + scope_id,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').empty()
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['site_name']
+                            }));
+                        }
+                    })
+                }
+
+
+                function depot(id) {
+
+                    scope_id = localStorage.getItem('scope')
+
+                    var settings = {
+                        "url": "depots/" + scope_id,
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        $('#' + id + '').empty()
+                        $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['site_name']
+                            }));
+                        }
+                    })
+                }
+
+
+            </script>

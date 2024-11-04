@@ -1,0 +1,256 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <!-- Datatables css -->
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <div class="card mt-3">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+                    <div class="col-auto"><a href="parkingloc_address?id=<%- id %>" class="btn btn-soft-primary">Address</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_tanks?id=<%- id %>" class="btn btn-soft-primary">Tanks</a>
+                    </div>
+                    <!-- <div class="col-auto"><a href="parkingloc_group?id=<%- id %>" class="btn btn-soft-primary">Groups</a>
+                    </div> -->
+                    <div class="col-auto"><a href="parkingloc_timing?id=<%- id %>"
+                            class="btn btn-soft-primary">Timmings</a></div>
+                    <div class="col-auto"><a href="parkingloc_routes?id=<%- id %>" class="btn btn-soft-primary">Routes</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_status?id=<%- id %>" class="btn btn-soft-primary active">Status</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_event?id=<%- id %>" class="btn btn-soft-primary">Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="row mt-3" id="status_row">
+                                <div class="mb-3  col-6 col-sm-12  col-lg-6">
+                                    <label class="form-label">Last Schedule Date</label>
+                                    <input type="text" id="schedule_date" class="datetime-datepicker form-control"
+                                        >
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12 col-lg-6">
+                                    <label for="simpleinput" class="form-label">Priority</label>
+                                    <input type="text" id="priority" class="form-control" value="Usman">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Market</label>
+                                    <input type="text" id="market" class="form-control" value="Usman">
+                                </div>
+                                <div class="mb-3 col-6 col-sm-12  col-lg-6">
+                                    <label for="simpleinput" class="form-label">Allow Alternate Orders For Shift</label>
+                                    <input type="text" id="shift" class="form-control" value="Usman">
+                                </div>
+                                <div class="check-boxes col-6" style="padding-left: 10px;">
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" id="stop_del">
+                                        <label class="form-check-label" for="customCheckcolor1">Stop Delivery</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" id="vmi">
+                                        <label class="form-check-label" for="customCheckcolor1">VMI</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" id="trailer_drop">
+                                        <label class="form-check-label" for="customCheckcolor1">Traler Drop
+                                            Location</label>
+                                    </div>
+                                </div>
+                                <!-- <div class="check-boxes col-6" style="padding-left: 10px;">
+
+
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" id="depot" checked>
+                                        <label class="form-check-label" for="customCheckcolor1">Depot</label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" class="form-check-input" id="park" checked>
+                                        <label class="form-check-label" for="customCheckcolor1">Parking Location</label>
+                                    </div>
+                                </div> -->
+                                <div class="col-12"
+                                    style="display: flex; align-items: center; justify-content: center;">
+                                    <button class="btn btn-info" type="button" disabled id="save"> Save</button>
+
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+                    </div> <!-- end card body -->
+                </div> <!-- end card -->
+            </div>
+
+            <!-- end col -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+
+            <script>
+
+                $(document).ready(() => {
+
+                    $('#status_row input[type="text"]').on('input', updateSubmitButton);
+                    customer_details()
+
+                })
+                $('#save').click(() => {
+                    try {
+                        var form = new FormData();
+                        form.append("scheduling", $('#schedule_date').val());
+                        form.append("market",  $('#market').val());
+                        form.append("priority", $('#priority').val());  
+                        form.append("alternat_shift", $('#shift').val());
+                        form.append("stop_del", $('#stop_del').is(":checked") ? "1" : "0");
+                        form.append("vmi", $('#vmi').is(":checked") ? "1" : "0");
+                        form.append("trailer_drop_loc", $('#trailer_drop').is(":checked") ? "1" : "0");
+
+
+                        var settings = {
+                            "url": "customer_status_update/<%- id %>",
+                            "method": "PUT",
+                            "timeout": 0,
+                            "processData": false,
+                            "mimeType": "multipart/form-data",
+                            "contentType": false,
+                            "data": form
+                        };
+                        $.ajax({
+                            ...settings,
+                            statusCode: {
+                                200: function (response) {
+                                    console.log(response);
+                                },
+
+                            },
+                            success: function (data) {
+
+
+                                Swal.fire(
+                                    'Success!', 'Status Updated Successfully!', 'success'
+                                )
+                            },
+                            error: function (xhr, textStatus, errorThrown) {
+                                console.log(xhr)
+                                console.log(textStatus)
+                                console.log(errorThrown)
+
+                                console.log(errorThrown);
+
+
+                                // console.log("Request failed with status code: " + xhr.status);
+                            }
+                        });
+                        console.log("else")
+                    }
+                    catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+                })
+
+                function updateSubmitButton() {
+                    var enableSubmit = false; // Reset enableSubmit for each check
+
+                    // Check each input field for content
+                    $('#status_row input[type="text"]').each(function () {
+                        if ($(this).val().trim() !== '') {
+                            enableSubmit = true;
+                            return false; // Exit the loop early if any input has content
+                        }
+                    });
+
+                    // Enable/disable the submit button based on the check
+                    $('#save').prop('disabled', !enableSubmit);
+                }
+                function customer_details() {
+                    var settings = {
+                        "url": "customer/<%- id %>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+
+                        $('#schedule_date').val(response['scheduling']);
+                        $('#priority').val(response['priority']);
+                        $('#market').val(response['market']);
+                        $('#shift').val(response['alternat_shift']);
+                        $('#stop_del').prop("checked", response['stop_del']);
+                        $('#vmi').prop("checked", response['vmi']);
+                        $('#trailer_drop').prop("checked", response['trailer_drop_loc']);
+
+                    })
+                }
+            </script>

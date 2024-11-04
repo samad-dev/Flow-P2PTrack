@@ -1,0 +1,429 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <div class="card mt-3">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+                    <div class="col-auto"><a href="parkingloc_address?id=<%- id %>" class="btn btn-soft-primary">Address</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_tanks?id=<%- id %>" class="btn btn-soft-primary">Tanks</a>
+                    </div>
+                    <!-- <div class="col-auto"><a href="parkingloc_group?id=<%- id %>" class="btn btn-soft-primary">Groups</a>
+                    </div> -->
+                    <div class="col-auto"><a href="parkingloc_timing?id=<%- id %>"
+                            class="btn btn-soft-primary">Timmings</a></div>
+                    <div class="col-auto"><a href="parkingloc_routes?id=<%- id %>" class="btn btn-soft-primary">Routes</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_status?id=<%- id %>" class="btn btn-soft-primary">Status</a>
+                    </div>
+                    <div class="col-auto"><a href="parkingloc_event?id=<%- id %>" class="btn btn-soft-primary active">Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- ========== Table ========== -->
+
+                        <button class="btn btn-soft-primary  mb-3" onclick="clear_fields('modal_row')"
+                            data-bs-toggle="modal" data-bs-target="#modal">Add Event</button>
+
+
+                        <table id="addevent" class="table table-striped dt-responsive wrap w-100 ">
+                            <thead>
+                                <tr>
+                                    <th>SNO</th>
+                                    <th>Event Id</th>
+                                    <th>Event Name</th>
+                                    <th>Event Start Date</th>
+                                    <th>Event End Date</th>
+                                    <th>Information</th>
+                                    <th>Edit</th>
+                                    <!-- <th>Delete</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <!-- ========== Table End ========== -->
+
+
+
+                    </div> <!-- end card body -->
+                </div> <!-- end card -->
+            </div>
+            <!-- end col-->
+
+            <!-- end col -->
+        </div>
+
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Event</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row mt-3" id="modal_row">
+                                <div class="mb-3">
+                                    <label class="form-label">Event Name</label>
+                                    <div class="input-group">
+                                        <input type="text" id="name" class="form-control">
+
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label class="form-label">Start Date</label>
+                                    <input type="text" id="str_date" class="datetime-datepicker form-control"
+                                        >
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">End Date</label>
+                                    <input type="text" id="end_date" class="datetime-datepicker form-control"
+                                        >
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Info</label>
+                                    <div class="input-group">
+                                        <input type="text" id="info" class="form-control">
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNyJWb04pByaU1CTmimoWNl3b86VV6qZ8&callback=initAutocomplete&libraries=places&v=weekly"
+                defer></script>
+
+
+            <!-- Datatable Demo Aapp js -->
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+            <script>
+
+                $(document).ready(() => {
+                    event();
+                })
+                $('#save').click(() => {
+
+                    try {
+                        var name = $('#name').val();
+                        var str_date = $('#str_date').val();
+                        var end_date = $('#end_date').val();
+                        var info = $('#info').val();
+
+                        // Check if any required field is empty
+                        if (!name || !str_date || !end_date || !info) {
+                            throw new Error('All fields must be filled');
+                        }
+                        id = $('#update_id').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("event_name", name);
+                            form.append("start_date", str_date);
+                            form.append("end_date", end_date);
+                            form.append("info", info);
+
+                            var settings = {
+                                "url": "customer_events",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    event();
+
+                                    clear_fields('modal_row');
+                                    $('#modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Event Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("customer_id", "<%- id%>");
+                            form.append("event_name", name);
+                            form.append("start_date", str_date);
+                            form.append("end_date", end_date);
+                            form.append("info", info);
+
+                            var settings = {
+                                "url": "customer_events/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    event();
+                                    clear_fields('modal_row');
+                                    $('#modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Event Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function check_redirection(t_id) {
+                    if (window.location.pathname !== '/customer') {
+                        window.location.href = '/customer_details';
+                        $('.nav-link.active').removeClass('active');
+                        $(t_id).find('a.nav-link').addClass('active');
+
+                        $('.tab-pane.show.active').removeClass('show active');
+                        var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                        $(targetTabPane).addClass('show active');
+                    }
+                    $('.nav-link.active').removeClass('active');
+                    $(t_id).find('a.nav-link').addClass('active');
+
+                    $('.tab-pane.show.active').removeClass('show active');
+                    var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                    $(targetTabPane).addClass('show active');
+                }
+                function edit(id) {
+
+                    $.ajax({
+                        url: "customer_events/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            $('#update_id').val(response['id']);
+                            $('#name').val(response['event_name']);
+                            $('#str_date').val(response['start_date']);
+                            $('#end_date').val(response['end_date']);
+                            $('#info').val(response['info']);
+                        }
+                    });
+                }
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "customer_events/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    event();
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+                function event() {
+                    var settings = {
+                        "url": "customer_events_byId/<%- id%>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        event_tbl.clear().draw();
+
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check-' + data.id + '" ' + (data.active == "active" ? "checked" : "") + '>' +
+                                '</div>';
+                            event_tbl.row.add([
+                                index + 1,
+                                data.id,
+                                data.event_name,
+                                data.start_date,
+                                data.end_date,
+                                data.info,
+                                '<th>' +
+                                '<button class="btn btn-soft-warning" onclick="edit(\'' + data.id + '\')" data-bs-toggle="modal" data-bs-target="#modal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</th>',
+                                // '<th>' +
+                                // '<button class="btn btn-soft-danger" onclick="delete_rec(\'' + data.id + '\')">' +
+                                // '<i class="ri-delete-bin-6-fill"></i>' +
+                                // '</button>' +
+                                // '</th>'
+                            ]).draw(false).node();
+
+
+                        });
+                    });
+                }
+
+
+                event_tbl = $('#addevent').DataTable({
+
+                    keys: !0,
+                    
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+
+              
+            </script>

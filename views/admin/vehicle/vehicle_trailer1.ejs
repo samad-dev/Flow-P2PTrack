@@ -1,0 +1,714 @@
+<!-- Datatables css -->
+<%- contentFor('HeaderCss') %>
+
+
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+        <!-- start page title -->
+        <!-- ========== Horizontal Menu Start ========== -->
+
+        <!-- <div class="card">
+            <div class="card-body">
+                <div class="row " style=" display:flex; align-items: center;">
+                    <div class="col-auto" style="display: flex;justify-content: center; align-items: center;">
+                        <label for="">Code</label>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>Select</option>
+                            <option>Email</option>
+                            <option>Call</option>
+                            <option>SMS</option>
+
+                        </select>
+                    </div>
+                    <div class="col-auto"><button class="btn btn-soft-primary">Create CV</button></div>
+                    <div class="col-auto"><button class="btn btn-soft-primary">Rename CV</button></div>
+                </div>
+            </div>
+        </div> -->
+        <div class="card ">
+            <div class="card-body" style="padding:1rem;">
+                <div class="row" style="display: flex; justify-content: center; ">
+
+                    <div class="col-auto"><a href="vehicle_properties?id=<%- id%>" class="btn btn-soft-primary ">Properties</a>
+                    </div>
+                    <div class="col-auto"><a href="vehicle_tracktor?id=<%- id%>" class="btn btn-soft-primary">Tracktor</a></div>
+                    <div class="col-auto"><a href="vehicle_trailer?id=<%- id%>" class="btn btn-soft-primary active">Trailer</a>
+                    </div>
+                    <!-- <div class="col-auto"><a href="#" class="btn btn-soft-primary">Weight</a></div>
+                    <div class="col-auto"><a href="vehicle_group?id=<%- id%>" class="btn btn-soft-primary">Groups</a></div> -->
+                    <div class="col-auto"><a href="#" class="btn btn-soft-primary">Status</a></div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== Horizontal Menu End ========== -->
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-4 card card-body">
+                <form action="">
+                    <div class="mt-3">
+                        <label for="simpleinput" class="form-label">Trailer Code</label>
+                        <input type="text" id="trailer_code" class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <label for="simpleinput" class="form-label">Trailer Seq Number</label>
+                        <input type="text" id="trailer_seq" class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <label for="simpleinput" class="form-label">Scope</label>
+                        <input type="text" id="scope" class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <label for="simpleinput" class="form-label">Trailer Volume</label>
+                        <input type="text" id="trailer_vol" class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <label for="simpleinput" class="form-label">Payload</label>
+                        <input type="text" id="payload" class="form-control">
+                    </div>
+                    <div class="mt-3">
+                        <label for="simpleinput" class="form-label">Trailer Tare Weight</label>
+                        <input type="text" id="trailerweight" class="form-control">
+                    </div>
+                    <div class="check-boxes col-6" style="padding-left: 10px;">
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" id="customCheckcolor1" checked>
+                            <label class="form-check-label" for="customCheckcolor1">Mark For Deletion</label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-8 card card-body">
+                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                    <li class="nav-item" id="address_p">
+                        <a href="#compartment" data-bs-toggle="tab" aria-expanded="false"
+                            class="nav-link rounded-start rounded-0 active">
+                            Compartment
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item" id="tanks_p">
+                        <a href="#tsd" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                            PCRS
+                        </a>
+                    </li>
+                    <li class="nav-item" id="tanks_p">
+                        <a href="#tsd" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                            Groups
+                        </a>
+                    </li>
+                    <li class="nav-item" id="tanks_p">
+                        <a href="#tsd" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                            Status
+                        </a>
+                    </li>
+                    <li class="nav-item" id="tanks_p">
+                        <a href="#tsd" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0">
+                            Constraints
+                        </a>
+                    </li> -->
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="compartment">
+
+                        <div class="container">
+                            <div class="card card-body">
+                                <div>
+                                    <button class="btn btn-soft-primary mb-3 " data-bs-toggle="modal"
+                                        data-bs-target="#compartment_modal">Add
+                                        Compartment</button>
+                                </div>
+                                <table id="trailer_table" class="table table-striped dt-responsive wrap w-100 ">
+                                    <thead>
+                                        <tr>
+                                            <th>SNO</th>
+                                            <th>Compartment Number</th>
+                                            <th>Loadable Volume</th>
+                                            <th>Hazardous Volume</th>
+                                            <th>Must Use Indicator</th>
+                                            <th>Manifold Valve Indicator</th>
+                                            <th>Bulk Load Indicator</th>
+                                            <th>Part Loading Indicator</th>
+                                            <th>Must Not Split</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+
+
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="tab-pane" id="tsd">
+                        <div class="card card-body">
+                            <table id="tsd_table" class="table table-striped dt-responsive wrap w-100 ">
+                                <thead>
+                                    <tr>
+                                        <th>SNO</th>
+                                        <th>Configured Vehicle </th>
+                                        <th>Start Day</th>
+                                        <th>Start Time</th>
+                                        <th>End Day</th>
+                                        <th>End Time</th>
+                                        <th>Shift</th>
+                                        <th>Availability</th>
+                                        <th>Start Location</th>
+                                        <th>End Location</th>
+                                        <th>PreLoad Depot</th>
+                                        <th>Post Load Depot</th>
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>JP-9900</td>
+                                        <td>Mon</td>
+                                        <td>9:00</td>
+                                        <td>Wed</td>
+                                        <td>10:00</td>
+                                        <td>A</td>
+                                        <td>Fully Available</td>
+                                        <td>KMR</td>
+                                        <td>KMR</td>
+                                        <td>PreLoad Depot 1</td>
+                                        <td>Post Load Depot1</td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>JP-9900</td>
+                                        <td>Mon</td>
+                                        <td>9:00</td>
+                                        <td>Wed</td>
+                                        <td>10:00</td>
+                                        <td>A</td>
+                                        <td>Fully Available</td>
+                                        <td>KMR</td>
+                                        <td>KMR</td>
+                                        <td>PreLoad Depot 1</td>
+                                        <td>Post Load Depot1</td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="compartment_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Add Compartment</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="">
+                            <div class="row" id="modal_row">
+                                <div class="mt-3">
+                                    <input type="hidden" name="" id="update_id">
+                                    <label for="simpleinput" class="form-label">Compartment No</label>
+                                    <input type="text" id="compartments" class="form-control">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="simpleinput" class="form-label">Loadable Volume</label>
+                                    <input type="text" id="loadable" class="form-control">
+                                </div>
+                                <div class="mt-3">
+                                    <label for="simpleinput" class="form-label">Hazardous Volume</label>
+                                    <input type="text" id="hazardous_volume" class="form-control">
+                                </div>
+                                <div class="row mt-3">
+
+                                    <div class="check-boxes col-6" style="padding-left: 10px;">
+                                        <div class="form-check mb-2">
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" id="must_use_indicator">
+                                                <label class="form-check-label" for="customCheckcolor1">Must Use
+                                                    Indicator</label>
+                                            </div>
+                                            <div class="">
+                                                <input type="checkbox" class="form-check-input " id="manifold_val">
+                                                <label class="form-check-label" for="customCheckcolor1">Manifold Valve
+                                                    Indicator</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input " id="must_not_split">
+                                                <label class="form-check-label" for="customCheckcolor1">Must Not
+                                                    Split</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="check-boxes col-6" style="padding-left: 10px;">
+                                        <div class="form-check mb-2">
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" id="bulk_load">
+                                                <label class="form-check-label" for="customCheckcolor1">Bulk Load
+                                                    Indicator</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" class="form-check-input" id="part_load">
+                                                <label class="form-check-label" for="customCheckcolor1">Part Loading
+                                                    Indicator</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+
+
+
+            <!-- Input Mask Plugin js -->
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+            <!-- Bootstrap Touchspin Plugin js -->
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+            <!-- Bootstrap Maxlength Plugin js -->
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+            <!-- Typehead Plugin js -->
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+
+            <!-- Flatpickr Timepicker Plugin js -->
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+
+            <!-- Typehead Demo js -->
+
+            <!-- Timepicker Demo js -->
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+
+            <!-- Datatable Demo Aapp js -->
+
+
+            <script>
+
+
+
+                $(document).ready(() => {
+                    compartments();
+                    trailer();
+                })
+                $('#save').click(() => {
+
+                    try {
+                        var compartment = $('#compartments').val();
+                        var loadable = $('#loadable').val();
+                        var hazardous_volume = $('#hazardous_volume').val();
+
+
+                        // Check if any required field is empty
+                        if (compartment==null || loadable==null || hazardous_volume==null) {
+                            throw new Error('All fields must be filled');
+                        }
+                        id = $('#update_id').val()
+                        if (id == "") {
+                            var form = new FormData();
+                            form.append("veh_id", "<%- id %>");
+                            form.append("compartment_no", compartment);
+                            form.append("loadable_volume", loadable);
+                            form.append("hazardous_volume", hazardous_volume);
+                            form.append("must_use_indicator", $('#must_use_indicator').is(':checked') ? "1" : "0");
+                            form.append("manifold_value_indicator", $('#manifold_val').is(':checked') ? "1" : "0");
+                            form.append("must_use_split", $('#must_not_split').is(':checked') ? "1" : "0");
+                            form.append("bulkload_indicator", $('#bulk_load').is(':checked') ? "1" : "0");
+                            form.append("part_loading_indicator", $('#part_load').is(':checked') ? "1" : "0");
+
+                            // Your code to submit the form or any other processing
+
+                            var settings = {
+                                "url": "vehicle_compartment",
+                                "method": "POST",
+                                "timeout": 0,
+                                "headers": {
+                                    "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                                },
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    compartments();
+
+                                    clear_fields('modal_row');
+                                    $('#compartment_modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Compartment Created Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        } else {
+                            var form = new FormData();
+                            form.append("veh_id", "<%- id %>");
+                            form.append("compartment_no", compartment);
+                            form.append("loadable_volume", loadable);
+                            form.append("hazardous_volume", hazardous_volume);
+                            form.append("must_use_indicator", $('#must_use_indicator').is(':checked') ? "1" : "0");
+                            form.append("manifold_value_indicator", $('#manifold_val').is(':checked') ? "1" : "0");
+                            form.append("must_use_split", $('#must_not_split').is(':checked') ? "1" : "0");
+                            form.append("bulkload_indicator", $('#bulk_load').is(':checked') ? "1" : "0");
+                            form.append("part_loading_indicator", $('#part_load').is(':checked') ? "1" : "0");
+
+                            // Your code to submit the form or any other processing
+
+                            var settings = {
+                                "url": "vehicle_compartment/" + id,
+                                "method": "PUT",
+                                "timeout": 0,
+
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function (response) {
+                                        console.log(response);
+                                    },
+
+                                },
+                                success: function (data) {
+                                    compartments();
+
+                                    clear_fields('modal_row');
+                                    $('#compartment_modal').modal('hide');
+                                    Swal.fire(
+                                        'Success!', 'Compartment Updated Successfully!', 'success'
+                                    )
+                                },
+                                error: function (xhr, textStatus, errorThrown) {
+                                    console.log(xhr)
+                                    console.log(textStatus)
+                                    console.log(errorThrown)
+
+                                    console.log(errorThrown);
+
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                            console.log("else")
+                        }
+                    } catch (error) {
+                        console.error(error.message);
+                        // Handle the error, e.g., display a message to the user
+                        Swal.fire(
+                            'Server Error!', 'Error', 'error'
+                        )
+                    }
+
+
+                })
+                function redirect(url) {
+                    window.location.href = '' + url + '';
+                }
+                function check_redirection(t_id) {
+                    if (window.location.pathname !== '/customer') {
+                        window.location.href = '/customer_details';
+                        $('.nav-link.active').removeClass('active');
+                        $(t_id).find('a.nav-link').addClass('active');
+
+                        $('.tab-pane.show.active').removeClass('show active');
+                        var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                        $(targetTabPane).addClass('show active');
+                    }
+                    $('.nav-link.active').removeClass('active');
+                    $(t_id).find('a.nav-link').addClass('active');
+
+                    $('.tab-pane.show.active').removeClass('show active');
+                    var targetTabPane = $(t_id).find('a.nav-link').attr('href');
+                    $(targetTabPane).addClass('show active');
+                }
+                function edit(id) {
+                    $.ajax({
+                        url: "vehicle_compartment/" + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (response) {
+                            $('#update_id').val(response['id']);
+                            $('#compartments').val(response['compartment_no']);
+                            $('#loadable').val(response['loadable_volume']);
+                            $('#hazardous_volume').val(response['hazardous_volume']);
+                            $('#must_use_indicator').prop('checked', response['must_use_indicator'])
+                            $('#manifold_val').prop('checked', response['manifold_value_indicator'])
+                            $('#must_not_split').prop('checked', response['must_use_split'])
+                            $('#bulk_load').prop('checked', response['bulkload_indicator'])
+                            $('#part_load').prop('checked', response['part_loading_indicator'])
+
+                        }
+                    });
+                }
+
+                function clear_fields(id) {
+
+                    $('#' + id + '').find('input, textarea, select').val('');
+                    $('#' + id + '').find('input:checkbox, input:radio').prop('checked', false);
+
+                }
+                function delete_rec(id) {
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "vehicle_compartment/" + id,
+                                type: 'Delete',
+                                dataType: 'json',
+                                success: function (response) {
+                                    compartments();
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Compartment has been deleted.",
+                                        icon: "success"
+                                    });
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+                function compartments() {
+                    var settings = {
+                        "url": "vehicle_compartmentbyveh/<%-id%>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        trailer_tbl.clear().draw();
+                        $.each(response, function (index, data) {
+                            var checkbox = '<div class="form-check form-switch">' +
+                                '<input type="checkbox" class="form-check-input" onclick="update_status(' + data.id + ')"  id="check-' + data.id + '" ' + (data.status == "active" ? "checked" : "") + '>' +
+                                '</div>';
+                               
+
+                                trailer_tbl.row.add([
+                                index + 1,
+                                data.compartment_no,
+                                data.loadable_volume,
+                                data.hazardous_volume,
+                                data.must_use_indicator=="1" ?'<i class="ri-check-line"></i>': '<i class="ri-close-fill"></i>',
+                                data.manifold_value_indicator=="1" ?'<i class="ri-check-line"></i>': '<i class="ri-close-fill"></i>',
+                                data.must_use_split=="1" ?'<i class="ri-check-line"></i>': '<i class="ri-close-fill"></i>',
+                                data.bulkload_indicator=="1" ?'<i class="ri-check-line"></i>': '<i class="ri-close-fill"></i>',
+                                data.part_loading_indicator=="1" ?'<i class="ri-check-line"></i>': '<i class="ri-close-fill"></i>',
+                               
+                                '<td>' +
+                                '<button class="btn btn-soft-warning" onclick="edit(\'' + data.id + '\')" data-bs-toggle="modal" data-bs-target="#compartment_modal">' +
+                                '<i class="ri-pencil-fill"></i>' +
+                                '</button>' +
+                                '</td>',
+                                '<td>' +
+                                '<button class="btn btn-soft-danger" onclick="delete_rec(\'' + data.id + '\')">' +
+                                '<i class="ri-delete-bin-6-fill"></i>' +
+                                '</button>' +
+                                '</td>'
+                            ]).draw(false).node();
+
+
+                        });
+                    });
+                }
+
+                function trailer(){
+                    var settings = {
+                        "url": "vehicles_id/<%-id%>",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        $('#trailer_code').val(response['trailer_reg2'])
+                        $('#trailer_seq').val("1")
+                        $('#scope').val(response['name'])
+                        $('#trailer_vol').val(response['trailer_size'])
+                        $('#payload').val(response['cvweight'])
+
+                    })
+                }
+
+
+
+                trailer_tbl = $('#trailer_table').DataTable({
+
+                    keys: !0,
+                    
+                    searchBox: false,
+                    language: {
+                        paginate:
+                            { previous: "<i class='ri-arrow-left-s-line'>", next: "<i class='ri-arrow-right-s-line'>" }
+                    },
+                    drawCallback:
+                        function () { $(".dataTables_paginate > .pagination").addClass("pagination-rounded") },
+
+                });
+                function update_status(id) {
+                    status = $('#check-' + id + '').is(':checked') ? "active" : "inactive"
+                    alert(status)
+                    var form = new FormData();
+                    form.append("status", status);
+
+                    // Your code to submit the form or any other processing
+
+                    var settings = {
+                        "url": "customer_status/" + id,
+                        "method": "PUT",
+                        "timeout": 0,
+                        "headers": {
+                            "Cookie": "connect.sid=s%3Aaz8mfHZmwSTOggI-Zv19Nm314mPw3wNj.tZ52L9XFmD7ZBCX9ZzB8W45d%2BpJh01uhXpaBWzUIahs"
+                        },
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax({
+                        ...settings,
+                        statusCode: {
+                            200: function (response) {
+                                console.log(response);
+                            },
+
+                        },
+                        success: function (data) {
+
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(xhr)
+                            console.log(textStatus)
+                            console.log(errorThrown)
+
+                            console.log(errorThrown);
+
+
+                            // console.log("Request failed with status code: " + xhr.status);
+                        }
+                    });
+
+                }
+
+
+
+
+
+
+
+            </script>

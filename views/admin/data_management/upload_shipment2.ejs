@@ -1,0 +1,1065 @@
+<%- contentFor('HeaderCss') %>
+
+    <!-- Datatables css -->
+    <link href="assets/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <link href="assets/vendor/datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="assets/vendor/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Select2 css -->
+    <link href="assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Daterangepicker css -->
+    <link href="assets/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/vendor/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Touchspin css -->
+    <link href="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('body') %>
+
+        <div class="row">
+            <div class="col-12">
+                <div
+                    class="page-title-box justify-content-between d-flex align-items-md-center flex-md-row flex-column">
+                    <h4 class="page-title">Upload Excel</h4>
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Management</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript: void(0);">Scope</a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Import Shipments
+                        </h4>
+                    </div>
+                    <div class="card-body mb-3">
+                        <div class="row">
+
+                            <div class="col-2">
+                                <select class="form-control select2" id="am_pm" data-toggle="select2">
+                                    <option hidden disabled selected>AM/PM</option>
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+
+                                </select>
+                            </div>
+                            <div class="col-10">
+                                <form action="upload3" id="customer_form" method="post" enctype="multipart/form-data">
+
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <input type="text" placeholder="Select Date" id="date" name="date"
+                                                class="form-control basic-datepicker">
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="file" name="file" class="form-control">
+                                        </div>
+                                        <div class="col-6" style="display: flex">
+                                            <button class="btn btn-primary" type="submit">Upload</button>
+                                            <button class="btn btn-primary" type="button" onclick="presend()">Pre
+                                                Send</button>
+                                            <button class="btn btn-primary" type="button" onclick="postsend()">Post
+                                                Send</button>
+
+                                            <button class="btn btn-primary" type="button" onclick="openmodal()">Tsd
+                                                Edit</button>
+                                            <button class="btn btn-primary"
+                                                onclick="exportTableToExcel('orderTable', 'order_data')">Export to
+                                                Excel</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <table class="table table-striped mt-3" id="orderTable">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Trip</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Vehicle</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Start Date Time</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">ETA Date</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">ET Arrival</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Plant</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Ship To</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Order</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Name</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Product</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Qty</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">Shipment No</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">C1</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">C2</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">C3</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">C4</th>
+                                    <th style="padding: 0.5em 0.1em;font-size: 0.7em;">C5</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+                        </table>
+
+
+
+                        <div id="customer_message" class="mt-3"></div>
+
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div>
+
+            <!-- end col-->
+        </div> <!-- end row-->
+
+
+        <div id="multieditmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="standard-modalLabel">Multi Tsd Edit</h4>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body " style="padding: 20px;">
+                        <form action="multtsdedit" id="multieditform" method="post" enctype="multipart/form-data">
+                            <Label>Upload File</Label>
+
+                            <div style="display: flex; align-items: center;" class="mt-3">
+                                <input type="file" name="file" class="form-control" id="mult_editfile"
+                                    style="margin-right: 2em;">
+                                <button class="btn btn-primary" type="submit" id="multedit">Upload</button>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
+        <%- contentFor('FooterJs') %>
+            <!-- Datatables js -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="assets/vendor/select2/js/select2.min.js"></script>
+            <script src="assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+            <script src="assets/vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+            <script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+            <script src="assets/vendor/handlebars/handlebars.min.js"></script>
+            <script src="assets/vendor/typeahead.js/typeahead.bundle.min.js"></script>
+            <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+            <script src="assets/js/pages/demo.flatpickr.js"></script>
+            <script src="assets/js/pages/demo.typehead.js"></script>
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script> <!-- Daterangepicker Plugin js -->
+            <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+            <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script src="assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+            <script src="assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedcolumns-bs5/js/fixedColumns.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+            <script src="assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+            <script src="assets/vendor/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+            <script src="assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+            <script src="assets/js/pages/demo.datatable-init.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+
+            <script>
+                $(document).ready(() => {
+                    select_topbar("topbar_scope")
+                    scope = localStorage.getItem("scope")
+                    topbar = $('#topbar_scope');
+
+                    if (scope != "") {
+                        topbar.val(scope).trigger('change');
+                    }
+                    $('#topbar_scope').change(() => {
+                        localStorage.setItem("scope", topbar.val());
+
+
+                    })
+                    var currentUrl = window.location.href;
+                    if (currentUrl.includes('vehicles') || currentUrl.includes('customers') || currentUrl.includes('depot') || currentUrl.includes('upload_excels')) {
+                        $('#topbar_scope_div').css('display', 'block');
+
+                        // Perform actions if URL contains "vehicle"
+                    } else {
+                        $('#topbar_scope_div').css('display', 'none');
+
+
+                        // Perform actions if URL does not contain "vehicle"
+                    }
+
+                    $('#customer_form').on('submit', function (event) {
+                        event.preventDefault();
+                        this.action = 'upload3';
+                        shipment_no = 0;
+
+                        var formData = new FormData(this);
+
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                console.log(response);
+
+                                $('#customer_message').html('<div class="alert alert-success">' + response.message + '</div>');
+                                $('#customer_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            },
+                            complete: function (response) {
+                                console.log(response.responseJSON);
+                                var result = response.responseJSON;
+
+                                var settings = {
+                                    "url": "scope",
+                                    "method": "GET",
+                                    "timeout": 0,
+                                };
+
+                                $.ajax(settings).done(function (response) {
+                                    console.log(response)
+                                    console.log("excel", result)
+                                    const tableBody = document.querySelector('tbody');
+
+                                    result.forEach(vehicle => {
+                                        vehicle.trips.forEach((trip, index) => {
+                                            var trip_start_date;
+                                            var formattedDates;
+                                            var formattedTimes
+                                            if(index == 0)
+                                            {
+                                                console.log("Index 1",vehicle.start_dates);
+                                                trip_start_date = vehicle.start_dates
+                                                const trip_start_datef = new Date(trip_start_date);
+                                                const days = String(trip_start_datef.getDate()).padStart(2, '0');
+                                                    const months = String(trip_start_datef.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                                                    const years = String(trip_start_datef.getFullYear()).slice(-2);
+                                                     formattedDates = `${days}-${months}-${years}`;
+
+                                                    // Extract the time in HH:MM (24-hour format)
+                                                    const hourss = String(trip_start_datef.getHours()).padStart(2, '0');
+                                                    const minutess = String(trip_start_datef.getMinutes()).padStart(2, '0');
+                                                    formattedTimes = `${hourss}:${minutess}`;
+                                            }
+                                            else
+                                            {
+                                                console.log("Index ",index,trip.end_time);
+                                                
+                                                trip_start_date = vehicle.trips[index-1].end_time;
+                                                const trip_start_datef = new Date(trip_start_date);
+                                                const days = String(trip_start_datef.getDate()).padStart(2, '0');
+                                                    const months = String(trip_start_datef.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                                                    const years = String(trip_start_datef.getFullYear()).slice(-2);
+                                                     formattedDates = `${days}-${months}-${years}`;
+
+                                                    // Extract the time in HH:MM (24-hour format)
+                                                    const hourss = String(trip_start_datef.getHours()).padStart(2, '0');
+                                                    const minutess = String(trip_start_datef.getMinutes()).padStart(2, '0');
+                                                    formattedTimes = `${hourss}:${minutess}`;
+                                            }
+                                            // Loop through orders
+                                            trip.orders.forEach((order, index) => {
+                                                // Filter compartmentsu by matching order_id
+                                                const matchingCompartments = trip.compartmentsu
+                                                    .filter(compart => compart.order_id === order.Order)
+                                                    .map(compart => compart.compartment_no); // Store compartment_no of matched order_id
+
+                                                if (matchingCompartments.length > 0) {
+                                                    const isFirstOrderOfTrip = index === 0; // Check if this is the first order of the trip
+                                                    const dateObj = new Date(order.order_eta);
+                                                    // const dateObj = new Date(dateTimeString);
+                                                    // Extract the date in DD-MM-YY format
+                                                    const day = String(dateObj.getDate()).padStart(2, '0');
+                                                    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                                                    const year = String(dateObj.getFullYear()).slice(-2);
+                                                    const formattedDate = `${day}-${month}-${year}`;
+
+                                                    // Extract the time in HH:MM (24-hour format)
+                                                    const hours = String(dateObj.getHours()).padStart(2, '0');
+                                                    const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+                                                    const formattedTime = `${hours}:${minutes}`;
+
+                                                    console.log("Date (DD-MM-YY):", formattedDate);  // Output: 25-09-24
+                                                    console.log("Time (HH:MM):", formattedTime);
+                                                    const row = `
+        <tr style="${isFirstOrderOfTrip ? 'border-top: 2px solid black;' : ''}">
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${trip.trip_no}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${vehicle.name}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${formattedDates} ${formattedTimes}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${formattedDate}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${formattedTime}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${order.Plant}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${order.ShipTo}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${order.Order}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${order.Name}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${order.Product}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${order.Qty}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;">${trip.shipment_no}</td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"><input type="checkbox" disabled class="form-check-input" ${matchingCompartments.includes(1) ? 'checked' : ''}></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"><input type="checkbox" disabled class="form-check-input" ${matchingCompartments.includes(2) ? 'checked' : ''}></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"><input type="checkbox" disabled class="form-check-input" ${matchingCompartments.includes(3) ? 'checked' : ''}></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"><input type="checkbox" disabled class="form-check-input" ${matchingCompartments.includes(4) ? 'checked' : ''}></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"><input type="checkbox" disabled class="form-check-input" ${matchingCompartments.includes(5) ? 'checked' : ''}></td>
+        </tr>
+      `;
+                                                    tableBody.innerHTML += row;
+                                                }
+                                            });
+
+                                            // Add the total row after processing all orders
+                                            const totalRow = `
+        <tr>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+          <td style="padding: 0.5em 0.1em;font-size: 0.7em;"></td>
+        </tr>
+      `;
+                                            tableBody.innerHTML += totalRow;
+                                        });
+                                    });
+
+
+                                    generate2(result);
+                                })
+                            },
+                            error: function (xhr, status, error) {
+                                console.log(xhr)
+
+                                var err = JSON.parse(xhr.responseText);
+                                $('#customer_message').html('<div class="alert alert-danger">' + err.error + '</div>');
+                                $('#customer_message .alert').delay(1000).fadeOut(1000, function () {
+                                    $(this).remove();
+                                })
+                            }
+                        });
+                    });
+
+
+                })
+
+
+                function select_topbar(id) {
+                    var settings = {
+                        "url": "scope",
+                        "method": "GET",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response)
+                        // $('#' + id + '').append('<option label="Select..." value="select">Select</option>')
+
+
+                        for (i = 0; i < response.length; i++) {
+                            $('#' + id + '').append($('<option>', {
+                                value: response[i]['id'],
+                                text: response[i]['name']
+                            }));
+                        }
+                        scope_id = localStorage.getItem("scope");
+                        $('#topbar_scope').val(scope_id).trigger('change')
+                    })
+                }
+
+
+                async function calc_rtd(trip, ship_index, shipment2) {
+                    return new Promise((resolve, reject) => {
+                        const shipment = trip;
+                        console.log(shipment);
+
+                        const distinctShipTo = [...new Set(shipment.orders.map(order => order.shipTo))];
+
+                        // const distinctShipTo = [...new Set(allShipTo)];
+                        const loadDepot = shipment2[ship_index].start_loc;
+                        const resultArray = [loadDepot, ...distinctShipTo];
+                        console.log(resultArray);
+                        console.log("/sa?arr=" + JSON.stringify(resultArray) + "");
+
+                        var settings = {
+                            "url": "/sa?arr=" + JSON.stringify(resultArray) + "",
+                            "method": "GET",
+                            "timeout": 0,
+                        };
+
+                        $.ajax(settings).done(function (response) {
+                            console.log('calculatrtd', response);
+                            resolve(response); // Call this when the logic is done
+                        });
+                    });
+                }
+
+
+                async function generate2(response) {
+                    var am_pm = $('#am_pm').val();
+                    var date = $('#date').val();
+
+
+
+
+                    // Split the date string into year, month, and day parts
+                    const [year, month, day] = date.split('-');
+
+                    // Remove leading zeros from day and month
+                    const formattedDay = parseInt(day, 10);
+                    const formattedMonth = parseInt(month, 10);
+                    const formattedYear = year.slice(-2); // Get the last two digits of the year
+
+                    // Concatenate to get the desired format
+                    const currentdate2 = `${formattedDay}${formattedMonth}${formattedYear}`;
+
+
+
+                    return new Promise((async (resolve, reject) => {
+                        var f_name;
+                        var tppcode;
+
+                        // var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+                        // const parts = filename.split('_');
+                        // const extractedNumber = parts[1];
+
+                        // f_name = extractedNumber;
+                        // var f_name = veh_order[0].trip[0].orders[0]['file_name'];
+                        // var f_name = veh_order[0].trip[0].orders[0]['file_name'];
+                        // console.log(veh_order.am[0]);
+                        var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+                        const parts = filename.split('_');
+                        const extractedNumber = parts[1];
+
+                        // f_name = extractedNumber;
+                        // console.log("fname", f_name.substring(1));
+                        // calc_rtd();  
+                        const shipments = response;
+
+
+
+                        plant = response[0]['trips'][0]['orders'][0]['Plant'];
+                        // alert("tpp_byplant/" + plant)
+                        var settings = {
+                            "url": "tpp_byplant/" + plant,
+                            "method": "GET",
+                            "timeout": 0,
+                        };
+
+                        await $.ajax(settings).done(function (response) {
+                            tppcode = response[0]['tpp_code']
+
+                            console.log("tpp_code", tppcode)
+                            var settings = {
+                                "url": "scope_detail/" + response[0]['tpp_code'],
+                                "method": "GET",
+                                "timeout": 0,
+                            };
+
+                            $.ajax(settings).done(function (response) {
+                                dname = response[0]['driver_name'];
+                                dcode = response[0]['driver_code'];
+                            });
+                        });
+                        console.log("tpp_after", tppcode)
+
+                        const tch = tppcode;//fname
+
+                        // const tch = "0383";//fname
+                        const gsap = Math.floor(1000 + Math.random() * 9000);
+                        var currentdate = new Date();
+                        var currentdate2 = new Date(date);
+                        var datetime = ('0' + currentdate.getDate()).slice(-2) + "-" +
+                            ('0' + (currentdate.getMonth() + 1)).slice(-2) + "-" +
+                            currentdate.getFullYear().toString().substr(-2) +
+                            "" +
+                            ('0' + currentdate.getHours()).slice(-2) + ":" +
+                            ('0' + currentdate.getMinutes()).slice(-2);
+                        // console.log(datetime);
+                        var sdate = ('0' + currentdate2.getDate()).slice(-2) + "" + ('0' + (currentdate2.getMonth() + 1)).slice(-2) + "" + currentdate2.getFullYear().toString().substr(-2);
+                        // create_shipment();
+                        var line1 = "#TCH0" + tch + "GSAP" + gsap + "" + datetime;
+                        var line2 = "#BCH0" + tch + "GSAPBS1" + gsap + "" + datetime;
+                        var ftext = "";
+                        var shipment;
+                        var shift;
+                        shipment = response;
+                        console.log(shipment);
+                        shift = am_pm
+
+
+
+
+
+                        var line3 = "B LTRK CZZZ" + sdate + "" + shift;
+                        var line4 = "";
+                        var line5 = "";
+                        var line6 = "";
+                        let output5 = "";
+                        let output6 = "";
+                        let output7 = "";
+                        let output8 = "";
+                        let line7 = "C";
+                        let line8 = "";
+                        let d_portion = "";
+                        let d_portionl4 = "";
+                        let trip = "";
+                        console.log(shipment.length);
+                        let index = 0;
+                        for (const ship of shipment) {
+                            console.log("Samad ", ship.trip_end_time);
+                            var trip_end_time = new Date(ship.trip_end_time);
+                            var trip_start_date = new Date(ship.start_dates);
+                            const day = String(trip_end_time.getDate()).padStart(2, '0');
+                            const month = String(trip_end_time.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+                            const year = String(trip_end_time.getFullYear()).slice(-2); // Get last two digits of year
+                            const shipment_end_date = `${day}${month}${year}`;
+
+                            const day2 = String(trip_start_date.getDate()).padStart(2, '0');
+                            const month2 = String(trip_start_date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+                            const year2 = String(trip_start_date.getFullYear()).slice(-2); // Get last two digits of year
+                            const shipment_start_date = `${day2}${month2}${year2}`;
+
+                            // Step 3: Extract time in 24-hour format without seconds
+                            const hours = String(trip_end_time.getHours()).padStart(2, '0'); // 24-hour format
+                            const minutes = String(trip_end_time.getMinutes()).padStart(2, '0');
+                            const shipment_end_time = `${hours}${minutes}`;
+
+                            var identifier = ship.tractor_code;
+                            var reg = ship.tractor_reg;
+                            var end_depot = "1";
+                            var f_end_depot = ship.end_depot;
+                            var stime = ship.start_time.replace(/:/g, '');
+                            var etime = shipment_end_time;
+                            var trips = "0" + ship.trips.length;
+                            var no_trail = "1";
+                            var first_trail = "t" + ship.tractor_code;
+                            var second_trail = "";
+                            var third_trail = "";
+                            var start_date = shipment_start_date;
+                            var end_date = shipment_end_date;
+                            identifier = identifier.length > 8 ? identifier.substr(0, 8) : identifier.padEnd(8, ' ')
+                            console.log("identifier", identifier)
+                            reg = reg.length > 10 ? reg.substr(0, 10) : reg.padEnd(10, ' ')
+                            end_depot = end_depot.padEnd(1, ' ')
+                            f_end_depot = f_end_depot.padEnd(3, ' ');
+                            sec_depot = '   ';
+                            stime = stime.padEnd(4, ' ')
+                            etime = etime.padEnd(4, ' ')
+                            trips = trips.padEnd(2, ' ')
+                            no_trail = no_trail.padEnd(1, ' ')
+                            first_trail = first_trail.length > 8 ? first_trail.substr(0, 8) : first_trail.padEnd(8, ' ')
+                            // identifier = identifier.padEnd(8, ' ')
+                            // reg = reg.padEnd(10, ' ')
+                            // end_depot = end_depot.padEnd(1, ' ')
+                            // f_end_depot = f_end_depot.padEnd(3, ' ')
+                            // sec_depot = '   ';
+                            // stime = stime.padEnd(4, ' ')
+                            // etime = etime.padEnd(4, ' ')
+                            // trips = trips.padEnd(2, ' ')
+                            // no_trail = no_trail.padEnd(1, ' ')
+                            // first_trail = first_trail.padEnd(8, ' ')
+                            second_trail = second_trail.padEnd(8, ' ')
+                            third_trail = third_trail.padEnd(8, ' ')
+                            start_date = start_date.padEnd(6, ' ')
+                            end_date = end_date.padEnd(6, ' ')
+                            line4 = "T" + identifier + "" + reg + "" + end_depot + "" + f_end_depot + "" + sec_depot + "" + stime + "" + etime + "" + trips + "" + no_trail + "" + first_trail + "" + second_trail + "" + third_trail + "" + start_date + "" + end_date;
+                            line4 = line4.padEnd(80, ' ');
+                            // var shipment_no = trip.shipment_no;
+                            var trip_index = 0;
+                            for (const trip of ship.trips) {
+                                var data = await calc_rtd(trip, index, shipment);
+                                // resolve(response); // Call this when the logic is done
+                                // shipment_no = shipment_no + 1;
+                                // data = await calc_rtd(trip, index);
+                                // console.log(data["Total Distance"]);
+                                // trip.total_distance = data["Total Distance"].toString();
+                                console.log("Compa", trip.compartments.length);
+                                console.log("Orders", trip.orders.length);
+
+
+                                const distinctMaterialCodes = [...new Set(trip.orders.map(order => order.materialCode))];
+                                var t_end_time = new Date(trip.end_time);
+                                const day2 = String(t_end_time.getDate()).padStart(2, '0');
+                                const month2 = String(t_end_time.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+                                const year2 = String(t_end_time.getFullYear()).slice(-2); // Get last two digits of year
+                                const tend_date = `${day}${month}${year}`;
+
+                                const thours = String(t_end_time.getHours()).padStart(2, '0'); // 24-hour format
+                                const tminutes = String(t_end_time.getMinutes()).padStart(2, '0');
+                                const tend_time = `${thours}${tminutes}`;
+                                // console.log(distinctMaterialCodes);
+                                var eta_sec_depot;
+                                var code_sec_depot;
+                                var time_spend_2;
+                                var name_of_mate;
+                                var trip_number = "0" + trip.trip_no;
+                                var n_start_depot = "1";
+                                var start_depot = ship.load_depot;
+                                var c_end_depot = ship.end_depot;
+                                var stimet = ship.start_time.replace(/:/g, '');
+                                var estime = tend_time;
+                                var time_spend_1 = parseInt(ship.trailer_size) / 1000 + parseInt(trip.contact_time);
+                                var n_prods = "0" + distinctMaterialCodes.length;
+                                var edistance = trip.total_distance.toString();
+                                var n_driver = dname;
+                                var code_driver = dcode;
+                                var n_compartments = "0" + trip.compartments.length;
+                                var n_orders = "0" + trip.orders.length;
+                                trip_number = trip_number.padEnd(2, ' ')
+                                n_start_depot = n_start_depot.padEnd(1, ' ')
+                                start_depot = start_depot.padEnd(3, ' ')
+                                stimet = stimet.padStart(4, '0')
+                                code_sec_depot = '   ';
+                                estime = estime.padStart(4, '0')
+                                time_spend_1 = time_spend_1.toString().padStart(4, '0')
+                                time_spend_2 = '    ';
+                                n_prods = n_prods.padEnd(2, ' ')
+                                edistance = edistance.padStart(4, '0')
+                                name_of_mate = '              ';
+                                n_driver = n_driver.padEnd(14, ' ');
+                                code_driver = code_driver.padEnd(6, ' ')
+                                n_compartments = n_compartments.padEnd(2, ' ')
+                                n_orders = n_orders.padEnd(2, ' ')
+                                eta_sec_depot = '    ';
+
+
+
+                                line5 = "R" + trip_number + "" + n_start_depot + "" + start_depot + "" + code_sec_depot + "" + c_end_depot + "" + stimet + "" + eta_sec_depot + "" + estime + "" + time_spend_1 + "" + time_spend_2 + "" + n_prods + "" + edistance + "" + name_of_mate + "" + n_driver + "" + code_driver + "" + n_compartments + "" + n_orders;
+                                line5 = line5.padEnd(80, ' ');
+                                output5 += line5 + "\n";
+                                console.log(output5);
+
+                                var tdesc = "";
+                                // var tstart = document.getElementById('tstart').value;
+                                // var tend = document.getElementById('tend').value;
+
+                                var ship_num = trip.shipment_no;
+                                var svcode = ship.tractor_code + "CV";
+                                tdesc = tdesc.padEnd(40, ' ')
+                                // tstart = tstart.padEnd(6, ' ')
+                                // tend = tend.padEnd(6, ' ')
+                                ship_num = ship_num.toString().padEnd(15, ' ')
+                                svcode = svcode.padEnd(8, ' ')
+                                line6 = "X" + tdesc + "" + start_date + "" + tend_date + "" + ship_num + "" + svcode;
+                                line6 = line6.padEnd(80, ' ');
+                                output6 += line6 + "\n";
+                                const tankCode = "";
+                                trip.compartmentsu.forEach((compartment, index) => {
+                                    let compartmentString = compartment.product_id.toString().padEnd(12, ' ') +
+                                        tankCode.padEnd(3, ' ') + compartment.loaded_volume.toString().padStart(6, '0') + f_end_depot.padEnd(3, ' ');
+
+                                    line7 += compartmentString;
+                                    // console.log(line7);
+
+                                    // If three compartments have been added or if it's the last compartment, add the line to output
+                                    if ((index + 1) % 3 === 0 || index === trip.compartments.length - 1) {
+                                        line7 = line7.padEnd(80); // Fill the remaining spaces to make the line 80 characters long
+                                        output7 += line7;
+                                        line7 = "\nC"; // Reset line for the next set of compartments
+                                    }
+                                });
+
+                                for (const order of trip.orders) {
+                                    var order_eta = new Date(order.order_eta);
+                                    // alert(order_eta)
+                                    const thours = String(order_eta.getHours()).padStart(2, '0'); // 24-hour format
+                                    const tminutes = String(order_eta.getMinutes()).padStart(2, '0');
+                                    const torder_eta = `${thours}${tminutes}`;
+                                    // alert(torder_eta);
+                                    var onumber = order.Order;
+                                    var pcode = order.ShipTo;
+                                    var otype = "P";
+                                    var ostatus = "N";
+                                    var tcouple = "0";
+                                    var eta = torder_eta.toString();
+                                    var trd = Math.round(order.discharge_time).toString();
+                                    var pweigth = ship.weight.toString();
+                                    var n_prods1 = "01";
+                                    var sap_mcode = order.Product;
+                                    var tgcode = "   ";
+                                    var pqtyw = order.Qty;
+                                    var dates = end_date;
+                                    onumber = onumber.toString().padEnd(11, ' ');
+                                    pcode = pcode.toString().padEnd(12, ' ');
+                                    otype = otype.padEnd(1, ' ');
+                                    ostatus = ostatus.padEnd(1, ' ');
+                                    eta = eta.padEnd(4, ' ');
+                                    trd = trd.padStart(4, '0');
+                                    pweigth = pweigth.padStart(6, '0');
+                                    n_prods1 = n_prods1.padEnd(2, ' ');
+                                    sap_mcode = sap_mcode.toString().padEnd(12, ' ');
+                                    tgcode = tgcode.padEnd(3, ' ');
+                                    pqtyw = pqtyw.toString().padEnd(6, ' ');
+                                    dates = dates.padEnd(6, ' ');
+                                    line8 = "O" + onumber + "" + pcode + "" + otype + "" + ostatus + "" + tcouple + "" + eta + "" + trd + "" + pweigth + "" + n_prods1 + "" + sap_mcode + "" + tgcode + "" + pqtyw + "" + dates;
+                                    line8 = line8.padEnd(80, ' ');
+                                    // line8 += line8+"\n";
+                                    output8 += line8 + "\n";
+                                    const compartment = trip.compartmentsu.filter(comp => comp.order_id === order.Order);
+                                    // console.log(compartment);
+
+
+
+
+                                    const recordIdentifier = "L";
+                                    let output = '';
+                                    let line = recordIdentifier;
+                                    const tankCode = "";
+                                    for (let i = 0; i < compartment.length; i++) {
+                                        let compartments = compartment[i];
+
+                                        let compartmentInfo = compartments.order_id.toString().padEnd(11, ' ') + compartments.product_id.toString().padEnd(12, ' ') +
+                                            tankCode.padEnd(3, ' ') + compartments.compartment_no.toString().padStart(2, '0') + compartments.loaded_volume.toString().padStart(6, '0');
+
+                                        if (line.length + compartmentInfo.length > 80) {
+                                            output += line.padEnd(80, ' ') + '\n';
+                                            line = recordIdentifier + compartmentInfo;
+                                        } else {
+                                            line += compartmentInfo;
+                                        }
+                                    }
+                                    if (line.length > 0) {
+                                        output += line.padEnd(80, ' ') + '\n';
+                                        output8 += output;
+                                    }
+                                    // console.log(output);
+
+
+                                    // line9 = line9.padEnd(80, ' ');
+
+                                    // console.log(line8);
+                                };
+
+
+                                // line4 += ""
+                                if (d_portion == "") {
+                                    d_portionl4 += line4 + "\n";
+                                    console.log(d_portion);
+                                    // d_portion = d_portionl4 + d_portion;
+
+
+                                    d_portion += d_portionl4.padEnd(80, ' ') + "\n" + output5 + "\n" + output6 + "\n" + output7.padEnd(80, ' ') + "\n" + output8;
+                                    line4 = "";
+                                }
+                                else {
+                                    d_portionl4 += line4 + "\n";
+                                    d_portion += "\n" + d_portionl4.padEnd(80, ' ') + "\n" + output5 + "\n" + output6 + "\n" + output7.padEnd(80, ' ') + "\n" + output8;
+                                    line4 = "";
+
+                                }
+                                let lines = d_portion.split('\n');
+
+                                // Iterate over each line and pad it to 80 characters
+                                let paddedLines = lines.map(line => {
+                                    if (line.length < 80) {
+                                        return line.padEnd(80, ' '); // Pad with spaces to make the length 80
+                                    } else {
+                                        return line;
+                                    }
+                                });
+
+                                // Join the lines back together with newline characters
+                                d_portion = paddedLines.join('\n');
+
+
+
+                                d_portionl4 = "";
+                                output5 = "";
+                                output6 = "";
+                                output7 = "";
+                                output8 = "";
+                                trip_index++;
+                            };
+
+
+
+                            // if (d_portion == "") {
+
+                            //         d_portion += line4 + "\n" + output5 + "\n" + output6 + "\n" + output7.padEnd(80, ' ') + "\n" + output8;
+
+                            //     }
+                            //     else {
+                            //         d_portion += "\n" + line4 + "\n" + output5 + "\n" + output6 + "\n" + output7.padEnd(80, ' ') + "\n" + output8;
+
+                            //     }
+
+                            line4 = "";
+                            index++;
+                        }
+
+
+                        line1 = line1.padEnd(80, ' ');
+                        line2 = line2.padEnd(80, ' ');
+                        line3 = line3.padEnd(80, ' ');
+
+                        var line11 = "\n#BCT0" + tch + "GSAPBS1" + gsap + "" + "000010";
+                        line11 = line11.padEnd(81, ' ');
+
+                        var line12 = "#TCT0" + tch + "GSAP" + gsap + "" + "000012" + "" + "001";
+                        line12 = line12.padEnd(80, ' ');
+
+
+
+                        // console.log(line1 + "\n" + line2 + "\n" + line3 + "\n" + d_portion + line11 + "\n" + line12);
+
+                        text = line3 + "\n" + d_portion + line11 + "\n" + line12 + "\n";
+                        let lines = text.split('\n');
+                        // Filter out lines that are empty or contain only whitespace
+                        let nonEmptyLines = lines.filter(line => line.trim() !== '');
+                        // Join the non-empty lines back together with newline characters
+                        text = nonEmptyLines.join('\n');
+                        ftext += text + "\n"
+                        line3 = "";
+                        line4 = "";
+                        line5 = "";
+                        line6 = "";
+                        console.log(ftext);
+
+                        console.log(text);
+
+                        var currentdate = new Date();
+                        var datetime = ('0' + currentdate.getDate()).slice(-2) + "-" + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "-" + currentdate.getFullYear().toString().substr(-2) + "" + currentdate.getHours() + ":" + currentdate.getMinutes();
+                        ftext = line1 + "\n" + line2 + "\n" + ftext;
+                        const link = document.createElement("a");
+                        const file = new Blob([ftext], { type: 'text/plain' });
+
+                        link.href = URL.createObjectURL(file);
+
+                        link.download = "flow_flat_file_" + datetime + ".txt";
+                        link.click();
+                        URL.revokeObjectURL(link.href);
+                        upresponse = {}
+                        upresponse.am = []
+                        upresponse.pm = []
+                        console.log('upresponse', upresponse)
+
+                        if ($('#am_pm').val() == "AM") {
+                            upresponse.am = response
+
+
+                        } else {
+                            upresponse.pm = response
+
+
+                        }
+                        upresponse = JSON.stringify(upresponse)
+                        // genpdf(upresponse);
+
+                        excorder = JSON.stringify(upresponse)
+                        excorder = excorder.replace(/\\/g, '');
+                        var modifiedJson = excorder.slice(1, -1);;
+
+                        localStorage.setItem('excelorder', modifiedJson)
+
+
+                    }))
+                }
+
+                function presend() {
+                    pre = false;
+                    let json = localStorage.getItem('excelorder');  // JSON string from localStorage
+                    var form = new FormData();
+                    form.append("json", json);  // Append JSON string to the FormData object
+                    form.append("pre", pre);  // Append JSON string to the FormData object
+                    // Append JSON string to the FormData object
+
+                    var settings = {
+                        "url": "/genexcelpdf",
+                        "method": "POST",
+                        "timeout": 0,
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax({
+                        ...settings,
+                        statusCode: {
+                            200: function (response) {
+                                console.log(response);
+                            },
+                        },
+                        success: function (data) {
+                            Swal.fire('Success!', 'PDF generated successfully', 'success');
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(xhr);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        }
+                    });
+                }
+
+                function postsend() {
+                    pre = true;
+                    let json = localStorage.getItem('excelorder');  // JSON string from localStorage
+
+                    console.log(json);
+                    var form = new FormData();
+                    form.append("json", json);  // Append JSON string to the FormData object
+                    form.append("pre", pre);  // Append JSON string to the FormData object
+                    // Append JSON string to the FormData object
+
+                    var settings = {
+                        "url": "/genexcelpdf",
+                        "method": "POST",
+                        "timeout": 0,
+                        "processData": false,
+                        "mimeType": "multipart/form-data",
+                        "contentType": false,
+                        "data": form
+                    };
+
+                    $.ajax({
+                        ...settings,
+                        statusCode: {
+                            200: function (response) {
+                                console.log(response);
+                            },
+                        },
+                        success: function (data) {
+
+                            Swal.fire('Success!', 'PDF generated successfully', 'success');
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log(xhr);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        },
+                        complete: function (data) {
+                            // send_meinsert(json)
+
+                            // neworder = localStorage.getItem('orders');
+                            // localStorage.setItem('orders1', neworder);
+                            localStorage.setItem("excelorder", "")
+
+                        }
+                    });
+
+                }
+
+
+                function openmodal() {
+                    $('#multieditmodal').modal('show')
+                }
+                $('#multieditform').on('submit', function (event) {
+
+                    event.preventDefault();
+                    this.action = 'multtsdedit';
+                    shipment_no = 0;
+
+                    var formData = new FormData(this);
+
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            console.log(response);
+
+                        },
+
+                        error: function (xhr, status, error) {
+                            console.log(xhr)
+
+
+                        }
+                    });
+                });
+            </script>
+
+            <script>
+                function exportTableToExcel(tableID, filename = '') {
+                    let table = document.getElementById(tableID);
+                    let rows = [];
+
+                    // Loop through each row of the table
+                    for (let row of table.rows) {
+                        let rowData = [];
+                        for (let cell of row.cells) {
+                            if (cell.querySelector('input[type="checkbox"]')) {
+                                rowData.push(cell.querySelector('input[type="checkbox"]').checked ? '✔' : '');
+                            } else {
+                                rowData.push(cell.innerText);
+                            }
+                        }
+                        rows.push(rowData);
+                    }
+
+                    // Create a new workbook and worksheet
+                    let wb = XLSX.utils.book_new();
+                    let ws = XLSX.utils.aoa_to_sheet(rows); // Convert array of arrays to sheet
+
+                    // Apply styles to each cell
+                    let range = XLSX.utils.decode_range(ws['!ref']); // Get the range of the sheet
+                    for (let R = range.s.r; R <= range.e.r; ++R) {
+                        for (let C = range.s.c; C <= range.e.c; ++C) {
+                            let cell_address = XLSX.utils.encode_cell({ r: R, c: C }); // Get cell address
+                            if (!ws[cell_address]) continue; // Skip if cell is not defined
+
+                            // Define a basic style for each cell
+                            ws[cell_address].s = {
+                                font: { bold: R === 0 }, // Bold for the first row
+                                border: {
+                                    top: { style: "thin" },
+                                    bottom: { style: "thin" },
+                                    left: { style: "thin" },
+                                    right: { style: "thin" }
+                                }
+                            };
+                        }
+                    }
+
+                    // Append the worksheet to the workbook
+                    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+                    // Generate Excel file and trigger download
+                    XLSX.writeFile(wb, filename ? `${filename}.xlsx` : 'data.xlsx');
+                }
+            </script>
